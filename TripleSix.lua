@@ -63,13 +63,22 @@ FusionJokers.fusions = {
 	}, result_joker = "j_fuse_commercial_driver", cost = 8 },
   { jokers = {
 		{ name = "j_hiker", carry_stat = nil, extra_stat = false },
+		{ name = "j_hiker", carry_stat = nil, extra_stat = false },
 		{ name = "j_dusk", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_fuse_camping_trip", cost = 10 },
+	}, result_joker = "j_fuse_camping_trip", cost = 14 },
   { jokers = {
 		{ name = "j_oops", carry_stat = nil, extra_stat = false },
 		{ name = "j_oops", carry_stat = nil, extra_stat = false },
 		{ name = "j_oops", carry_stat = nil, extra_stat = false }
 	}, result_joker = "j_fuse_murphyslaw", cost = 14 },
+  { jokers = {
+		{ name = "j_bull", carry_stat = nil, extra_stat = false },
+		{ name = "j_bootstraps", carry_stat = nil, extra_stat = false }
+	}, result_joker = "j_fuse_capitalist_taurus", cost = 14 },
+  { jokers = {
+		{ name = "j_to_the_moon", carry_stat = nil, extra_stat = false },
+		{ name = "j_rocket", carry_stat = nil, extra_stat = false }
+	}, result_joker = "j_fuse_artemis_launch", cost = 14 },
 }
 
 FusionJokers.fusionconfig = SMODS.current_mod.config
@@ -203,6 +212,8 @@ SMODS.load_file('jokers/uncannyface.lua')()
 SMODS.load_file('jokers/commercialdriver.lua')()
 SMODS.load_file('jokers/campingtrip.lua')()
 SMODS.load_file('jokers/murphyslaw.lua')()
+SMODS.load_file('jokers/capitalisttaurus.lua')()
+SMODS.load_file('jokers/artemislaunch.lua')()
 SMODS.load_file('jokers/test.lua')()
 
 to_number = to_number or function(num)

@@ -162,7 +162,7 @@ return {
                     "{C:chips}+#1#{} Chips when scored",
                     "({C:chips}+#2#{} on the final hand)",
                     "Your final hand triggers twice",
-                    "{C:inactive}(#3# + #4#)",
+                    "{C:inactive}(#3# + #4# + #5#)",
 				},
 			},
 			["j_fuse_star_oracle"] = {
@@ -189,6 +189,26 @@ return {
 				["text"] = {
                     "All listed {C:green}probabilities{} always trigger",
                     "{C:inactive}(#1# + #2# + #3#)",
+				},
+			},
+			["j_fuse_capitalist_taurus"] = {
+				["name"] = "Capitalist Taurus",
+				["text"] = {
+                    "{C:chips}+#1#{} Chips for each {C:money}$1{} you have.",
+                    "{C:mult}+#2#{} Mult for every {C:money}$#3#{} you have.",
+                    "{C:inactive}(Currently {C:chips}+#4#{C:inactive} Chips, {C:mult}+#5#{C:inactive} Mult)",
+                    "{C:inactive}(#6# + #7#)",
+				},
+			},
+			["j_fuse_artemis_launch"] = {
+				["name"] = "Artemis Launch",
+				["text"] = {
+                    "Earn an extra {C:money}$#1#{} of interest for",
+                    "every {C:money}$#2#{} you have at end of round.",
+                    "This Joker permanently gains {C:money}+$#3#{} Max",
+                    "Interest cap when Boss Blind is defeated",
+                    "{C:inactive}(Currently {C:money}+$#4#{C:inactive})",
+                    "{C:inactive}(#5# + #6#)",
 				},
 			},
 		},
