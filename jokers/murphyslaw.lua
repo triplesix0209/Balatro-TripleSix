@@ -1,6 +1,6 @@
 SMODS.Atlas {
     key = 'murphyslaw',
-    path = "murphy_law.png",
+    path = "j_murphy_law.png",
     px = 71,
     py = 95
 }

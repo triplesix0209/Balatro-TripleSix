@@ -203,11 +203,9 @@ return {
 			["j_fuse_artemis_launch"] = {
 				["name"] = "Artemis Launch",
 				["text"] = {
-                    "Earn an extra {C:money}$#1#{} of interest for",
-                    "every {C:money}$#2#{} you have at end of round.",
-                    "This Joker permanently gains {C:money}+$#3#{} Max",
-                    "Interest cap when Boss Blind is defeated",
-                    "{C:inactive}(Currently {C:money}+$#4#{C:inactive})",
+                    "Earn an extra {C:money}$#1#{} of interest for every {C:money}$#2#{} you have at end of round.",
+                    "When {C:attention}Boss Blind{} is defeated, Max Interest increases by {C:money}#3#{}",
+                    "{C:inactive}(Max Interest increased: {C:money}#4#{C:inactive})",
                     "{C:inactive}(#5# + #6#)",
 				},
 			},
