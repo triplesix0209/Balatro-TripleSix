@@ -204,9 +204,9 @@ return {
 				["name"] = "Artemis Launch",
 				["text"] = {
                     "Earn an extra {C:money}$#1#{} of interest for every {C:money}$#2#{} you have at end of round.",
-                    "When {C:attention}Boss Blind{} is defeated, increases Max Interest by {C:money}#3#{}",
-                    "{C:inactive}(Max Interest increased: {C:money}#4#{C:inactive})",
-                    "{C:inactive}(#5# + #6#)",
+                    "When {C:attention}Boss Blind{} is defeated, permanently increases this extra interest by {C:money}$#3#{}",
+                    "{C:inactive}(Currently {C:money}+$#1#{C:inactive} extra interest)",
+                    "{C:inactive}(#4# + #5#)",
 				},
 			},
 		},
