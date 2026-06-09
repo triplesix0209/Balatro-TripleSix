@@ -27,6 +27,7 @@ SMODS.Joker {
             cap_increase_per_boss = 5,
             cap_increase_per_boss_interest = 3,
             cap_increase = 0,
+            max_interest_cap_increase = 0,
             joker1 = "j_to_the_moon",
             joker2 = "j_rocket"
         }
