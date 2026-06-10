@@ -185,13 +185,6 @@ return {
                     "played {C:moons}Moon{} {C:attention}Glass{} cards never shatter",
 				},
 			},
-			["j_fuse_murphyslaw"] = {
-				["name"] = "Murphy's Law",
-				["text"] = {
-                    "{C:purple}(#1# + #2# + #3#){}",
-                    "All listed {C:green}probabilities{} always trigger",
-				},
-			},
 			["j_fuse_capitalist_taurus"] = {
 				["name"] = "Capitalist Taurus",
 				["text"] = {
