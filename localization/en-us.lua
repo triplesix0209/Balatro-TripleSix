@@ -141,9 +141,9 @@ return {
 				["name"] = "Uncanny Face",
 				["text"] = {
                     "{C:purple}(#3# + #4# + #5#){}",
+					"Retrigger all played {C:attention}face{} cards.",
 					"Played {C:attention}face{} cards give {C:chips}+#1#{} Chips and {C:mult}+#2#{} Mult",
                     "for every {C:attention}face{} card in the scoring hand.",
-					"Retrigger all played {C:attention}face{} cards.",
 				},
 			},
 			["j_fuse_commercial_driver"] = {
@@ -159,11 +159,11 @@ return {
 				["name"] = "Camping Trip",
 				["text"] = {
                     "{C:purple}(#3# + #4# + #5#){}",
+					"Every {C:attention}played card{} is scored.",
                     "Played {C:attention}cards{} permanently gain",
                     "{C:chips}+#1#{} Chips when scored",
-                    "({C:chips}+#2#{} on the final hand).",
-                    "Retrigger all played cards on final hand.",
-                    "Every played card is scored.",
+                    "({C:chips}+#2#{} on the {C:attention}final hand{}).",
+                    "Retrigger all played cards on {C:attention}final hand{}.",
 				},
 			},
 			["j_fuse_star_oracle"] = {
@@ -205,8 +205,8 @@ return {
 				["name"] = "Artemis Launch",
 				["text"] = {
                     "{C:purple}(#4# + #5#){}",
-                    "Earn an extra {C:money}$#1#{} of interest for every {C:money}$#2#{} you have at end of round.",
-                    "When {C:attention}Boss Blind{} is defeated, permanently increases this extra interest by {C:money}$#3#{}",
+                    "Earn an extra {C:money}$#1#{} of {C:attention}interest{} for every {C:money}$#2#{} you have at end of round.",
+                    "When {C:attention}Boss Blind{} is defeated, permanently increases this extra {C:attention}interest{} by {C:money}$#3#{}",
 				},
 			},
 			["j_fuse_perkeo_shop"] = {
@@ -214,11 +214,11 @@ return {
 				["text"] = {
                     "{C:purple}(#3# + #4# + #5#){}",
                     "All listed {C:green}probabilities{} always trigger.",
-                    "Creates {C:attention}2 Negative{} copies of 1 random",
+                    "Creates {C:dark_edition}2 Negative{} copies of 1 random",
                     "{C:attention}consumable{} card in your possession",
-                    "at the end of the shop.",
+                    "at the end of the {C:attention}shop{}.",
                     "Gains {X:mult,C:white}X#1#{} Mult every time a",
-                    "{C:attention}Lucky{} card successfully triggers.",
+                    "{C:attention}Lucky{} card {C:green}successfully{} triggers.",
                     "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
 				},
 			},
