@@ -236,28 +236,34 @@ SMODS.add_to_pool = function (prototype_obj, args)
 	return atpref(prototype_obj, args)
 end
 
+SMODS.load_file('jokers/dynamicduo.lua')()
+SMODS.load_file('jokers/flipflop.lua')()
+SMODS.load_file('jokers/dementiajoker.lua')()
+SMODS.load_file('jokers/goldenegg.lua')()
+SMODS.load_file('jokers/flagbearer.lua')()
+
 SMODS.load_file('jokers/diamondbard.lua')()
 SMODS.load_file('jokers/heartpaladin.lua')()
 SMODS.load_file('jokers/spadearcher.lua')()
 SMODS.load_file('jokers/clubwizard.lua')()
+SMODS.load_file('jokers/collectiblechaos.lua')()
+SMODS.load_file('jokers/royaldecree.lua')()
 if (SMODS.Mods["SixSuits"] or {}).can_load then
 	SMODS.load_file('jokers/moonmarauder.lua')()
 	SMODS.load_file('jokers/staroracle.lua')()
 end
-SMODS.load_file('jokers/bigbang.lua')()
-SMODS.load_file('jokers/dynamicduo.lua')()
-SMODS.load_file('jokers/collectiblechaos.lua')()
-SMODS.load_file('jokers/flipflop.lua')()
-SMODS.load_file('jokers/royaldecree.lua')()
-SMODS.load_file('jokers/dementiajoker.lua')()
-SMODS.load_file('jokers/goldenegg.lua')()
-SMODS.load_file('jokers/flagbearer.lua')()
-SMODS.load_file('jokers/uncannyface.lua')()
+
 SMODS.load_file('jokers/commercialdriver.lua')()
-SMODS.load_file('jokers/campingtrip.lua')()
-SMODS.load_file('jokers/murphyslaw.lua')()
 SMODS.load_file('jokers/capitalisttaurus.lua')()
 SMODS.load_file('jokers/artemislaunch.lua')()
+
+SMODS.load_file('jokers/uncannyface.lua')()
+
+SMODS.load_file('jokers/bigbang.lua')()
+SMODS.load_file('jokers/campingtrip.lua')()
+
+SMODS.load_file('jokers/murphyslaw.lua')()
+
 SMODS.load_file('jokers/perkeoshop.lua')()
 SMODS.load_file('jokers/test.lua')()
 
