@@ -29,14 +29,15 @@ SMODS.Joker {
         }
     },
     loc_vars = function(self, info_queue, card)
+        local luck, odds = SMODS.get_probability_vars(card, 1, 2, "big_bang_desc", false)
         return {
             vars = {
                 card.ability.extra.Xmult,
                 localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'},
                 localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'},
                 localize{type = 'name_text', key = card.ability.extra.joker3, set = 'Joker'},
-                G.GAME and G.GAME.probabilities.normal or 1,
-                3
+                luck,
+                odds
             }
         }
     end,
@@ -49,7 +50,7 @@ SMODS.Joker {
 			}
 		end
         if context.cardarea == G.jokers and context.before and context.scoring_name then
-            if pseudorandom('big_bang') < (G.GAME and G.GAME.probabilities.normal or 1) / 3 then
+            if SMODS.pseudorandom_probability(card, 'big_bang', 1, 2, 'big_bang') then
                 update_hand_text({sound = 'button', volume = 0.7, pitch = 0.8, delay = 0.3}, {handname = localize(context.scoring_name, 'poker_hands'), chips = G.GAME.hands[context.scoring_name].chips, mult = G.GAME.hands[context.scoring_name].mult, level = G.GAME.hands[context.scoring_name].level})
                 level_up_hand(card, context.scoring_name, nil, 1)
                 return {

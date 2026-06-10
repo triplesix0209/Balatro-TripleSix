@@ -25,7 +25,8 @@ SMODS.Joker {
             chips = 15,
             mult = 2,
             joker1 = "j_scary_face", 
-            joker2 = "j_smiley"
+            joker2 = "j_smiley",
+            joker3 = "j_sock_and_buskin"
         }
     },
     loc_vars = function(self, info_queue, card)
@@ -34,7 +35,8 @@ SMODS.Joker {
                 card.ability.extra.chips, 
                 card.ability.extra.mult,
                 localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'},
-                localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'}
+                localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'},
+                localize{type = 'name_text', key = card.ability.extra.joker3, set = 'Joker'}
             }
         }
     end,
@@ -50,6 +52,14 @@ SMODS.Joker {
 			return {
 				mult = card.ability.extra.mult * faces,
 				chips = card.ability.extra.chips * faces,
+				card = card
+			}
+		end
+		if context.repetition and context.cardarea == G.play and
+		context.other_card:is_face() then
+			return {
+				message = localize('k_again_ex'),
+				repetitions = 1,
 				card = card
 			}
 		end

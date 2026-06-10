@@ -56,8 +56,9 @@ FusionJokers.fusions = {
 	}, result_joker = "j_fuse_flag_bearer", cost = 9 },
 	{ jokers = {
 		{ name = "j_scary_face", carry_stat = nil, extra_stat = false },
-		{ name = "j_smiley", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_fuse_uncanny_face", cost = 8 },
+		{ name = "j_smiley", carry_stat = nil, extra_stat = false },
+		{ name = "j_sock_and_buskin", carry_stat = nil, extra_stat = false }
+	}, result_joker = "j_fuse_uncanny_face", cost = 14 },
 	{ jokers = {
 		{ name = "j_ride_the_bus", carry_stat = nil, extra_stat = false },
 		{ name = "j_drivers_license", carry_stat = nil, extra_stat = false }

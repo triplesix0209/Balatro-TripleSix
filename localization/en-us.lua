@@ -140,10 +140,10 @@ return {
 			["j_fuse_uncanny_face"] = {
 				["name"] = "Uncanny Face",
 				["text"] = {
-                    "Played {C:attention}face{} cards give {C:chips}+#1#{} Chips and",
-                    "{C:mult}+#2#{} Mult for every {C:attention}face{} card",
-                    " in the scoring hand",
-                    "{C:inactive}(#3# + #4#)",
+					"Played {C:attention}face{} cards give {C:chips}+#1#{} Chips and {C:mult}+#2#{} Mult",
+                    "for every {C:attention}face{} card in the scoring hand.",
+					"Retrigger all played {C:attention}face{} cards.",
+                    "{C:inactive}(#3# + #4# + #5#)",
 				},
 			},
 			["j_fuse_commercial_driver"] = {
