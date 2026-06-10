@@ -92,6 +92,11 @@ FusionJokers.fusions = {
 		{ name = "j_lucky_cat", carry_stat = "x_mult", extra_stat = false },
 		{ name = "j_oops", carry_stat = nil, extra_stat = false }
 	}, result_joker = "j_fuse_perkeo_shop", cost = 17 },
+	{ jokers = {
+		{ name = "j_caino", carry_stat = nil, extra_stat = false },
+		{ name = "j_madness", carry_stat = "x_mult", extra_stat = false },
+		{ name = "j_ceremonial", carry_stat = nil, extra_stat = false }
+	}, result_joker = "j_fuse_canios_madness", cost = 17 },
 }
 
 FusionJokers.fusionconfig = SMODS.current_mod.config
@@ -256,6 +261,7 @@ SMODS.load_file('jokers/bigbang.lua')()
 SMODS.load_file('jokers/campingtrip.lua')()
 
 SMODS.load_file('jokers/perkeoshop.lua')()
+SMODS.load_file('jokers/caniosmadness.lua')()
 SMODS.load_file('jokers/test.lua')()
 
 to_number = to_number or function(num)
@@ -761,3 +767,4 @@ SMODS.current_mod.reset_game_globals = function (init)
 		G.GAME.fujo_fusion_discountpercent = {}
 	end
 end
+

@@ -215,6 +215,16 @@ return {
                     "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
 				},
 			},
+			["j_fuse_canios_madness"] = {
+				["name"] = "Canio's Madness",
+				["text"] = {
+                    "{C:purple}(#2# + #3# + #4#){}",
+                    "Gains {X:mult,C:white}X1{} Mult when a card is destroyed.",
+                    "When {C:attention}Blind{} is selected, destroy {C:attention}Joker{} to the right",
+                    "and permanently add its sell value to its {X:mult,C:white}X{} Mult.",
+                    "{C:inactive}(Currently {X:mult,C:white}X#1#{C:inactive} Mult)",
+				},
+			},
 		},
 	},
 }
