@@ -14,7 +14,7 @@ SMODS.Joker {
         y = 0
     },
     rarity = "fuse_fusion",
-    cost = 12,
+    cost = 9,
     unlocked = true,
     discovered = false,
     eternal_compat = true,

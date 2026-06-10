@@ -1,4 +1,4 @@
-FusionJokers.fusions:add_fusion("j_six_slothful_joker", nil, false, "j_six_moonstone", nil, false, "j_fuse_moon_marauder", 12)
+FusionJokers.fusions:add_fusion("j_six_slothful_joker", nil, false, "j_six_moonstone", nil, false, "j_fuse_moon_marauder", 9)
 
 SMODS.Atlas {
     key = 'moon_marauder',
@@ -16,7 +16,7 @@ SMODS.Joker {
         y = 0
     },
     rarity = "fuse_fusion",
-    cost = 12,
+    cost = 9,
     unlocked = true,
     discovered = false,
     eternal_compat = true,
