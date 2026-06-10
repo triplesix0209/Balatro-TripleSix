@@ -65,8 +65,8 @@ FusionJokers.fusions = {
 	}, result_joker = "j_fuse_commercial_driver", cost = 8 },
   { jokers = {
 		{ name = "j_hiker", carry_stat = nil, extra_stat = false },
-		{ name = "j_hiker", carry_stat = nil, extra_stat = false },
-		{ name = "j_dusk", carry_stat = nil, extra_stat = false }
+		{ name = "j_dusk", carry_stat = nil, extra_stat = false },
+		{ name = "j_splash", carry_stat = nil, extra_stat = false }
 	}, result_joker = "j_fuse_camping_trip", cost = 14 },
   { jokers = {
 		{ name = "j_oops", carry_stat = nil, extra_stat = false },
@@ -85,6 +85,30 @@ FusionJokers.fusions = {
 
 FusionJokers.fusionconfig = SMODS.current_mod.config
 SMODS.load_file('configui.lua')()
+
+local find_card_ref = SMODS.find_card
+SMODS.find_card = function(key, count_debuffed)
+    local results = find_card_ref(key, count_debuffed)
+    if key == 'j_splash' then
+        local fusions = find_card_ref('j_fuse_camping_trip', count_debuffed)
+        for _, v in ipairs(fusions) do
+            table.insert(results, v)
+        end
+    end
+    return results
+end
+
+local find_joker_ref = find_joker
+find_joker = function(name)
+    local results = find_joker_ref(name)
+    if name == 'Splash' then
+        local fusions = find_joker_ref('Camping Trip')
+        for _, v in ipairs(fusions) do
+            table.insert(results, v)
+        end
+    end
+    return results
+end
 
 FusionJokers.fusions.ingredience = {}
 

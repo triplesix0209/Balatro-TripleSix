@@ -158,10 +158,10 @@ return {
 			["j_fuse_camping_trip"] = {
 				["name"] = "Camping Trip",
 				["text"] = {
-                    "Played {C:attention}cards{} permanently gains",
-                    "{C:chips}+#1#{} Chips when scored",
-                    "({C:chips}+#2#{} on the final hand)",
-                    "Your final hand triggers twice",
+					"Every {C:attention}played card{} counts in scoring.",
+                    "Every {C:attention}played card{} permanently gains {C:chips}+#1#{} Chips when scored",
+                    "({C:chips}+#2#{} on the {C:attention}final hand{}).",
+                    "Retrigger all played cards in {C:attention}final hand{} of the round.",
                     "{C:inactive}(#3# + #4# + #5#)",
 				},
 			},
@@ -204,7 +204,7 @@ return {
 				["name"] = "Artemis Launch",
 				["text"] = {
                     "Earn an extra {C:money}$#1#{} of interest for every {C:money}$#2#{} you have at end of round.",
-                    "When {C:attention}Boss Blind{} is defeated, permanently increases this extra interest by {C:money}$#3#{}",
+                    "When {C:attention}Boss Blind{} is defeated, permanently increases this extra interest by {C:money}$#3#{}.",
                     "{C:inactive}(#4# + #5#)",
 				},
 			},

@@ -25,8 +25,8 @@ SMODS.Joker {
             bonus_base = 10, 
             bonus_final = 20, 
             joker1 = "j_hiker", 
-            joker2 = "j_hiker",
-            joker3 = "j_dusk"
+            joker2 = "j_dusk",
+            joker3 = "j_splash"
         }
     },
     loc_vars = function(self, info_queue, card)
