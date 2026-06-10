@@ -23,8 +23,9 @@ FusionJokers.fusions = {
 	}, result_joker = "j_fuse_club_wizard", cost = 12 },
 	{ jokers = {
 		{ name = "j_supernova", carry_stat = nil, extra_stat = false },
-		{ name = "j_constellation", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_fuse_big_bang", cost = 11 },
+		{ name = "j_constellation", carry_stat = nil, extra_stat = false },
+		{ name = "j_space", carry_stat = nil, extra_stat = false }
+	}, result_joker = "j_fuse_big_bang", cost = 14 },
 	{ jokers = {
 		{ name = "j_even_steven", carry_stat = nil, extra_stat = false },
 		{ name = "j_odd_todd", carry_stat = nil, extra_stat = false }

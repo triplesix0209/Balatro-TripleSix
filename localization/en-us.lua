@@ -52,10 +52,10 @@ return {
 			["j_fuse_big_bang"] = {
 				["name"] = "Big Bang",
 				["text"] = {
-                    "{X:mult,C:white} X#1# {} Mult per the number",
-                    "of times {C:attention}poker hand{} has been played",
+                    "{X:mult,C:white} X#1# {} Mult per the number of times {C:attention}poker hand{} has been played",
                     "plus the level of the {C:attention}poker hand{}.",
-                    "{C:inactive}(#2# + #3#)",
+                    "{C:green}#5# in #6#{} chance to upgrade level of played {C:attention}poker hand{}",
+                    "{C:inactive}(#2# + #3# + #4#)",
 				},
 			},
 			["j_fuse_dynamic_duo"] = {
@@ -205,7 +205,6 @@ return {
 				["text"] = {
                     "Earn an extra {C:money}$#1#{} of interest for every {C:money}$#2#{} you have at end of round.",
                     "When {C:attention}Boss Blind{} is defeated, permanently increases this extra interest by {C:money}$#3#{}",
-                    "{C:inactive}(Currently {C:money}+$#1#{C:inactive} extra interest)",
                     "{C:inactive}(#4# + #5#)",
 				},
 			},
