@@ -210,7 +210,7 @@ return {
 				},
 			},
 			["j_fuse_perkeo_shop"] = {
-				["name"] = "Perkeo Shop",
+				["name"] = "Perkeo's Shop",
 				["text"] = {
                     "{C:purple}(#3# + #4# + #5#){}",
                     "All listed {C:green}probabilities{} always trigger.",
