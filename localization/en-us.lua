@@ -194,8 +194,8 @@ return {
 				["name"] = "Perkeo's Sobriety",
 				["text"] = {
                     "{C:purple}(#2# + #3# + #4#){}",
-                    "Gain {C:red}+1{} discard for every {C:attention}2{}",
-                    "{C:attention}consumable{} cards in your possession",
+                    "Gain {C:red}+1{} discard for every",
+                    "{C:attention}consumable{} card in your possession",
                     "{C:inactive}(Currently {C:red}+#1#{C:inactive})",
                     "When playing a hand, retrigger all played cards",
                     "by destroying a random {C:attention}consumable{} card",

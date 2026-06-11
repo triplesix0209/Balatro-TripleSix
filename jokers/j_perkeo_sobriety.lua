@@ -31,7 +31,7 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         local extra_discards = 0
         if G.consumeables and G.consumeables.cards then
-            extra_discards = math.floor(#G.consumeables.cards / 2)
+            extra_discards = #G.consumeables.cards
         end
         return {
             vars = {
@@ -43,10 +43,10 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        -- 1. Gain +1 discard for each 2 consumable cards (calculated at start of round)
+        -- 1. Gain +1 discard for each consumable card (calculated at start of round)
         if context.setting_blind and not context.blueprint then
             if G.consumeables and G.consumeables.cards then
-                local extra_discards = math.floor(#G.consumeables.cards / 2)
+                local extra_discards = #G.consumeables.cards
                 if extra_discards > 0 then
                     ease_discard(extra_discards)
                     card_eval_status_text(card, 'extra', nil, nil, nil, {
