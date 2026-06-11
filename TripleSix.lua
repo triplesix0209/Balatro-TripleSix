@@ -260,28 +260,31 @@ SMODS.load_file('jokers/j_666_flip_flop.lua')()
 SMODS.load_file('jokers/j_666_dementia_joker.lua')()
 SMODS.load_file('jokers/j_666_golden_egg.lua')()
 SMODS.load_file('jokers/j_666_flag_bearer.lua')()
+SMODS.load_file('jokers/j_666_royal_decree.lua')()
 
 SMODS.load_file('jokers/j_666_diamond_bard.lua')()
 SMODS.load_file('jokers/j_666_heart_paladin.lua')()
 SMODS.load_file('jokers/j_666_spade_archer.lua')()
 SMODS.load_file('jokers/j_666_club_wizard.lua')()
 SMODS.load_file('jokers/j_666_collectible_chaos_card.lua')()
-SMODS.load_file('jokers/j_666_royal_decree.lua')()
 
 SMODS.load_file('jokers/j_666_commercial_driver.lua')()
 SMODS.load_file('jokers/j_666_capitalist_taurus.lua')()
 SMODS.load_file('jokers/j_666_artemis_launch.lua')()
 
 SMODS.load_file('jokers/j_666_uncanny_face.lua')()
-
-SMODS.load_file('jokers/j_666_big_bang.lua')()
 SMODS.load_file('jokers/j_666_camping_trip.lua')()
 
+SMODS.load_file('jokers/j_666_big_bang.lua')()
+
 SMODS.load_file('jokers/j_666_murphy_law.lua')()
+
 SMODS.load_file('jokers/j_666_perkeo_sobriety.lua')()
+
 SMODS.load_file('jokers/j_666_canio_madness.lua')()
-SMODS.load_file('jokers/j_666_triboulet_apology.lua')()
 SMODS.load_file('jokers/j_666_yorick_skull.lua')()
+
+SMODS.load_file('jokers/j_666_triboulet_apology.lua')()
 
 to_number = to_number or function(num)
 	return num
