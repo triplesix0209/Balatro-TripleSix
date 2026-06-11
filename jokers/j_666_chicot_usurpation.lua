@@ -37,35 +37,40 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         local list_str = "None"
         if card.ability and card.ability.extra and card.ability.extra.stolen_bosses then
-            -- Initialize order array if it doesn't exist
-            card.ability.extra.stolen_bosses_order = card.ability.extra.stolen_bosses_order or {}
+            -- Sanitization and rebuilding of stolen_bosses_order
+            local clean_order = {}
+            local order_set = {}
+            local valid_bosses = {
+                bl_hook = true, bl_ox = true, bl_house = true, bl_wall = true, bl_wheel = true, bl_arm = true, bl_club = true, 
+                bl_fish = true, bl_psychic = true, bl_goad = true, bl_water = true, bl_window = true, bl_manacle = true, 
+                bl_eye = true, bl_mouth = true, bl_plant = true, bl_serpent = true, bl_pillar = true, bl_needle = true, 
+                bl_head = true, bl_tooth = true, bl_flint = true, bl_mark = true, bl_acorn = true, bl_leaf = true, 
+                bl_vessel = true, bl_heart = true, bl_bell = true
+            }
             
-            -- Backwards compatibility / Sync fallback
-            local order = {
+            -- Filter existing stolen_bosses_order
+            for _, k in ipairs(card.ability.extra.stolen_bosses_order or {}) do
+                if k and valid_bosses[k] and card.ability.extra.stolen_bosses[k] and not order_set[k] then
+                    table.insert(clean_order, k)
+                    order_set[k] = true
+                end
+            end
+            
+            -- Rebuild / Sync missing keys from stolen_bosses (using default order)
+            local default_order = {
                 "bl_hook", "bl_ox", "bl_house", "bl_wall", "bl_wheel", "bl_arm", "bl_club", 
                 "bl_fish", "bl_psychic", "bl_goad", "bl_water", "bl_window", "bl_manacle", 
                 "bl_eye", "bl_mouth", "bl_plant", "bl_serpent", "bl_pillar", "bl_needle", 
                 "bl_head", "bl_tooth", "bl_flint", "bl_mark", "bl_acorn", "bl_leaf", 
                 "bl_vessel", "bl_heart", "bl_bell"
             }
-            if #card.ability.extra.stolen_bosses_order == 0 then
-                for _, k in ipairs(order) do
-                    if card.ability.extra.stolen_bosses[k] then
-                        table.insert(card.ability.extra.stolen_bosses_order, k)
-                    end
-                end
-            else
-                -- Sync check: make sure all true keys in stolen_bosses are in stolen_bosses_order
-                local order_set = {}
-                for _, k in ipairs(card.ability.extra.stolen_bosses_order) do
+            for _, k in ipairs(default_order) do
+                if card.ability.extra.stolen_bosses[k] and not order_set[k] then
+                    table.insert(clean_order, k)
                     order_set[k] = true
                 end
-                for _, k in ipairs(order) do
-                    if card.ability.extra.stolen_bosses[k] and not order_set[k] then
-                        table.insert(card.ability.extra.stolen_bosses_order, k)
-                    end
-                end
             end
+            card.ability.extra.stolen_bosses_order = clean_order
 
             -- Build the display list string for main description
             local names = {}
@@ -78,7 +83,7 @@ SMODS.Joker {
                 bl_tooth = "The Tooth", bl_flint = "The Flint", bl_mark = "The Mark", bl_acorn = "Amber Acorn",
                 bl_leaf = "Verdant Leaf", bl_vessel = "Violet Vessel", bl_heart = "Crimson Heart", bl_bell = "Cerulean Bell"
             }
-            for _, k in ipairs(order) do
+            for _, k in ipairs(default_order) do
                 if card.ability.extra.stolen_bosses[k] then
                     table.insert(names, display_names[k] or k)
                 end
@@ -87,22 +92,68 @@ SMODS.Joker {
                 list_str = table.concat(names, ", ")
             end
 
-            -- Populate info_queue. Limit to 5 entries.
-            -- If total stolen bosses is <= 5, show all of them.
-            -- If total stolen bosses is > 5, show the 4 most recently stolen and the "+X more" box.
+            -- Populate info_queue. Limit to 10 entries.
+            -- If total stolen bosses is <= 10, show all of them.
+            -- If total stolen bosses is > 10, show the 9 most recently stolen and the "+X more" box.
             local total_stolen = #card.ability.extra.stolen_bosses_order
-            if total_stolen <= 5 then
+            if total_stolen <= 10 then
                 for _, k in ipairs(card.ability.extra.stolen_bosses_order) do
                     table.insert(info_queue, { key = "chicot_" .. k, set = "Other" })
                 end
             else
-                for i = total_stolen - 3, total_stolen do
+                for i = total_stolen - 8, total_stolen do
                     local k = card.ability.extra.stolen_bosses_order[i]
                     if k then
                         table.insert(info_queue, { key = "chicot_" .. k, set = "Other" })
                     end
                 end
-                table.insert(info_queue, { key = "chicot_more_buffs", set = "Other", vars = { total_stolen - 4 } })
+                
+                -- Dynamically build the text for the "Other Stolen Blinds" box
+                local more_text = {}
+                local short_descriptions = {
+                    bl_hook = "The Hook: Draw +1 card",
+                    bl_ox = "The Ox: Most played hand doubles money",
+                    bl_house = "The House: First hand X2 Mult",
+                    bl_wall = "The Wall: Reduces Blind requirement by 25%",
+                    bl_wheel = "The Wheel: +1 to probabilities",
+                    bl_arm = "The Arm: Upgrades played hand by 1 Level",
+                    bl_club = "The Club: Retrigger played Clubs",
+                    bl_fish = "The Fish: Cards drawn give X2 Mult",
+                    bl_psychic = "The Psychic: 5-card hands give X2 Mult",
+                    bl_goad = "The Goad: Retrigger played Spades",
+                    bl_water = "The Water: +2 discards per round",
+                    bl_window = "The Window: Retrigger played Diamonds",
+                    bl_manacle = "The Manacle: +1 Hand Size",
+                    bl_eye = "The Eye: Played hand type retriggers scored cards",
+                    bl_mouth = "The Mouth: First hand played retriggers scored cards",
+                    bl_plant = "The Plant: Retrigger played face cards",
+                    bl_serpent = "The Serpent: Always draw to hand size",
+                    bl_pillar = "The Pillar: Retrigger cards played this Ante",
+                    bl_needle = "The Needle: +2 hands per round",
+                    bl_head = "The Head: Retrigger played Hearts",
+                    bl_tooth = "The Tooth: Earn $1 per scored card",
+                    bl_flint = "The Flint: Double base Chips and Mult",
+                    bl_mark = "The Mark: Scored face cards give X2 Mult",
+                    bl_acorn = "Amber Acorn: +10 Mult per Joker",
+                    bl_leaf = "Verdant Leaf: Selling Joker spawns random Joker",
+                    bl_vessel = "Violet Vessel: Reduces Blind requirement by 40%",
+                    bl_heart = "Crimson Heart: Random Joker X5 Mult",
+                    bl_bell = "Cerulean Bell: Forced selection card gives X5 Mult"
+                }
+                
+                for i = 1, total_stolen - 9 do
+                    local k = card.ability.extra.stolen_bosses_order[i]
+                    if k and short_descriptions[k] then
+                        table.insert(more_text, short_descriptions[k])
+                    end
+                end
+                
+                -- Update the localization entry in memory
+                if G.localization and G.localization.descriptions and G.localization.descriptions.Other and G.localization.descriptions.Other.chicot_more_buffs then
+                    G.localization.descriptions.Other.chicot_more_buffs.text = more_text
+                end
+                
+                table.insert(info_queue, { key = "chicot_more_buffs", set = "Other" })
             end
         end
         return {

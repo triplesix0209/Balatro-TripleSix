@@ -88,21 +88,18 @@ SMODS.Joker {
         if context.joker_main then
             local chips = card.ability.extra.chips
             local xmult = 1.0 + math.floor(chips / card.ability.extra.chips_period) * card.ability.extra.x_mult_mod
-            if chips > 0 or xmult > 1 then
-                local message = ""
-                if chips > 0 and xmult > 1 then
-                    message = "+" .. chips .. " Chips, X" .. xmult .. " Mult"
-                elseif chips > 0 then
-                    message = "+" .. chips .. " Chips"
-                else
-                    message = "X" .. xmult .. " Mult"
-                end
-                return {
-                    message = message,
-                    chip_mod = chips,
-                    x_mult_mod = xmult,
-                    colour = G.C.GOLD
-                }
+            local ret = {}
+            local has_effects = false
+            if chips > 0 then
+                ret.chip_mod = chips
+                has_effects = true
+            end
+            if xmult > 1 then
+                ret.x_mult_mod = xmult
+                has_effects = true
+            end
+            if has_effects then
+                return ret
             end
         end
     end
