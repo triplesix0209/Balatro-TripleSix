@@ -197,7 +197,7 @@ return {
                     "Each time a {C:attention}consumable{} card is used, gain {C:red}+2{} discards for this round.",
                     "If a {C:attention}consumable{} card was used this round, retrigger all played cards.",
                     "Creates a {C:dark_edition}Negative{} copy of {C:attention}1{} random {C:attention}consumable{} card",
-					"in your possession at the end of the {C:dark_edition}shop{}.",
+					"in your possession at the end of the {C:attention}shop{}.",
 				},
 			},
 			["j_666_canio_madness"] = {
