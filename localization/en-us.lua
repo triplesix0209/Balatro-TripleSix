@@ -200,6 +200,16 @@ return {
 					"in your possession at the end of the {C:attention}shop{}.",
 				},
 			},
+			["j_666_chicot_usurpation"] = {
+				["name"] = "Chicot's Usurpation",
+				["text"] = {
+                    "{C:purple}(#1# + #2# + #3#){}",
+                    "Disables effect of every {C:attention}Boss Blind{}.",
+                    "When {C:attention}Boss Blind{} is defeated, permanently steal its ability",
+                    "and convert it into a permanent passive buff for the rest of the run.",
+                    "{C:inactive}(Current Passives Stolen: #4#)"
+				},
+			},
 			["j_666_canio_madness"] = {
 				["name"] = "Canio's Madness",
 				["text"] = {
