@@ -214,9 +214,9 @@ return {
 				["name"] = "Triboulet's Apology",
 				["text"] = {
                     "{C:purple}(#3# + #4# + #5#){}",
-                    "Kings are also treated as Queens, and Queens are also treated as Kings.",
-                    "Played Kings and Queens each give {X:mult,C:white}X#1#{} Mult when scored.",
-                    "Each King and Queen held in hand gives {X:mult,C:white}X#2#{} Mult.",
+                    "{C:attention}Kings{} are also treated as {C:attention}Queens{}, and {C:attention}Queens{} are also treated as {C:attention}Kings{}.",
+                    "Played {C:attention}Kings{} and {C:attention}Queens{} each give {X:mult,C:white}X#1#{} Mult when scored.",
+                    "Each {C:attention}King{} and {C:attention}Queen{} held in hand gives {X:mult,C:white}X#2#{} Mult.",
 				},
 			},
 		},
