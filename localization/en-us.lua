@@ -206,7 +206,7 @@ return {
                     "{C:purple}(#1# + #2# + #3#){}",
                     "When {C:attention}Blind{} is selected, destroy the {C:attention}Joker{} to the right.",
                     "When a {C:attention}face{} card is destroyed, permanently add {X:mult,C:white}X1{} Mult to its {X:mult,C:white}X{} Mult.",
-                    "When a {C:attention}Joker{} card is destroyed, permanently add {C:attention}1.5{} times its {C:attention}sell value{} to its {X:mult,C:white}X{} Mult.",
+                    "When a {C:attention}Joker{} card is destroyed, permanently add {C:attention}0.5 x its sell value{} to its {X:mult,C:white}X{} Mult.",
                     "{C:inactive}(Currently {X:mult,C:white}X#4#{C:inactive} Mult)",
 				},
 			},
