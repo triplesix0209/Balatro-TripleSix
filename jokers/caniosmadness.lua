@@ -25,8 +25,8 @@ SMODS.Joker {
             x_mult = 1.0,
             destroy_xmult_gain = 1.0,
             joker1 = "j_caino",
-            joker2 = "j_madness",
-            joker3 = "j_ceremonial"
+            joker2 = "j_ceremonial",
+            joker3 = "j_madness"
         }
     },
     loc_vars = function(self, info_queue, card)
@@ -40,11 +40,18 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        -- Canio's effect: Gains [X1] Mult when a card is destroyed
+        -- 1. When a playing card is destroyed (e.g. Hanged Man)
         if context.remove_playing_cards and not context.blueprint then
-            local destroyed_count = #context.removed
-            if destroyed_count > 0 then
-                card.ability.extra.x_mult = card.ability.extra.x_mult + destroyed_count * card.ability.extra.destroy_xmult_gain
+            local gain = 0
+            for _, val in ipairs(context.removed) do
+                if val:is_face() then
+                    gain = gain + (val.sell_cost or 0)
+                else
+                    gain = gain + card.ability.extra.destroy_xmult_gain
+                end
+            end
+            if gain > 0 then
+                card.ability.extra.x_mult = card.ability.extra.x_mult + gain
                 return {
                     message = localize{type='variable', key='a_xmult', vars={card.ability.extra.x_mult}},
                     colour = G.C.MULT,
@@ -53,7 +60,40 @@ SMODS.Joker {
             end
         end
 
-        -- Ceremonial Dagger effect: Destroy Joker to the right on setting blind, gain XMult equal to its sell value
+        -- 2. When a playing card shatters (Glass card)
+        if context.cards_destroyed and not context.blueprint then
+            local gain = 0
+            for _, val in ipairs(context.glass_shattered) do
+                if val:is_face() then
+                    gain = gain + (val.sell_cost or 0)
+                else
+                    gain = gain + card.ability.extra.destroy_xmult_gain
+                end
+            end
+            if gain > 0 then
+                card.ability.extra.x_mult = card.ability.extra.x_mult + gain
+                return {
+                    message = localize{type='variable', key='a_xmult', vars={card.ability.extra.x_mult}},
+                    colour = G.C.MULT,
+                    card = card
+                }
+            end
+        end
+
+        -- 3. When a Joker is destroyed
+        if context.joker_type_destroyed and not context.blueprint then
+            if context.card ~= card then
+                local gain = context.card.sell_cost or 0
+                card.ability.extra.x_mult = card.ability.extra.x_mult + gain
+                return {
+                    message = localize{type='variable', key='a_xmult', vars={card.ability.extra.x_mult}},
+                    colour = G.C.MULT,
+                    card = card
+                }
+            end
+        end
+
+        -- 4. Ceremonial Dagger effect: Destroy Joker to the right on setting blind
         if context.setting_blind and not context.blueprint then
             local my_pos = nil
             for i = 1, #G.jokers.cards do
@@ -70,17 +110,10 @@ SMODS.Joker {
                     play_sound('slice1', 0.96+math.random()*0.08)
                     return true 
                 end }))
-                
-                local gain = sliced_card.sell_cost
-                card.ability.extra.x_mult = card.ability.extra.x_mult + gain
-                return {
-                    message = localize{type='variable', key='a_xmult', vars={card.ability.extra.x_mult}},
-                    colour = G.C.MULT,
-                    card = card
-                }
             end
         end
 
+        -- 5. Apply XMult Mod
         if context.joker_main then
             if card.ability.extra.x_mult > 1 then
                 return {

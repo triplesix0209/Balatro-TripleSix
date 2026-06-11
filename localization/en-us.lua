@@ -226,9 +226,9 @@ return {
 				["name"] = "Canio's Madness",
 				["text"] = {
                     "{C:purple}(#2# + #3# + #4#){}",
-                    "Gains {X:mult,C:white}X1{} Mult when a card is destroyed.",
-                    "When {C:attention}Blind{} is selected, destroy {C:attention}Joker{} to the right",
-                    "and permanently add its sell value to its {X:mult,C:white}X{} Mult.",
+                    "When {C:attention}Blind{} is selected, destroy the {C:attention}Joker{} to the right.",
+                    "When a card is destroyed, permanently add {X:mult,C:white}X1{} Mult to its {X:mult,C:white}X{} Mult.",
+                    "If the destroyed card is a {C:attention}Joker{} or a {C:attention}face{} card, add its sell value instead.",
                     "{C:inactive}(Currently {X:mult,C:white}X#1#{C:inactive} Mult)",
 				},
 			},

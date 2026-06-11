@@ -96,8 +96,8 @@ FusionJokers.fusions = {
 	-- $17 (3 cards, +$2 Uncommon, +$5 Legendary)
 	{ jokers = {
 		{ name = "j_caino", carry_stat = nil, extra_stat = false },
-		{ name = "j_madness", carry_stat = "x_mult", extra_stat = false },
-		{ name = "j_ceremonial", carry_stat = nil, extra_stat = false }
+		{ name = "j_ceremonial", carry_stat = nil, extra_stat = false },
+		{ name = "j_madness", carry_stat = "x_mult", extra_stat = false }
 	}, result_joker = "j_fuse_canios_madness", cost = 17 },
 
 	-- $19 (3 cards, +$1 Uncommon, +$3 Fusion, +$5 Legendary)
