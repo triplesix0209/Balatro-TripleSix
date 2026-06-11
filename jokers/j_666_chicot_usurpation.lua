@@ -76,10 +76,16 @@ SMODS.Joker {
         if card.ability.extra.stolen_bosses["bl_manacle"] then
             G.hand:change_size(1)
         end
+        if card.ability.extra.stolen_bosses["bl_wheel"] then
+            G.GAME.probabilities.normal = G.GAME.probabilities.normal + 1
+        end
     end,
     remove_from_deck = function(self, card, from_debuff)
         if card.ability.extra.stolen_bosses["bl_manacle"] then
             G.hand:change_size(-1)
+        end
+        if card.ability.extra.stolen_bosses["bl_wheel"] then
+            G.GAME.probabilities.normal = G.GAME.probabilities.normal - 1
         end
     end,
     update = function(self, card, dt)
@@ -182,9 +188,12 @@ SMODS.Joker {
         -- Passive: The Arm (+1 Level to played poker hand before scoring)
         if context.before and not context.blueprint then
             if card.ability.extra.stolen_bosses["bl_arm"] then
-                update_hand_wrapper(card, function()
-                    level_up_hand(card, context.poker_hand, nil, 1)
-                end)
+                local hand_name = context.scoring_name or context.poker_hand or G.GAME.last_hand_played
+                if hand_name then
+                    update_hand_wrapper(card, function()
+                        level_up_hand(card, hand_name, nil, 1)
+                    end)
+                end
                 card_eval_status_text(card, 'extra', nil, nil, nil, {
                     message = "Arm Level Up!",
                     colour = G.C.BLUE
@@ -194,22 +203,22 @@ SMODS.Joker {
 
         -- Played card repetitions (The Club, The Goad, The Window, The Head, The Plant, The Eye, The Mouth, The Pillar)
         if context.repetition and context.cardarea == G.play then
-            local suit = context.other_card:get_suit()
             local is_face = context.other_card:is_face()
             local stolen = card.ability.extra.stolen_bosses
 
             local trigger = false
             -- Suits & Face retriggers
-            if (suit == "Clubs" and stolen["bl_club"]) or
-               (suit == "Spades" and stolen["bl_goad"]) or
-               (suit == "Diamonds" and stolen["bl_window"]) or
-               (suit == "Hearts" and stolen["bl_head"]) or
+            if (context.other_card:is_suit("Clubs") and stolen["bl_club"]) or
+               (context.other_card:is_suit("Spades") and stolen["bl_goad"]) or
+               (context.other_card:is_suit("Diamonds") and stolen["bl_window"]) or
+               (context.other_card:is_suit("Hearts") and stolen["bl_head"]) or
                (is_face and stolen["bl_plant"]) then
                 trigger = true
             end
 
             -- The Eye (Played repeat hand)
-            if stolen["bl_eye"] and card.ability.extra.round_hands[context.poker_hand] and card.ability.extra.round_hands[context.poker_hand] > 0 then
+            local hand_name = context.scoring_name or context.poker_hand or G.GAME.last_hand_played
+            if stolen["bl_eye"] and hand_name and card.ability.extra.round_hands[hand_name] and card.ability.extra.round_hands[hand_name] > 0 then
                 trigger = true
             end
 
@@ -281,10 +290,13 @@ SMODS.Joker {
 
             -- The Flint (Double base Chips and base Mult)
             if stolen["bl_flint"] then
-                local base_chips = G.GAME.hands[context.poker_hand].chips
-                local base_mult = G.GAME.hands[context.poker_hand].mult
-                chips = chips + base_chips
-                mult = mult + base_mult
+                local hand_name = context.scoring_name or context.poker_hand or G.GAME.last_hand_played
+                if hand_name and G.GAME.hands[hand_name] then
+                    local base_chips = G.GAME.hands[hand_name].chips
+                    local base_mult = G.GAME.hands[hand_name].mult
+                    chips = chips + base_chips
+                    mult = mult + base_mult
+                end
             end
 
             -- Amber Acorn (+10 Mult per Joker card in possession)
@@ -319,7 +331,10 @@ SMODS.Joker {
             local stolen = card.ability.extra.stolen_bosses
 
             -- Update The Eye hands list
-            card.ability.extra.round_hands[context.poker_hand] = (card.ability.extra.round_hands[context.poker_hand] or 0) + 1
+            local hand_name = context.scoring_name or context.poker_hand or G.GAME.last_hand_played
+            if hand_name then
+                card.ability.extra.round_hands[hand_name] = (card.ability.extra.round_hands[hand_name] or 0) + 1
+            end
 
             -- Mark cards played in this Ante for The Pillar
             if context.full_hand then
@@ -349,7 +364,8 @@ SMODS.Joker {
                         most_played_hand = k
                     end
                 end
-                if context.poker_hand == most_played_hand and G.GAME.dollars > 0 then
+                local hand_name = context.scoring_name or context.poker_hand or G.GAME.last_hand_played
+                if hand_name == most_played_hand and G.GAME.dollars > 0 then
                     ease_dollars(G.GAME.dollars)
                     card_eval_status_text(card, 'extra', nil, nil, nil, {
                         message = "Ox Bounty!",
@@ -441,6 +457,10 @@ SMODS.Joker {
                     -- Apply permanent stat change: The Manacle (+1 Hand size)
                     if boss_key == "bl_manacle" then
                         G.hand:change_size(1)
+                    end
+                    -- Apply permanent stat change: The Wheel (+1 Probability)
+                    if boss_key == "bl_wheel" then
+                        G.GAME.probabilities.normal = G.GAME.probabilities.normal + 1
                     end
 
                     card_eval_status_text(card, 'extra', nil, nil, nil, {
