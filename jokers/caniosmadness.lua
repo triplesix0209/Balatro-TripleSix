@@ -1,6 +1,6 @@
 SMODS.Atlas {
     key = 'canios_madness',
-    path = "j_casino_madness.png",
+    path = "j_canio_madness.png",
     px = 71,
     py = 95
 }
