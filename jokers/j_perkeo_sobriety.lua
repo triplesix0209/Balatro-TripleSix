@@ -23,31 +23,40 @@ SMODS.Joker {
     config = {
         extra = {
             retrigger_hand = false,
+            added_discards = 0,
             joker1 = "j_perkeo",
             joker2 = "j_selzer",
             joker3 = "j_drunkard"
         }
     },
     loc_vars = function(self, info_queue, card)
-        local extra_discards = 0
-        if G.consumeables and G.consumeables.cards then
-            extra_discards = #G.consumeables.cards
-        end
         return {
             vars = {
-                extra_discards,
                 localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'},
                 localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'},
                 localize{type = 'name_text', key = card.ability.extra.joker3, set = 'Joker'}
             }
         }
     end,
+    remove_from_deck = function(self, card, from_debuff)
+        if card.ability.extra.added_discards and card.ability.extra.added_discards > 0 then
+            G.GAME.round_resets.discards = G.GAME.round_resets.discards - card.ability.extra.added_discards
+            ease_discard(-card.ability.extra.added_discards)
+            card.ability.extra.added_discards = 0
+        end
+    end,
     calculate = function(self, card, context)
         -- 1. Gain +1 discard for each consumable card (calculated at start of round)
         if context.setting_blind and not context.blueprint then
+            if card.ability.extra.added_discards and card.ability.extra.added_discards > 0 then
+                G.GAME.round_resets.discards = G.GAME.round_resets.discards - card.ability.extra.added_discards
+                card.ability.extra.added_discards = 0
+            end
             if G.consumeables and G.consumeables.cards then
                 local extra_discards = #G.consumeables.cards
                 if extra_discards > 0 then
+                    card.ability.extra.added_discards = extra_discards
+                    G.GAME.round_resets.discards = G.GAME.round_resets.discards + extra_discards
                     ease_discard(extra_discards)
                     card_eval_status_text(card, 'extra', nil, nil, nil, {
                         message = "+" .. tostring(extra_discards) .. " Discards",
@@ -84,6 +93,13 @@ SMODS.Joker {
 
         if context.after and not context.blueprint then
             card.ability.extra.retrigger_hand = false
+        end
+
+        if context.end_of_round and not context.blueprint then
+            if card.ability.extra.added_discards and card.ability.extra.added_discards > 0 then
+                G.GAME.round_resets.discards = G.GAME.round_resets.discards - card.ability.extra.added_discards
+                card.ability.extra.added_discards = 0
+            end
         end
 
         -- 3. Creates a Negative copy of 1 random consumable card in your possession at the end of the shop
