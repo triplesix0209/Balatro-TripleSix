@@ -53,7 +53,7 @@ FusionJokers.fusions = {
 		{ name = "j_chaos", carry_stat = nil, extra_stat = false }
 	}, result_joker = "j_666_collectible_chaos_card", cost = 6 },
 
-	-- $7 (1 Common + 1 Rare / 2 Uncommons / 3 Commons)
+	-- $7 (1 Common + 1 Rare / 2 Uncommons)
 	{ jokers = {
 		{ name = "j_ride_the_bus", carry_stat = nil, extra_stat = false },
 		{ name = "j_drivers_license", carry_stat = nil, extra_stat = false }
@@ -66,11 +66,6 @@ FusionJokers.fusions = {
 		{ name = "j_to_the_moon", carry_stat = nil, extra_stat = false },
 		{ name = "j_rocket", carry_stat = nil, extra_stat = false }
 	}, result_joker = "j_666_artemis_launch", cost = 7 },
-	{ jokers = {
-		{ name = "j_oops", carry_stat = nil, extra_stat = false },
-		{ name = "j_oops", carry_stat = nil, extra_stat = false },
-		{ name = "j_oops", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_666_murphy_law", cost = 7 },
 
 	-- $8 (2 Commons + 1 Uncommon)
 	{ jokers = {
@@ -90,6 +85,13 @@ FusionJokers.fusions = {
 		{ name = "j_constellation", carry_stat = nil, extra_stat = false },
 		{ name = "j_space", carry_stat = nil, extra_stat = false }
 	}, result_joker = "j_666_big_bang", cost = 9 },
+
+	-- $10 (3 Uncommons)
+	{ jokers = {
+		{ name = "j_oops", carry_stat = nil, extra_stat = false },
+		{ name = "j_oops", carry_stat = nil, extra_stat = false },
+		{ name = "j_oops", carry_stat = nil, extra_stat = false }
+	}, result_joker = "j_666_murphy_law", cost = 10 },
 
 	-- $16 (1 Common + 1 Uncommon + 1 Legendary)
 	{ jokers = {
