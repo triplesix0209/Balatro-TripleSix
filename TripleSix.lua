@@ -99,13 +99,6 @@ FusionJokers.fusions = {
 		{ name = "j_ceremonial", carry_stat = nil, extra_stat = false },
 		{ name = "j_madness", carry_stat = "x_mult", extra_stat = false }
 	}, result_joker = "j_fuse_canios_madness", cost = 17 },
-
-	-- $19 (3 cards, +$1 Uncommon, +$3 Fusion, +$5 Legendary)
-	{ jokers = {
-		{ name = "j_perkeo", carry_stat = nil, extra_stat = false },
-		{ name = "j_lucky_cat", carry_stat = "x_mult", extra_stat = false },
-		{ name = "j_fuse_murphyslaw", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_fuse_perkeo_shop", cost = 19 },
 }
 
 FusionJokers.fusionconfig = SMODS.current_mod.config
@@ -270,7 +263,6 @@ SMODS.load_file('jokers/bigbang.lua')()
 SMODS.load_file('jokers/campingtrip.lua')()
 
 SMODS.load_file('jokers/murphyslaw.lua')()
-SMODS.load_file('jokers/perkeoshop.lua')()
 SMODS.load_file('jokers/caniosmadness.lua')()
 SMODS.load_file('jokers/test.lua')()
 
