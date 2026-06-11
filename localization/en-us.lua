@@ -245,204 +245,192 @@ return {
 		},
 		["Other"] = {
 			["chicot_bl_hook"] = {
-				["name"] = "Hook's Blessing",
+				["name"] = "The Hook",
 				["text"] = {
 					"Draw {C:attention}+1{} card after",
 					"playing a hand"
 				},
 			},
 			["chicot_bl_ox"] = {
-				["name"] = "Ox's Bounty",
+				["name"] = "The Ox",
 				["text"] = {
 					"Playing your most played",
-					"poker hand {C:attention}doubles{}",
-					"your money"
+					"{C:attention}poker hand{} doubles your money"
 				},
 			},
 			["chicot_bl_house"] = {
-				["name"] = "House's Welcome",
+				["name"] = "The House",
 				["text"] = {
-					"First hand played in each",
-					"round gives {X:mult,C:white}X2{} Mult"
+					"First hand played this round",
+					"gives {X:mult,C:white}X2{} Mult"
 				},
 			},
 			["chicot_bl_wall"] = {
-				["name"] = "Wall's Crumble",
+				["name"] = "The Wall",
 				["text"] = {
-					"Reduces chip requirement",
-					"of all Blinds by {C:attention}25%{}"
+					"Reduces Blind chip requirement",
+					"by {C:attention}25%{}"
 				},
 			},
 			["chicot_bl_wheel"] = {
-				["name"] = "Wheel's Fortune",
+				["name"] = "The Wheel",
 				["text"] = {
-					"{C:attention}+1{} to all listed",
-					"{C:green}probabilities{}"
+					"{C:green}+1{} to all listed",
+					"probabilities"
 				},
 			},
 			["chicot_bl_arm"] = {
-				["name"] = "Arm's Reach",
+				["name"] = "The Arm",
 				["text"] = {
-					"Upgrades played poker hand",
-					"by {C:attention}+1 Level{} before scoring"
+					"Upgrades level of played",
+					"{C:attention}poker hand{} by {C:attention}1{} before scoring"
 				},
 			},
 			["chicot_bl_club"] = {
-				["name"] = "Club's Might",
+				["name"] = "The Club",
 				["text"] = {
-					"{C:attention}Retriggers{} all played",
-					"{C:clubs}Club{} cards"
+					"{C:attention}Retrigger{} all played {C:clubs}Clubs{}"
 				},
 			},
 			["chicot_bl_fish"] = {
-				["name"] = "Fish's Feast",
+				["name"] = "The Fish",
 				["text"] = {
-					"Scoring cards drawn after",
-					"a hand has been played",
-					"give {X:mult,C:white}X2{} Mult"
+					"Cards drawn after playing",
+					"a hand give {X:mult,C:white}X2{} Mult",
+					"when scored"
 				},
 			},
 			["chicot_bl_psychic"] = {
-				["name"] = "Psychic's Telepathy",
+				["name"] = "The Psychic",
 				["text"] = {
-					"Played hands containing",
-					"exactly {C:attention}5{} cards",
-					"give {X:mult,C:white}X2{} Mult"
+					"Played hands with exactly",
+					"{C:attention}5{} cards give {X:mult,C:white}X2{} Mult",
+					"when scored"
 				},
 			},
 			["chicot_bl_goad"] = {
-				["name"] = "Goad's Edge",
+				["name"] = "The Goad",
 				["text"] = {
-					"{C:attention}Retriggers{} all played",
-					"{C:spades}Spade{} cards"
+					"{C:attention}Retrigger{} all played {C:spades}Spades{}"
 				},
 			},
 			["chicot_bl_water"] = {
-				["name"] = "Water's Flow",
+				["name"] = "The Water",
 				["text"] = {
-					"Gain {C:attention}+2{} discards",
-					"per round"
+					"Gain {C:red}+2{} discards per round"
 				},
 			},
 			["chicot_bl_window"] = {
-				["name"] = "Window's Fortune",
+				["name"] = "The Window",
 				["text"] = {
-					"{C:attention}Retriggers{} all played",
-					"{C:diamonds}Diamond{} cards"
+					"{C:attention}Retrigger{} all played {C:diamonds}Diamonds{}"
 				},
 			},
 			["chicot_bl_manacle"] = {
-				["name"] = "Manacle's Release",
+				["name"] = "The Manacle",
 				["text"] = {
-					"Gain {C:attention}+1{} hand size"
+					"{C:attention}+1{} Hand Size"
 				},
 			},
 			["chicot_bl_eye"] = {
-				["name"] = "Eye's Focus",
+				["name"] = "The Eye",
 				["text"] = {
-					"Playing a hand type already",
+					"Playing a {C:attention}poker hand{} already",
 					"played this round {C:attention}retriggers{}",
 					"all scored cards"
 				},
 			},
 			["chicot_bl_mouth"] = {
-				["name"] = "Mouth's Call",
+				["name"] = "The Mouth",
 				["text"] = {
-					"{C:attention}Retriggers{} all scored cards",
+					"Retriggers all scored cards",
 					"in the first hand played",
-					"each round"
+					"this round"
 				},
 			},
 			["chicot_bl_plant"] = {
-				["name"] = "Plant's Harvest",
+				["name"] = "The Plant",
 				["text"] = {
-					"{C:attention}Retriggers{} all played",
-					"{C:attention}Face{} cards"
+					"{C:attention}Retrigger{} all played",
+					"{C:attention}face cards{}"
 				},
 			},
 			["chicot_bl_serpent"] = {
-				["name"] = "Serpent's Coil",
+				["name"] = "The Serpent",
 				["text"] = {
-					"Always draw back to full",
-					"hand size after playing",
-					"or discarding"
+					"Always draw to {C:attention}hand size{}",
+					"after playing or discarding"
 				},
 			},
 			["chicot_bl_pillar"] = {
-				["name"] = "Pillar's Foundation",
+				["name"] = "The Pillar",
 				["text"] = {
-					"{C:attention}Retriggers{} all scored cards",
-					"previously played in",
-					"the current Ante"
+					"{C:attention}Retrigger{} all scored cards",
+					"previously played this Ante"
 				},
 			},
 			["chicot_bl_needle"] = {
-				["name"] = "Needle's Thread",
+				["name"] = "The Needle",
 				["text"] = {
-					"Gain {C:attention}+2{} hands",
-					"per round"
+					"Gain {C:blue}+2{} hands per round"
 				},
 			},
 			["chicot_bl_head"] = {
-				["name"] = "Head's Heartbeat",
+				["name"] = "The Head",
 				["text"] = {
-					"{C:attention}Retriggers{} all played",
-					"{C:hearts}Heart{} cards"
+					"{C:attention}Retrigger{} all played {C:hearts}Hearts{}"
 				},
 			},
 			["chicot_bl_tooth"] = {
-				["name"] = "Tooth's Filling",
+				["name"] = "The Tooth",
 				["text"] = {
-					"Earn {C:money}+$1{} for each",
-					"scored card"
+					"Earn {C:money}$1{} for each scored card"
 				},
 			},
 			["chicot_bl_flint"] = {
-				["name"] = "Flint's Spark",
+				["name"] = "The Flint",
 				["text"] = {
-					"Double base Chips and base",
-					"Mult of played poker hands"
+					"Double base {C:chips}Chips{} and {C:mult}Mult{}",
+					"of played poker hands"
 				},
 			},
 			["chicot_bl_mark"] = {
-				["name"] = "Mark's Vision",
+				["name"] = "The Mark",
 				["text"] = {
-					"Scored {C:attention}Face{} cards",
-					"give {X:mult,C:white}X2{} Mult"
+					"Scored {C:attention}face cards{} give",
+					"{X:mult,C:white}X2{} Mult"
 				},
 			},
 			["chicot_bl_acorn"] = {
-				["name"] = "Acorn's Shell",
+				["name"] = "Amber Acorn",
 				["text"] = {
-					"{C:mult}+10{} Mult for each Joker",
-					"in your possession"
+					"{C:mult}+10{} Mult for each Joker"
 				},
 			},
 			["chicot_bl_leaf"] = {
-				["name"] = "Leaf's Growth",
+				["name"] = "Verdant Leaf",
 				["text"] = {
-					"Selling any Joker spawns",
-					"a random Joker",
-					"{C:inactive}(Max 1/round)"
+					"Selling a Joker creates a",
+					"random Joker {C:inactive}(Max 1/round){}"
 				},
 			},
 			["chicot_bl_vessel"] = {
-				["name"] = "Vessel's Overflow",
+				["name"] = "Violet Vessel",
 				["text"] = {
-					"Reduces chip requirement",
-					"of all Blinds by {C:attention}40%{}"
+					"Reduces Blind chip requirement",
+					"by {C:attention}40%{}"
 				},
 			},
 			["chicot_bl_heart"] = {
-				["name"] = "Heart's Devotion",
+				["name"] = "Crimson Heart",
 				["text"] = {
-					"After each hand, a random",
+					"After playing a hand, a random",
 					"Joker is granted {X:mult,C:white}X5{} Mult",
-					"for the round"
+					"this round"
 				},
 			},
 			["chicot_bl_bell"] = {
-				["name"] = "Bell's Resonance",
+				["name"] = "Cerulean Bell",
 				["text"] = {
 					"Scored cards with forced",
 					"selection give {X:mult,C:white}X5{} Mult"
