@@ -202,6 +202,13 @@ return {
                     "When {C:attention}Boss Blind{} is defeated, permanently increases this extra {C:attention}interest{} by {C:money}$#3#{}",
 				},
 			},
+			["j_fuse_murphyslaw"] = {
+				["name"] = "Murphy's Law",
+				["text"] = {
+                    "{C:purple}(#1# + #2# + #3#){}",
+                    "All listed {C:green}probabilities{} always trigger",
+				},
+			},
 			["j_fuse_perkeo_shop"] = {
 				["name"] = "Perkeo's Shop",
 				["text"] = {

@@ -14,7 +14,7 @@ SMODS.Joker {
         y = 0
     },
     rarity = "fuse_fusion",
-    cost = 17,
+    cost = 19,
     unlocked = true,
     discovered = false,
     eternal_compat = true,
@@ -26,7 +26,7 @@ SMODS.Joker {
             x_mult_gain = 0.25,
             joker1 = "j_perkeo",
             joker2 = "j_lucky_cat",
-            joker3 = "j_oops"
+            joker3 = "j_fuse_murphyslaw"
         }
     },
     loc_vars = function(self, info_queue, card)
