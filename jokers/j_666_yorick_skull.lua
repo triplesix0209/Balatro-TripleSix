@@ -24,16 +24,15 @@ SMODS.Joker {
         extra = {
             chips = 0,
             chip_mod = 2,
-            x_mult = 1.0,
-            x_mult_mod = 2.0,
-            discards_remaining = 23,
-            discards_period = 23,
+            x_mult_mod = 1.0,
+            chips_period = 23,
             joker1 = "j_yorick",
             joker2 = "j_mr_bones",
             joker3 = "j_castle"
         }
     },
     loc_vars = function(self, info_queue, card)
+        local dynamic_x_mult = 1.0 + math.floor(card.ability.extra.chips / card.ability.extra.chips_period) * card.ability.extra.x_mult_mod
         return {
             vars = {
                 localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'},
@@ -41,10 +40,9 @@ SMODS.Joker {
                 localize{type = 'name_text', key = card.ability.extra.joker3, set = 'Joker'},
                 card.ability.extra.chip_mod,
                 card.ability.extra.x_mult_mod,
-                card.ability.extra.discards_period,
-                card.ability.extra.discards_remaining,
+                card.ability.extra.chips_period,
                 card.ability.extra.chips,
-                card.ability.extra.x_mult
+                dynamic_x_mult
             }
         }
     end,
@@ -63,15 +61,15 @@ SMODS.Joker {
         -- 2. Discard scaling: Castle + Yorick effects
         if context.discard and not context.blueprint then
             -- Scale chips (+2 per discarded card)
+            local old_chips = card.ability.extra.chips
             card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chip_mod
 
-            -- Progress towards X2 Mult upgrade
-            card.ability.extra.discards_remaining = card.ability.extra.discards_remaining - 1
-            if card.ability.extra.discards_remaining <= 0 then
-                card.ability.extra.discards_remaining = card.ability.extra.discards_period
-                card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.x_mult_mod
+            -- Check if we crossed a chips_period boundary to trigger the "X... Mult!" message
+            local old_xmult = 1.0 + math.floor(old_chips / card.ability.extra.chips_period) * card.ability.extra.x_mult_mod
+            local new_xmult = 1.0 + math.floor(card.ability.extra.chips / card.ability.extra.chips_period) * card.ability.extra.x_mult_mod
+            if new_xmult > old_xmult then
                 card_eval_status_text(card, 'extra', nil, nil, nil, {
-                    message = "X" .. tostring(card.ability.extra.x_mult) .. " Mult!",
+                    message = "X" .. tostring(new_xmult) .. " Mult!",
                     colour = G.C.MULT
                 })
             end
@@ -89,7 +87,7 @@ SMODS.Joker {
         -- 3. Scoring hand application
         if context.joker_main then
             local chips = card.ability.extra.chips
-            local xmult = card.ability.extra.x_mult
+            local xmult = 1.0 + math.floor(chips / card.ability.extra.chips_period) * card.ability.extra.x_mult_mod
             if chips > 0 or xmult > 1 then
                 local message = ""
                 if chips > 0 and xmult > 1 then

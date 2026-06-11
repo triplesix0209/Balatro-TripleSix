@@ -215,10 +215,10 @@ return {
 				["text"] = {
                     "{C:purple}(#1# + #2# + #3#){}",
 					"Gains {C:chips}+#4#{} Chips per discarded card.",
-                    "Gains {X:mult,C:white}X#5#{} Mult every {C:attention}#6#{} {C:inactive}[#7#]{} cards discarded.",
+                    "Gains {X:mult,C:white}X#5#{} Mult for every {C:attention}#6#{} Chips this card has.",
                     "Prevents Death if chips scored are at least",
                     "{C:attention}25%{} of required chips.",
-                    "{C:inactive}(Currently {C:chips}+#8#{} Chips, {X:mult,C:white}X#9#{} Mult)"
+                    "{C:inactive}(Currently {C:chips}+#7#{} Chips, {X:mult,C:white}X#8#{} Mult)"
 				},
 			},
 			["j_666_triboulet_apology"] = {
