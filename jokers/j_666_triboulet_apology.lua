@@ -41,6 +41,11 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
+        -- Reset shield at the start of each round
+        if context.setting_blind and not context.blueprint then
+            card.ability.extra.lives = 1
+        end
+
         -- Played Kings and Queens score X Mult
         if context.individual and context.cardarea == G.play then
             local rank = context.other_card:get_id()
