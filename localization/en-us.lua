@@ -213,12 +213,12 @@ return {
 			["j_666_triboulet_apology"] = {
 				["name"] = "Triboulet's Apology",
 				["text"] = {
-                    "{C:purple}(#2# + #3# + #4#){}",
-                    "Played {C:attention}Kings{} and {C:attention}Queens{} each give {X:mult,C:white}X{} Mult when scored.",
-                    "Each {C:attention}King{} and {C:attention}Queen{} held in hand gives {X:mult,C:white}X/2{} Mult.",
+                    "{C:purple}(#1# + #2# + #3#){}",
+                    "Played {C:attention}Kings{} and {C:attention}Queens{} each give {X:mult,C:white}X[X]{} Mult when scored.",
+                    "Each {C:attention}King{} and {C:attention}Queen{} held in hand gives {X:mult,C:white}X[0.5X]{} Mult.",
                     "If about to be destroyed, prevent it once per round",
-                    "and permanently add {X:mult,C:white}X1{} Mult to its {X:mult,C:white}X{} Mult.",
-                    "{C:inactive}(Currently {X:mult,C:white}X#1#{C:inactive} Mult, Shield: {C:attention}#5#{}){}"
+                    "and permanently increase {X:mult,C:white}[X]{} by {X:mult,C:white}+1.0{}.",
+                    "{C:inactive}(Currently [X] = #4#, Shield: #5#/1){}"
 				},
 			},
 		},
