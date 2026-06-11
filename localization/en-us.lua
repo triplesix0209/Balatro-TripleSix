@@ -205,8 +205,8 @@ return {
 				["text"] = {
                     "{C:purple}(#1# + #2# + #3#){}",
                     "When {C:attention}Blind{} is selected, destroy the {C:attention}Joker{} to the right.",
-                    "When a {C:attention}face{} card is destroyed, permanently add {X:mult,C:white}X1{} Mult to its {X:mult,C:white}X{} Mult.",
-                    "When a {C:attention}Joker{} card is destroyed, permanently add {C:attention}0.5 x its sell value{} to its {X:mult,C:white}X{} Mult.",
+                    "When a {C:attention}face{} card is destroyed, permanently add {X:mult,C:white}X1{} Mult to this card's {X:mult,C:white}X{} Mult.",
+                    "When a {C:attention}Joker{} card is destroyed, permanently add {C:attention}its sell value / 2{} to this card's {X:mult,C:white}X{} Mult.",
                     "{C:inactive}(Currently {X:mult,C:white}X#4#{C:inactive} Mult)",
 				},
 			},
@@ -228,7 +228,7 @@ return {
                     "Played {C:attention}Kings{} and {C:attention}Queens{} each give {X:mult,C:white}X{} Mult when scored.",
                     "Each {C:attention}King{} and {C:attention}Queen{} held in hand gives {X:mult,C:white}X/2{} Mult.",
                     "If about to be destroyed, prevent it once per round,",
-                    "and permanently add {X:mult,C:white}X2{} Mult to its {X:mult,C:white}X{} Mult.",
+                    "and permanently add {X:mult,C:white}X2{} Mult to this card's {X:mult,C:white}X{} Mult.",
                     "{C:inactive}(Currently {X:mult,C:white}X#4#{C:inactive} Mult, Shield: {C:attention}#5#{}){}"
 				},
 			},
