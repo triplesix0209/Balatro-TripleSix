@@ -60,14 +60,20 @@ SMODS.Joker {
             end
         end
 
-        -- 5. Creates a Negative copy of 1 random consumable card in your possession at the end of the shop
+        -- 5. Creates 2 Negative copies of random consumable cards in your possession at the end of the shop
         if context.ending_shop and not context.blueprint then
-            if G.consumeables and G.consumeables.cards and #G.consumeables.cards > 0 then
-                local random_consumable = pseudorandom_element(G.consumeables.cards, pseudorandom('perkeo_sobriety_shop'))
-                local copy = copy_card(random_consumable, nil, nil, nil, true)
-                copy:set_edition({negative = true}, true)
-                copy:add_to_deck()
-                G.consumeables:emplace(copy)
+            local copies_created = 0
+            for i = 1, 2 do
+                if G.consumeables and G.consumeables.cards and #G.consumeables.cards > 0 then
+                    local random_consumable = pseudorandom_element(G.consumeables.cards, pseudorandom('perkeo_sobriety_shop_' .. i))
+                    local copy = copy_card(random_consumable, nil, nil, nil, true)
+                    copy:set_edition({negative = true}, true)
+                    copy:add_to_deck()
+                    G.consumeables:emplace(copy)
+                    copies_created = copies_created + 1
+                end
+            end
+            if copies_created > 0 then
                 return {
                     message = localize('k_copied_ex'),
                     colour = G.C.SECONDARY_SET.Tarot,

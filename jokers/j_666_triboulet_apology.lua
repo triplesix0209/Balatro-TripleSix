@@ -83,10 +83,10 @@ function Card:start_dissolve(dissolve_colours, silent, dissolve_time_fac, no_jui
     if self.config.center.key == 'j_666_triboulet_apology' and self.area and (self.area == G.jokers or self.area == G.consumeables) and not self.selling and not self.debuff then
         if self.ability.extra.lives and self.ability.extra.lives > 0 then
             self.ability.extra.lives = self.ability.extra.lives - 1
-            self.ability.extra.x_mult = self.ability.extra.x_mult + 1
+            self.ability.extra.x_mult = self.ability.extra.x_mult + 2
             self.getting_sliced = nil
             card_eval_status_text(self, 'extra', nil, nil, nil, {
-                message = "Pardoned! +1.0x Mult",
+                message = "Pardoned! +2.0x Mult",
                 colour = G.C.GOLD
             })
             return

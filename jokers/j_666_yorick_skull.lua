@@ -24,7 +24,7 @@ SMODS.Joker {
         extra = {
             chips = 0,
             chip_mod = 2,
-            x_mult_mod = 1.0,
+            x_mult_mod = 2.0,
             chips_period = 23,
             joker1 = "j_yorick",
             joker2 = "j_mr_bones",
