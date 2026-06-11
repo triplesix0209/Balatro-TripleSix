@@ -41,9 +41,15 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        -- Reset shield at the start of each round
-        if context.setting_blind and not context.blueprint then
-            card.ability.extra.lives = 1
+        -- Reset shield at the end of each round
+        if context.end_of_round and not context.blueprint and not context.individual and not context.repetition then
+            if not card.ability.extra.lives or card.ability.extra.lives < 1 then
+                card.ability.extra.lives = 1
+                card_eval_status_text(card, 'extra', nil, nil, nil, {
+                    message = "Shield Restored!",
+                    colour = G.C.GREEN
+                })
+            end
         end
 
         -- Played Kings and Queens score X Mult
