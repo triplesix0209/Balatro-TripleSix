@@ -115,29 +115,29 @@ SMODS.Joker {
                     bl_ox = "The Ox: Most played hand doubles money",
                     bl_house = "The House: First hand X2 Mult",
                     bl_wall = "The Wall: Reduces Blind requirement by 25%",
-                    bl_wheel = "The Wheel: +1 to probabilities",
-                    bl_arm = "The Arm: Upgrades played hand by 1 Level",
-                    bl_club = "The Club: Retrigger played Clubs",
+                    bl_wheel = "The Wheel: Doubles probabilities",
+                    bl_arm = "The Arm: Upgrades level of played hand",
+                    bl_club = "The Club: Retrigger played Club cards",
                     bl_fish = "The Fish: Cards drawn give X2 Mult",
-                    bl_psychic = "The Psychic: 5-card hands give X2 Mult",
-                    bl_goad = "The Goad: Retrigger played Spades",
+                    bl_psychic = "The Psychic: Played hands with 5 cards give X2 Mult",
+                    bl_goad = "The Goad: Retrigger played Spade cards",
                     bl_water = "The Water: +2 discards per round",
-                    bl_window = "The Window: Retrigger played Diamonds",
+                    bl_window = "The Window: Retrigger played Diamond cards",
                     bl_manacle = "The Manacle: +1 Hand Size",
                     bl_eye = "The Eye: Played hand type retriggers scored cards",
-                    bl_mouth = "The Mouth: First hand played retriggers scored cards",
+                    bl_mouth = "The Mouth: Retrigger the first hand",
                     bl_plant = "The Plant: Retrigger played face cards",
-                    bl_serpent = "The Serpent: Always draw to hand size",
+                    bl_serpent = "The Serpent: Draw to full hand size",
                     bl_pillar = "The Pillar: Retrigger cards played this Ante",
-                    bl_needle = "The Needle: +2 hands per round",
-                    bl_head = "The Head: Retrigger played Hearts",
+                    bl_needle = "The Needle: +1 hands per round",
+                    bl_head = "The Head: Retrigger played Heart cards",
                     bl_tooth = "The Tooth: Earn $1 per scored card",
                     bl_flint = "The Flint: Double base Chips and Mult",
-                    bl_mark = "The Mark: Scored face cards give X2 Mult",
+                    bl_mark = "The Mark: face cards give X2 Mult",
                     bl_acorn = "Amber Acorn: +10 Mult per Joker",
-                    bl_leaf = "Verdant Leaf: Selling Joker spawns random Joker",
+                    bl_leaf = "Verdant Leaf: Selling Joker creates Joker (1/round)",
                     bl_vessel = "Violet Vessel: Reduces Blind requirement by 40%",
-                    bl_heart = "Crimson Heart: Random Joker X5 Mult",
+                    bl_heart = "Crimson Heart: Joker granted X5 Mult",
                     bl_bell = "Cerulean Bell: Forced selection card gives X5 Mult"
                 }
                 
@@ -263,9 +263,9 @@ SMODS.Joker {
             if card.ability.extra.stolen_bosses["bl_water"] then
                 ease_discard(2)
             end
-            -- Passive: The Needle (+2 Hands)
+            -- Passive: The Needle (+1 Hand)
             if card.ability.extra.stolen_bosses["bl_needle"] then
-                ease_hands(2)
+                ease_hands(1)
             end
 
             -- Passive: The Pillar (Reset cocks played in this Ante when Ante changes)
@@ -378,6 +378,11 @@ SMODS.Joker {
 
             -- The House (First hand of round X2 Mult)
             if stolen["bl_house"] and G.GAME.hands_played == 0 then
+                x_mult = x_mult * 2
+            end
+
+            -- Passive: The Psychic (Played hands with exactly 5 cards give X2 Mult)
+            if stolen["bl_psychic"] and context.full_hand and #context.full_hand == 5 then
                 x_mult = x_mult * 2
             end
 
