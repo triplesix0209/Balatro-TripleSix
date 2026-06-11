@@ -208,20 +208,6 @@ return {
                     "{C:purple}(#1# + #2# + #3#){}",
                     "All listed {C:green}probabilities{} always trigger",
 				},
-			},
-			["j_fuse_perkeo_shop"] = {
-				["name"] = "Perkeo's Shop",
-				["text"] = {
-                    "{C:purple}(#3# + #4# + #5#){}",
-                    "All listed {C:green}probabilities{} always trigger.",
-                    "Creates {C:dark_edition}2 Negative{} copies of 1 random",
-                    "{C:attention}consumable{} card in your possession",
-                    "at the end of the {C:attention}shop{}.",
-                    "Gains {X:mult,C:white}X#1#{} Mult every time a",
-                    "{C:attention}Lucky{} card {C:green}successfully{} triggers.",
-                    "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
-				},
-			},
 			["j_fuse_canios_madness"] = {
 				["name"] = "Canio's Madness",
 				["text"] = {
