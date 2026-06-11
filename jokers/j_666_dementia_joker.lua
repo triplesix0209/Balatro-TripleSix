@@ -32,11 +32,11 @@ SMODS.Joker {
         local luck, odds = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "fusion_dementia_desc", false)
         return {
             vars = {
+                localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'},
+                localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'},
                 card.ability.extra.mult,
                 luck, odds,
-                (G.jokers and G.jokers.cards and #G.jokers.cards or 0)*card.ability.extra.mult,
-                localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'},
-                localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'}
+                (G.jokers and G.jokers.cards and #G.jokers.cards or 0)*card.ability.extra.mult
             }
         }
     end,

@@ -30,9 +30,9 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.dollars,
                 localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'},
-                localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'}
+                localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'},
+                card.ability.extra.dollars
             }
         }
     end,

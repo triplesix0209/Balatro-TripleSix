@@ -27,16 +27,15 @@ SMODS.Joker {
             joker1 = "j_lusty_joker",
             joker2 = "j_bloodstone"
         }
-    },
-    loc_vars = function(self, info_queue, card)
+    },    loc_vars = function(self, info_queue, card)
         local luck, odds = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "fusion_heartpaladin_desc", false)
         return {
             vars = {
+                localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'},
+                localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'},
                 card.ability.extra.Xmult,
                 luck,
-                odds,
-                localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'},
-                localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'}
+                odds
             }
         }
     end,

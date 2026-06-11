@@ -32,11 +32,11 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
+                localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'},
+                localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'},
                 card.ability.extra.hand_add,
                 card.ability.extra.discard_sub,
-                card.ability.extra.mult * (G.GAME.current_round.discards_left or 0),
-                localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'},
-                localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'}
+                card.ability.extra.mult * (G.GAME.current_round.discards_left or 0)
             }
         }
     end,

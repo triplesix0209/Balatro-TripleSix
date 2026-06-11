@@ -42,17 +42,17 @@ SMODS.Joker {
         local result = {}
         if card.ability.extra.side == "mult" then
             result = {
-                card.ability.extra.hands,
-                card.ability.extra.mult,
                 localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'},
-                localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'}
+                localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'},
+                card.ability.extra.hands,
+                card.ability.extra.mult
                 }
         else
             result = {
-                card.ability.extra.discards,
-                card.ability.extra.chips,
                 localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'},
-                localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'}
+                localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'},
+                card.ability.extra.discards,
+                card.ability.extra.chips
                 }
         end
 

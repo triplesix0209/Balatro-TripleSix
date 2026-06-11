@@ -35,13 +35,13 @@ SMODS.Joker {
         local current_mult = card.ability.extra.mult_multiplier * math.floor(dollars / card.ability.extra.mult_threshold)
         return {
             vars = {
+                localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'},
+                localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'},
                 card.ability.extra.chip_multiplier,
                 card.ability.extra.mult_multiplier,
                 card.ability.extra.mult_threshold,
                 current_chips,
-                current_mult,
-                localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'},
-                localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'}
+                current_mult
             }
         }
     end,

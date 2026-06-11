@@ -32,10 +32,10 @@ SMODS.Joker {
         local luck, odds = SMODS.get_probability_vars(card, 1, 2, "big_bang_desc", false)
         return {
             vars = {
-                card.ability.extra.Xmult,
                 localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'},
                 localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'},
                 localize{type = 'name_text', key = card.ability.extra.joker3, set = 'Joker'},
+                card.ability.extra.Xmult,
                 luck,
                 odds
             }

@@ -28,15 +28,14 @@ SMODS.Joker {
             joker1 = "j_greedy_joker",
             joker2 = "j_rough_gem",
         }
-    },
-    loc_vars = function(self, info_queue, card)
+    },    loc_vars = function(self, info_queue, card)
         return {
             vars = {
+                localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'},
+                localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'},
                 card.ability.extra.money,
                 card.ability.extra.mult,
-                card.ability.extra.money_threshold,
-                localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'},
-                localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'}
+                card.ability.extra.money_threshold
             }
         }
     end,

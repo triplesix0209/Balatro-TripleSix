@@ -27,14 +27,13 @@ SMODS.Joker {
         joker1 = "j_wrathful_joker", 
         joker2 = "j_arrowhead"
         }
-    },
-    loc_vars = function(self, info_queue, card)
+    },    loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.chips,
-                card.ability.extra.chip_mod,
                 localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'},
-                localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'}
+                localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'},
+                card.ability.extra.chips,
+                card.ability.extra.chip_mod
             }
         }
     end,
