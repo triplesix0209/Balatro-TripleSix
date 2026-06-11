@@ -207,7 +207,7 @@ return {
                     "Disables effect of every {C:attention}Boss Blind{}.",
                     "When {C:attention}Boss Blind{} is defeated, permanently steal its ability",
                     "and convert it into a permanent passive buff for the rest of the run.",
-                    "{C:inactive}(Current Passives Stolen: #4#)"
+                    "{C:inactive}(Current Passives Stolen: {C:attention}#4#{})"
 				},
 			},
 			["j_666_canio_madness"] = {
