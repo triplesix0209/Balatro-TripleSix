@@ -96,7 +96,7 @@ FusionJokers.fusions = {
 	-- $16 (3 cards, +$1 Uncommon, +$5 Legendary)
 	{ jokers = {
 		{ name = "j_perkeo", carry_stat = nil, extra_stat = false },
-		{ name = "j_seltzer", carry_stat = nil, extra_stat = false },
+		{ name = "j_selzer", carry_stat = nil, extra_stat = false },
 		{ name = "j_drunkard", carry_stat = nil, extra_stat = false }
 	}, result_joker = "j_fuse_perkeo_sobriety", cost = 16 },
 
@@ -772,4 +772,3 @@ SMODS.current_mod.reset_game_globals = function (init)
 		G.GAME.fujo_fusion_discountpercent = {}
 	end
 end
-

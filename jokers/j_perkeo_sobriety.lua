@@ -24,7 +24,7 @@ SMODS.Joker {
         extra = {
             retrigger_hand = false,
             joker1 = "j_perkeo",
-            joker2 = "j_seltzer",
+            joker2 = "j_selzer",
             joker3 = "j_drunkard"
         }
     },
