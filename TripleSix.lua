@@ -91,7 +91,7 @@ FusionJokers.fusions = {
 		{ name = "j_oops", carry_stat = nil, extra_stat = false },
 		{ name = "j_oops", carry_stat = nil, extra_stat = false },
 		{ name = "j_oops", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_fuse_murphyslaw", cost = 13 },
+	}, result_joker = "j_fuse_murphy_law", cost = 13 },
 
 	-- $16 (3 cards, +$1 Uncommon, +$5 Legendary)
 	{ jokers = {
@@ -105,7 +105,7 @@ FusionJokers.fusions = {
 		{ name = "j_caino", carry_stat = nil, extra_stat = false },
 		{ name = "j_ceremonial", carry_stat = nil, extra_stat = false },
 		{ name = "j_madness", carry_stat = "x_mult", extra_stat = false }
-	}, result_joker = "j_fuse_canios_madness", cost = 17 },
+	}, result_joker = "j_fuse_canio_madness", cost = 17 },
 }
 
 FusionJokers.fusionconfig = SMODS.current_mod.config
@@ -243,35 +243,35 @@ SMODS.add_to_pool = function (prototype_obj, args)
 	return atpref(prototype_obj, args)
 end
 
-SMODS.load_file('jokers/dynamicduo.lua')()
-SMODS.load_file('jokers/flipflop.lua')()
-SMODS.load_file('jokers/dementiajoker.lua')()
-SMODS.load_file('jokers/goldenegg.lua')()
-SMODS.load_file('jokers/flagbearer.lua')()
+SMODS.load_file('jokers/j_dynamic_duo.lua')()
+SMODS.load_file('jokers/j_flip_flop.lua')()
+SMODS.load_file('jokers/j_dementia_joker.lua')()
+SMODS.load_file('jokers/j_golden_egg.lua')()
+SMODS.load_file('jokers/j_flag_bearer.lua')()
 
-SMODS.load_file('jokers/diamondbard.lua')()
-SMODS.load_file('jokers/heartpaladin.lua')()
-SMODS.load_file('jokers/spadearcher.lua')()
-SMODS.load_file('jokers/clubwizard.lua')()
-SMODS.load_file('jokers/collectiblechaos.lua')()
-SMODS.load_file('jokers/royaldecree.lua')()
+SMODS.load_file('jokers/j_diamond_bard.lua')()
+SMODS.load_file('jokers/j_heart_paladin.lua')()
+SMODS.load_file('jokers/j_spade_archer.lua')()
+SMODS.load_file('jokers/j_club_wizard.lua')()
+SMODS.load_file('jokers/j_collectible_chaos_card.lua')()
+SMODS.load_file('jokers/j_royal_decree.lua')()
 if (SMODS.Mods["SixSuits"] or {}).can_load then
-	SMODS.load_file('jokers/moonmarauder.lua')()
-	SMODS.load_file('jokers/staroracle.lua')()
+	SMODS.load_file('jokers/j_moon_marauder.lua')()
+	SMODS.load_file('jokers/j_star_oracle.lua')()
 end
 
-SMODS.load_file('jokers/commercialdriver.lua')()
-SMODS.load_file('jokers/capitalisttaurus.lua')()
-SMODS.load_file('jokers/artemislaunch.lua')()
+SMODS.load_file('jokers/j_commercial_driver.lua')()
+SMODS.load_file('jokers/j_capitalist_taurus.lua')()
+SMODS.load_file('jokers/j_artemis_launch.lua')()
 
-SMODS.load_file('jokers/uncannyface.lua')()
+SMODS.load_file('jokers/j_uncanny_face.lua')()
 
-SMODS.load_file('jokers/bigbang.lua')()
-SMODS.load_file('jokers/campingtrip.lua')()
+SMODS.load_file('jokers/j_big_bang.lua')()
+SMODS.load_file('jokers/j_camping_trip.lua')()
 
-SMODS.load_file('jokers/murphyslaw.lua')()
-SMODS.load_file('jokers/perkeosobriety.lua')()
-SMODS.load_file('jokers/caniosmadness.lua')()
+SMODS.load_file('jokers/j_murphy_law.lua')()
+SMODS.load_file('jokers/j_perkeo_sobriety.lua')()
+SMODS.load_file('jokers/j_canio_madness.lua')()
 SMODS.load_file('jokers/test.lua')()
 
 to_number = to_number or function(num)

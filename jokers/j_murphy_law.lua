@@ -1,14 +1,14 @@
 SMODS.Atlas {
-    key = 'murphyslaw',
+    key = 'murphy_law',
     path = "j_murphy_law.png",
     px = 71,
     py = 95
 }
 
 SMODS.Joker {
-    key = "murphyslaw",
+    key = "murphy_law",
     name = "Murphy's Law",
-    atlas = 'murphyslaw',
+    atlas = 'murphy_law',
     pos = {
         x = 0,
         y = 0

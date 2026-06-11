@@ -51,7 +51,7 @@ SMODS.Joker {
                     ease_discard(extra_discards)
                     card_eval_status_text(card, 'extra', nil, nil, nil, {
                         message = "+" .. tostring(extra_discards) .. " Discards",
-                        colour = G.C.BLUE
+                        colour = G.C.RED
                     })
                 end
             end
@@ -80,6 +80,10 @@ SMODS.Joker {
                     card = card
                 }
             end
+        end
+
+        if context.after and not context.blueprint then
+            card.ability.extra.retrigger_hand = false
         end
 
         -- 3. Creates a Negative copy of 1 random consumable card in your possession at the end of the shop

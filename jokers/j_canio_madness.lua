@@ -1,14 +1,14 @@
 SMODS.Atlas {
-    key = 'canios_madness',
+    key = 'canio_madness',
     path = "j_canio_madness.png",
     px = 71,
     py = 95
 }
 
 SMODS.Joker {
-    key = "canios_madness",
+    key = "canio_madness",
     name = "Canio's Madness",
-    atlas = 'canios_madness',
+    atlas = 'canio_madness',
     pos = {
         x = 0,
         y = 0

@@ -202,7 +202,7 @@ return {
                     "When {C:attention}Boss Blind{} is defeated, permanently increases this extra {C:attention}interest{} by {C:money}$#3#{}",
 				},
 			},
-			["j_fuse_murphyslaw"] = {
+			["j_fuse_murphy_law"] = {
 				["name"] = "Murphy's Law",
 				["text"] = {
                     "{C:purple}(#1# + #2# + #3#){}",
@@ -213,15 +213,16 @@ return {
 				["name"] = "Perkeo's Sobriety",
 				["text"] = {
                     "{C:purple}(#2# + #3# + #4#){}",
-                    "Gain {C:discard}+#1#{} Discards.",
-                    "{C:inactive}(+1 for every {C:attention}2{C:inactive} consumable cards in your possession)",
-                    "When a hand is played, retrigger all played cards",
-                    "by destroying a random consumable card in your possession.",
-                    "Creates a {C:dark_edition}Negative{} copy of 1 random",
-                    "consumable card in your possession at the end of the shop.",
+                    "Gain {C:red}+1{} discard for every {C:attention}2{}",
+                    "{C:attention}consumable{} cards in your possession",
+                    "{C:inactive}(Currently {C:red}+#1#{C:inactive})",
+                    "When playing a hand, retrigger all played cards",
+                    "by destroying a random {C:attention}consumable{} card",
+                    "Creates a {C:dark_edition}Negative{} copy of {C:attention}1{} random",
+                    "{C:attention}consumable{} card in your possession at the end of the shop",
 				},
 			},
-			["j_fuse_canios_madness"] = {
+			["j_fuse_canio_madness"] = {
 				["name"] = "Canio's Madness",
 				["text"] = {
                     "{C:purple}(#2# + #3# + #4#){}",
