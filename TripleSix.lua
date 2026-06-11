@@ -770,5 +770,10 @@ SMODS.current_mod.reset_game_globals = function (init)
 		G.jokers.config.highlighted_limit = math.max(G.jokers.config.highlighted_limit, 1e300)
 		G.GAME.fujo_fusion_discount = {}
 		G.GAME.fujo_fusion_discountpercent = {}
+		G.GAME.consumeable_used_this_round = false
+	else
+		if G.GAME then
+			G.GAME.consumeable_used_this_round = false
+		end
 	end
 end

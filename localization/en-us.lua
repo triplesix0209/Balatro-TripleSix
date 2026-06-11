@@ -194,10 +194,10 @@ return {
 				["name"] = "Perkeo's Sobriety",
 				["text"] = {
                     "{C:purple}(#1# + #2# + #3#){}",
-                    "At the start of the round, gain {C:red}+1{} discard for every {C:attention}consumable{} card.",
-                    "Retrigger all cards played by destroying a random {C:attention}consumable{} card.",
+                    "Each time a {C:attention}consumable{} card is used, gain {C:red}+2{} discards for this round.",
+                    "If a {C:attention}consumable{} card was used this round, retrigger all played cards.",
                     "Creates a {C:dark_edition}Negative{} copy of {C:attention}1{} random {C:attention}consumable{} card",
-					"in your possession at the end of the shop",
+					"in your possession at the end of the shop.",
 				},
 			},
 			["j_666_canio_madness"] = {
