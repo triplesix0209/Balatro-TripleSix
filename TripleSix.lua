@@ -5,114 +5,117 @@ G.localization.misc.dictionary["k_in_tact_ex"] = "In-Tact!"
 G.localization.misc.dictionary["b_fuse"] = "FUSE"
 FusionJokers = {}
 FusionJokers.fusions = {
-	-- $8 (2 cards, 0 modifiers)
+	-- $5 (2 Commons / 2 Commons)
 	{ jokers = {
 		{ name = "j_even_steven", carry_stat = nil, extra_stat = false },
 		{ name = "j_odd_todd", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_666_dynamic_duo", cost = 8 },
+	}, result_joker = "j_666_dynamic_duo", cost = 5 },
 	{ jokers = {
 		{ name = "j_juggler", carry_stat = nil, extra_stat = false },
 		{ name = "j_drunkard", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_666_flip_flop", cost = 8 },
+	}, result_joker = "j_666_flip_flop", cost = 5 },
 	{ jokers = {
 		{ name = "j_abstract", carry_stat = nil, extra_stat = false },
 		{ name = "j_riff_raff", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_666_dementia_joker", cost = 8 },
+	}, result_joker = "j_666_dementia_joker", cost = 5 },
 	{ jokers = {
 		{ name = "j_egg", carry_stat = "extra_value", extra_stat = false },
 		{ name = "j_golden", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_666_golden_egg", cost = 8 },
+	}, result_joker = "j_666_golden_egg", cost = 5 },
 	{ jokers = {
 		{ name = "j_banner", carry_stat = nil, extra_stat = false },
 		{ name = "j_green_joker", carry_stat = "mult", extra_stat = false }
-	}, result_joker = "j_666_flag_bearer", cost = 8 },
-
-	-- $9 (2 cards, +$1 Uncommon)
-	{ jokers = {
-		{ name = "j_greedy_joker", carry_stat = nil, extra_stat = false },
-		{ name = "j_rough_gem", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_666_diamond_bard", cost = 9 },
-	{ jokers = {
-		{ name = "j_lusty_joker", carry_stat = nil, extra_stat = false },
-		{ name = "j_bloodstone", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_666_heart_paladin", cost = 9 },
-	{ jokers = {
-		{ name = "j_wrathful_joker", carry_stat = nil, extra_stat = false },
-		{ name = "j_arrowhead", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_666_spade_archer", cost = 9 },
-	{ jokers = {
-		{ name = "j_gluttenous_joker", carry_stat = nil, extra_stat = false },
-		{ name = "j_onyx_agate", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_666_club_wizard", cost = 9 },
-	{ jokers = {
-		{ name = "j_flash", carry_stat = "mult", extra_stat = false },
-		{ name = "j_chaos", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_666_collectible_chaos_card", cost = 9 },
+	}, result_joker = "j_666_flag_bearer", cost = 5 },
 	{ jokers = {
 		{ name = "j_business", carry_stat = nil, extra_stat = false },
 		{ name = "j_reserved_parking", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_666_royal_decree", cost = 9 },
+	}, result_joker = "j_666_royal_decree", cost = 5 },
 
-	-- $10 (2 cards, +$2 Rare / +$2 Uncommon)
+	-- $6 (1 Common + 1 Uncommon)
+	{ jokers = {
+		{ name = "j_greedy_joker", carry_stat = nil, extra_stat = false },
+		{ name = "j_rough_gem", carry_stat = nil, extra_stat = false }
+	}, result_joker = "j_666_diamond_bard", cost = 6 },
+	{ jokers = {
+		{ name = "j_lusty_joker", carry_stat = nil, extra_stat = false },
+		{ name = "j_bloodstone", carry_stat = nil, extra_stat = false }
+	}, result_joker = "j_666_heart_paladin", cost = 6 },
+	{ jokers = {
+		{ name = "j_wrathful_joker", carry_stat = nil, extra_stat = false },
+		{ name = "j_arrowhead", carry_stat = nil, extra_stat = false }
+	}, result_joker = "j_666_spade_archer", cost = 6 },
+	{ jokers = {
+		{ name = "j_gluttenous_joker", carry_stat = nil, extra_stat = false },
+		{ name = "j_onyx_agate", carry_stat = nil, extra_stat = false }
+	}, result_joker = "j_666_club_wizard", cost = 6 },
+	{ jokers = {
+		{ name = "j_flash", carry_stat = "mult", extra_stat = false },
+		{ name = "j_chaos", carry_stat = nil, extra_stat = false }
+	}, result_joker = "j_666_collectible_chaos_card", cost = 6 },
+
+	-- $7 (1 Common + 1 Rare / 2 Uncommons / 3 Commons)
 	{ jokers = {
 		{ name = "j_ride_the_bus", carry_stat = nil, extra_stat = false },
 		{ name = "j_drivers_license", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_666_commercial_driver", cost = 10 },
+	}, result_joker = "j_666_commercial_driver", cost = 7 },
 	{ jokers = {
 		{ name = "j_bull", carry_stat = nil, extra_stat = false },
 		{ name = "j_bootstraps", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_666_capitalist_taurus", cost = 10 },
+	}, result_joker = "j_666_capitalist_taurus", cost = 7 },
 	{ jokers = {
 		{ name = "j_to_the_moon", carry_stat = nil, extra_stat = false },
 		{ name = "j_rocket", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_666_artemis_launch", cost = 10 },
-
-	-- $11 (3 cards, +$1 Uncommon)
-	{ jokers = {
-		{ name = "j_scary_face", carry_stat = nil, extra_stat = false },
-		{ name = "j_smiley", carry_stat = nil, extra_stat = false },
-		{ name = "j_sock_and_buskin", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_666_uncanny_face", cost = 11 },
-
-	-- $12 (3 cards, +$2 Uncommon)
-	{ jokers = {
-		{ name = "j_supernova", carry_stat = nil, extra_stat = false },
-		{ name = "j_constellation", carry_stat = nil, extra_stat = false },
-		{ name = "j_space", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_666_big_bang", cost = 12 },
-	{ jokers = {
-		{ name = "j_hiker", carry_stat = nil, extra_stat = false },
-		{ name = "j_dusk", carry_stat = nil, extra_stat = false },
-		{ name = "j_splash", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_666_camping_trip", cost = 12 },
-
-	-- $13 (3 cards, +$3 Uncommon)
+	}, result_joker = "j_666_artemis_launch", cost = 7 },
 	{ jokers = {
 		{ name = "j_oops", carry_stat = nil, extra_stat = false },
 		{ name = "j_oops", carry_stat = nil, extra_stat = false },
 		{ name = "j_oops", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_666_murphy_law", cost = 13 },
+	}, result_joker = "j_666_murphy_law", cost = 7 },
 
-	-- $16 (3 cards, +$1 Uncommon, +$5 Legendary)
+	-- $8 (2 Commons + 1 Uncommon)
+	{ jokers = {
+		{ name = "j_scary_face", carry_stat = nil, extra_stat = false },
+		{ name = "j_smiley", carry_stat = nil, extra_stat = false },
+		{ name = "j_sock_and_buskin", carry_stat = nil, extra_stat = false }
+	}, result_joker = "j_666_uncanny_face", cost = 8 },
+	{ jokers = {
+		{ name = "j_hiker", carry_stat = nil, extra_stat = false },
+		{ name = "j_dusk", carry_stat = nil, extra_stat = false },
+		{ name = "j_splash", carry_stat = nil, extra_stat = false }
+	}, result_joker = "j_666_camping_trip", cost = 8 },
+
+	-- $9 (1 Common + 2 Uncommons)
+	{ jokers = {
+		{ name = "j_supernova", carry_stat = nil, extra_stat = false },
+		{ name = "j_constellation", carry_stat = nil, extra_stat = false },
+		{ name = "j_space", carry_stat = nil, extra_stat = false }
+	}, result_joker = "j_666_big_bang", cost = 9 },
+
+	-- $16 (1 Common + 1 Uncommon + 1 Legendary)
 	{ jokers = {
 		{ name = "j_perkeo", carry_stat = nil, extra_stat = false },
 		{ name = "j_selzer", carry_stat = nil, extra_stat = false },
 		{ name = "j_drunkard", carry_stat = nil, extra_stat = false }
 	}, result_joker = "j_666_perkeo_sobriety", cost = 16 },
 
-	-- $17 (3 cards, +$2 Uncommon, +$5 Legendary)
+	-- $17 (2 Uncommons + 1 Legendary)
 	{ jokers = {
 		{ name = "j_caino", carry_stat = nil, extra_stat = false },
 		{ name = "j_ceremonial", carry_stat = nil, extra_stat = false },
 		{ name = "j_madness", carry_stat = "x_mult", extra_stat = false }
 	}, result_joker = "j_666_canio_madness", cost = 17 },
+	{ jokers = {
+		{ name = "j_yorick", carry_stat = nil, extra_stat = false },
+		{ name = "j_mr_bones", carry_stat = nil, extra_stat = false },
+		{ name = "j_castle", carry_stat = nil, extra_stat = false }
+	}, result_joker = "j_666_yorick_skull", cost = 17 },
 
-	-- $20 (3 cards, +$1 Uncommon, +$2 Rare, +$5 Legendary)
+	-- $18 (1 Uncommon + 1 Rare + 1 Legendary)
 	{ jokers = {
 		{ name = "j_triboulet", carry_stat = nil, extra_stat = false },
 		{ name = "j_baron", carry_stat = nil, extra_stat = false },
 		{ name = "j_shoot_the_moon", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_666_triboulet_apology", cost = 20 },
+	}, result_joker = "j_666_triboulet_apology", cost = 18 },
 }
 
 FusionJokers.fusionconfig = SMODS.current_mod.config
@@ -276,6 +279,7 @@ SMODS.load_file('jokers/j_666_murphy_law.lua')()
 SMODS.load_file('jokers/j_666_perkeo_sobriety.lua')()
 SMODS.load_file('jokers/j_666_canio_madness.lua')()
 SMODS.load_file('jokers/j_666_triboulet_apology.lua')()
+SMODS.load_file('jokers/j_666_yorick_skull.lua')()
 
 to_number = to_number or function(num)
 	return num
