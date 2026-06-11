@@ -166,25 +166,6 @@ return {
                     "Retrigger all played cards on {C:attention}final hand{}.",
 				},
 			},
-			["j_fuse_star_oracle"] = {
-				["name"] = "Star Oracle",
-				["text"] = {
-                    "{C:purple}(#3# + #4#){}",
-                    "{C:attention}+2{} consumable slots.",
-                    "{C:green}#1# in #2#{} chance for played cards",
-                    " with {C:stars}Star{} suit to create a",
-                    "random {C:spectral}Spectral{} card when scored",
-				},
-			},
-			["j_fuse_moon_marauder"] = {
-				["name"] = "Moon Marauder",
-				["text"] = {
-                    "{C:purple}(#3# + #4#){}",
-                    "{C:green}#1# in #2#{} chance for played cards with",
-                    "{C:moons}Moon{} suit to become {C:attention}Glass{} Cards.",
-                    "played {C:moons}Moon{} {C:attention}Glass{} cards never shatter",
-				},
-			},
 			["j_fuse_capitalist_taurus"] = {
 				["name"] = "Capitalist Taurus",
 				["text"] = {

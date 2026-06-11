@@ -255,10 +255,6 @@ SMODS.load_file('jokers/j_spade_archer.lua')()
 SMODS.load_file('jokers/j_club_wizard.lua')()
 SMODS.load_file('jokers/j_collectible_chaos_card.lua')()
 SMODS.load_file('jokers/j_royal_decree.lua')()
-if (SMODS.Mods["SixSuits"] or {}).can_load then
-	SMODS.load_file('jokers/j_moon_marauder.lua')()
-	SMODS.load_file('jokers/j_star_oracle.lua')()
-end
 
 SMODS.load_file('jokers/j_commercial_driver.lua')()
 SMODS.load_file('jokers/j_capitalist_taurus.lua')()
@@ -272,7 +268,6 @@ SMODS.load_file('jokers/j_camping_trip.lua')()
 SMODS.load_file('jokers/j_murphy_law.lua')()
 SMODS.load_file('jokers/j_perkeo_sobriety.lua')()
 SMODS.load_file('jokers/j_canio_madness.lua')()
-SMODS.load_file('jokers/test.lua')()
 
 to_number = to_number or function(num)
 	return num
