@@ -45,8 +45,6 @@ SMODS.Joker {
             local gain = 0
             for _, val in ipairs(context.removed) do
                 if val:is_face() then
-                    gain = gain + (val.sell_cost or 0)
-                else
                     gain = gain + card.ability.extra.destroy_xmult_gain
                 end
             end
@@ -65,8 +63,6 @@ SMODS.Joker {
             local gain = 0
             for _, val in ipairs(context.glass_shattered) do
                 if val:is_face() then
-                    gain = gain + (val.sell_cost or 0)
-                else
                     gain = gain + card.ability.extra.destroy_xmult_gain
                 end
             end
@@ -103,6 +99,8 @@ SMODS.Joker {
                 local sliced_card = G.jokers.cards[my_pos+1]
                 sliced_card.getting_sliced = true
                 G.GAME.joker_buffer = G.GAME.joker_buffer - 1
+                local gain = sliced_card.sell_cost or 0
+                card.ability.extra.x_mult = card.ability.extra.x_mult + gain
                 G.E_MANAGER:add_event(Event({func = function()
                     G.GAME.joker_buffer = 0
                     card:juice_up(0.8, 0.8)
@@ -110,6 +108,11 @@ SMODS.Joker {
                     play_sound('slice1', 0.96+math.random()*0.08)
                     return true 
                 end }))
+                return {
+                    message = localize{type='variable', key='a_xmult', vars={card.ability.extra.x_mult}},
+                    colour = G.C.MULT,
+                    card = card
+                }
             end
         end
 
