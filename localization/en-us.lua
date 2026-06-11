@@ -208,6 +208,19 @@ return {
                     "{C:purple}(#1# + #2# + #3#){}",
                     "All listed {C:green}probabilities{} always trigger",
 				},
+			},
+			["j_fuse_perkeo_sobriety"] = {
+				["name"] = "Perkeo's Sobriety",
+				["text"] = {
+                    "{C:purple}(#2# + #3# + #4#){}",
+                    "Gain {C:discard}+#1#{} Discards.",
+                    "{C:inactive}(+1 for every {C:attention}2{C:inactive} consumable cards in your possession)",
+                    "When a hand is played, retrigger all played cards",
+                    "by destroying a random consumable card in your possession.",
+                    "Creates a {C:dark_edition}Negative{} copy of 1 random",
+                    "consumable card in your possession at the end of the shop.",
+				},
+			},
 			["j_fuse_canios_madness"] = {
 				["name"] = "Canio's Madness",
 				["text"] = {

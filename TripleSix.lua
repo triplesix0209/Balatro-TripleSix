@@ -93,6 +93,13 @@ FusionJokers.fusions = {
 		{ name = "j_oops", carry_stat = nil, extra_stat = false }
 	}, result_joker = "j_fuse_murphyslaw", cost = 13 },
 
+	-- $16 (3 cards, +$1 Uncommon, +$5 Legendary)
+	{ jokers = {
+		{ name = "j_perkeo", carry_stat = nil, extra_stat = false },
+		{ name = "j_seltzer", carry_stat = nil, extra_stat = false },
+		{ name = "j_drunkard", carry_stat = nil, extra_stat = false }
+	}, result_joker = "j_fuse_perkeo_sobriety", cost = 16 },
+
 	-- $17 (3 cards, +$2 Uncommon, +$5 Legendary)
 	{ jokers = {
 		{ name = "j_caino", carry_stat = nil, extra_stat = false },
@@ -263,6 +270,7 @@ SMODS.load_file('jokers/bigbang.lua')()
 SMODS.load_file('jokers/campingtrip.lua')()
 
 SMODS.load_file('jokers/murphyslaw.lua')()
+SMODS.load_file('jokers/perkeosobriety.lua')()
 SMODS.load_file('jokers/caniosmadness.lua')()
 SMODS.load_file('jokers/test.lua')()
 
