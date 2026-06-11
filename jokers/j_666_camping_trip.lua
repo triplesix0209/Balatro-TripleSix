@@ -1,6 +1,6 @@
 SMODS.Atlas {
     key = 'camping_trip',
-    path = "j_camping_trip.png",
+    path = "j_666_camping_trip.png",
     px = 71,
     py = 95
 }
@@ -13,7 +13,7 @@ SMODS.Joker {
         x = 0,
         y = 0
     },
-    rarity = "fuse_fusion",
+    rarity = "666_fusion",
     cost = 12,
     unlocked = true,
     discovered = false,

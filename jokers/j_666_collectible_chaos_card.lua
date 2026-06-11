@@ -1,6 +1,6 @@
 SMODS.Atlas {
     key = 'collectible_chaos_card',
-    path = "j_collectible_chaos_card.png",
+    path = "j_666_collectible_chaos_card.png",
     px = 71,
     py = 95
 }
@@ -13,7 +13,7 @@ SMODS.Joker {
         x = 0,
         y = 0
     },
-    rarity = "fuse_fusion",
+    rarity = "666_fusion",
     cost = 9,
     unlocked = true,
     discovered = false,

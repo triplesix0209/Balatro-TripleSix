@@ -1,6 +1,6 @@
 SMODS.Atlas {
     key = 'diamond_bard',
-    path = "j_diamond_bard.png",
+    path = "j_666_diamond_bard.png",
     px = 71,
     py = 95
 }
@@ -13,7 +13,7 @@ SMODS.Joker {
         x = 0,
         y = 0
     },
-    rarity = "fuse_fusion",
+    rarity = "666_fusion",
     cost = 9,
     unlocked = true,
     discovered = false,

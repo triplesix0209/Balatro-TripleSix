@@ -1,6 +1,6 @@
 SMODS.Atlas {
     key = 'canio_madness',
-    path = "j_canio_madness.png",
+    path = "j_666_canio_madness.png",
     px = 71,
     py = 95
 }
@@ -13,7 +13,7 @@ SMODS.Joker {
         x = 0,
         y = 0
     },
-    rarity = "fuse_fusion",
+    rarity = "666_fusion",
     cost = 17,
     unlocked = true,
     discovered = false,

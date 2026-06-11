@@ -2,19 +2,19 @@ return {
 	["misc"] = {
 		["dictionary"] = {
             ["k_fusion"] = "Fusion",
-			["k_fuse_fusion"] = "Fusion",
+			["k_666_fusion"] = "Fusion",
             ["k_flipped_ex"] = "Flipped!",
             ["k_copied_ex"] = "Cloned!",
             ["k_in_tact_ex"] = "In-Tact!",
             ["b_fuse"] = "FUSE",
 		},
 		["labels"] = {
-			["k_fuse_fusion"] = "Fusion",
+			["k_666_fusion"] = "Fusion",
 		},
 	},
 	["descriptions"] = {
 		["Joker"] = {
-			["j_fuse_diamond_bard"] = {
+			["j_666_diamond_bard"] = {
 				["name"] = "Diamond Bard",
 				["text"] = {
                     "{C:purple}(#4# + #5#){}",
@@ -23,7 +23,7 @@ return {
                     "{C:money}$#3#{} you have when scored",
 				},
 			},
-			["j_fuse_heart_paladin"] = {
+			["j_666_heart_paladin"] = {
 				["name"] = "Heart Paladin",
 				["text"] = {
                     "{C:purple}(#4# + #5#){}",
@@ -32,7 +32,7 @@ return {
                     "{C:green}#2# in #3#{} chance to re-trigger",
 				},
 			},
-			["j_fuse_spade_archer"] = {
+			["j_666_spade_archer"] = {
 				["name"] = "Spade Archer",
 				["text"] = {
                     "{C:purple}(#3# + #4#){}",
@@ -41,7 +41,7 @@ return {
                     "chips when 5 or more {C:spades}Spades{} are played",
 				},
 			},
-			["j_fuse_club_wizard"] = {
+			["j_666_club_wizard"] = {
 				["name"] = "Club Wizard",
 				["text"] = {
                     "{C:purple}(#2# + #3#){}",
@@ -49,7 +49,7 @@ return {
                     "give {C:mult}+#1#{} Mult when scored",
 				},
 			},
-			["j_fuse_big_bang"] = {
+			["j_666_big_bang"] = {
 				["name"] = "Big Bang",
 				["text"] = {
                     "{C:purple}(#2# + #3# + #4#){}",
@@ -58,7 +58,7 @@ return {
                     "{C:green}#5# in #6#{} chance to upgrade level of played {C:attention}poker hand{}",
 				},
 			},
-			["j_fuse_dynamic_duo"] = {
+			["j_666_dynamic_duo"] = {
 				["name"] = "Dynamic Duo",
 				["text"] = {
                     "{C:purple}(#3# + #4#){}",
@@ -66,7 +66,7 @@ return {
                     "and {C:chips}+#2#{} Chips when scored.",
 				},
 			},
-			["j_fuse_collectible_chaos_card"] = {
+			["j_666_collectible_chaos_card"] = {
 				["name"] = "Collectible Chaos Card",
 				["text"] = {
                     "{C:purple}(#4# + #5#){}",
@@ -75,7 +75,7 @@ return {
                     "{C:inactive}(Currently {C:mult}+#3#{C:inactive} Mult)",
 				},
 			},
-			["j_fuse_flip_flop"] = {
+			["j_666_flip_flop"] = {
 				["name"] = "Flip-Flop",
 				["text"] = {
                     "{C:purple}(#3# + #4#){}",
@@ -83,7 +83,7 @@ return {
                     "{C:attention}Flips{} after each blind",
 				},
 			},
-			["j_fuse_flip_flop_mult"] = {
+			["j_666_flip_flop_mult"] = {
 				["name"] = "Flip-Flop",
 				["text"] = {
                     "{C:purple}(#3# + #4#){}",
@@ -91,7 +91,7 @@ return {
                     "{C:attention}Flips{} after each blind",
 				},
 			},
-			["j_fuse_flip_flop_chips"] = {
+			["j_666_flip_flop_chips"] = {
 				["name"] = "Flip-Flop",
 				["text"] = {
                     "{C:purple}(#3# + #4#){}",
@@ -99,7 +99,7 @@ return {
                     "{C:attention}Flips{} after each blind",
 				},
 			},
-			["j_fuse_royal_decree"] = {
+			["j_666_royal_decree"] = {
 				["name"] = "Royal Decree",
 				["text"] = {
                     "{C:purple}(#2# + #3#){}",
@@ -108,7 +108,7 @@ return {
                     "at end of round gives {C:money}$#1#{}",
 				},
 			},
-			["j_fuse_dementia_joker"] = {
+			["j_666_dementia_joker"] = {
 				["name"] = "Dementia Joker",
 				["text"] = {
                     "{C:purple}(#5# + #6#){}",
@@ -118,7 +118,7 @@ return {
                     "{C:inactive}(Currently {C:mult}+#4#{C:inactive} Mult)",
 				},
 			},
-			["j_fuse_golden_egg"] = {
+			["j_666_golden_egg"] = {
 				["name"] = "Golden Egg",
 				["text"] = {
                     "{C:purple}(#2# + #3#){}",
@@ -127,7 +127,7 @@ return {
                     " Earn {C:money}$#1#{} at end of round",
 				},
 			},
-			["j_fuse_flag_bearer"] = {
+			["j_666_flag_bearer"] = {
 				["name"] = "Flag Bearer",
 				["text"] = {
                     "{C:purple}(#4# + #5#){}",
@@ -137,7 +137,7 @@ return {
                     "{C:inactive}(Currently {C:mult}+#3#{C:inactive} Mult)",
 				},
 			},
-			["j_fuse_uncanny_face"] = {
+			["j_666_uncanny_face"] = {
 				["name"] = "Uncanny Face",
 				["text"] = {
                     "{C:purple}(#3# + #4# + #5#){}",
@@ -146,7 +146,7 @@ return {
                     "for every {C:attention}face{} card in the scoring hand.",
 				},
 			},
-			["j_fuse_commercial_driver"] = {
+			["j_666_commercial_driver"] = {
 				["name"] = "Commercial Driver",
 				["text"] = {
                     "{C:purple}(#3# + #4#){}",
@@ -155,7 +155,7 @@ return {
                     "{C:inactive}(Currently {X:mult,C:white}X#2#{C:inactive} Mult)",
 				},
 			},
-			["j_fuse_camping_trip"] = {
+			["j_666_camping_trip"] = {
 				["name"] = "Camping Trip",
 				["text"] = {
                     "{C:purple}(#3# + #4# + #5#){}",
@@ -166,7 +166,7 @@ return {
                     "Retrigger all played cards on {C:attention}final hand{}.",
 				},
 			},
-			["j_fuse_capitalist_taurus"] = {
+			["j_666_capitalist_taurus"] = {
 				["name"] = "Capitalist Taurus",
 				["text"] = {
                     "{C:purple}(#6# + #7#){}",
@@ -175,7 +175,7 @@ return {
                     "{C:inactive}(Currently {C:chips}+#4#{C:inactive} Chips, {C:mult}+#5#{C:inactive} Mult)",
 				},
 			},
-			["j_fuse_artemis_launch"] = {
+			["j_666_artemis_launch"] = {
 				["name"] = "Artemis Launch",
 				["text"] = {
                     "{C:purple}(#4# + #5#){}",
@@ -183,14 +183,14 @@ return {
                     "When {C:attention}Boss Blind{} is defeated, permanently increases this extra {C:attention}interest{} by {C:money}$#3#{}",
 				},
 			},
-			["j_fuse_murphy_law"] = {
+			["j_666_murphy_law"] = {
 				["name"] = "Murphy's Law",
 				["text"] = {
                     "{C:purple}(#1# + #2# + #3#){}",
                     "All listed {C:green}probabilities{} always trigger",
 				},
 			},
-			["j_fuse_perkeo_sobriety"] = {
+			["j_666_perkeo_sobriety"] = {
 				["name"] = "Perkeo's Sobriety",
 				["text"] = {
                     "{C:purple}(#1# + #2# + #3#){}",
@@ -200,13 +200,13 @@ return {
 					"in your possession at the end of the shop",
 				},
 			},
-			["j_fuse_canio_madness"] = {
+			["j_666_canio_madness"] = {
 				["name"] = "Canio's Madness",
 				["text"] = {
                     "{C:purple}(#2# + #3# + #4#){}",
                     "When {C:attention}Blind{} is selected, destroy the {C:attention}Joker{} to the right.",
-                    "When a card is destroyed, permanently add {X:mult,C:white}X1{} Mult to its {X:mult,C:white}X{} Mult,",
-                    "if the destroyed card is a {C:attention}Joker{} or a {C:attention}face{} card, add its sell value instead.",
+                    "When a {C:attention}face{} card is destroyed, permanently add {X:mult,C:white}X1{} Mult to its {X:mult,C:white}X{} Mult,",
+                    "When a {C:attention}Joker{} card is destroyed, permanently add its {C:attention}sell value{} to its {X:mult,C:white}X{} Mult.",
                     "{C:inactive}(Currently {X:mult,C:white}X#1#{C:inactive} Mult)",
 				},
 			},

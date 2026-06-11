@@ -1,6 +1,6 @@
 SMODS.Atlas {
     key = 'dementia_joker',
-    path = "j_dementia_joker.png",
+    path = "j_666_dementia_joker.png",
     px = 71,
     py = 95
 }
@@ -13,7 +13,7 @@ SMODS.Joker {
         x = 0,
         y = 0
     },
-    rarity = "fuse_fusion",
+    rarity = "666_fusion",
     cost = 8,
     unlocked = true,
     discovered = false,

@@ -1,6 +1,6 @@
 SMODS.Atlas {
     key = 'uncanny_face',
-    path = "j_uncanny_face.png",
+    path = "j_666_uncanny_face.png",
     px = 71,
     py = 95
 }
@@ -13,7 +13,7 @@ SMODS.Joker {
         x = 0,
         y = 0
     },
-    rarity = "fuse_fusion",
+    rarity = "666_fusion",
     cost = 11,
     unlocked = true,
     discovered = false,

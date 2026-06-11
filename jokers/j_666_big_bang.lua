@@ -1,6 +1,6 @@
 SMODS.Atlas {
     key = 'big_bang',
-    path = "j_big_bang.png",
+    path = "j_666_big_bang.png",
     px = 71,
     py = 95
 }
@@ -13,7 +13,7 @@ SMODS.Joker {
         x = 0,
         y = 0
     },
-    rarity = "fuse_fusion",
+    rarity = "666_fusion",
     cost = 12,
     unlocked = true,
     discovered = false,

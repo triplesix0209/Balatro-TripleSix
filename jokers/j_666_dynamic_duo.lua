@@ -1,6 +1,6 @@
 SMODS.Atlas {
     key = 'dynamic_duo',
-    path = "j_dynamic_duo.png",
+    path = "j_666_dynamic_duo.png",
     px = 71,
     py = 95
 }
@@ -13,7 +13,7 @@ SMODS.Joker {
         x = 0,
         y = 0
     },
-    rarity = "fuse_fusion",
+    rarity = "666_fusion",
     cost = 8,
     unlocked = true,
     discovered = false,

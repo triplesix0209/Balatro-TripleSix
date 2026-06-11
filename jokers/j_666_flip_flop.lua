@@ -1,6 +1,6 @@
 SMODS.Atlas {
     key = 'flip_flop',
-    path = "j_flip_flop.png",
+    path = "j_666_flip_flop.png",
     px = 71,
     py = 95
 }
@@ -20,7 +20,7 @@ SMODS.Joker {
     name = "Flip-Flop",
     atlas = "flip_flop",
     pos = flip,
-    rarity = "fuse_fusion",
+    rarity = "666_fusion",
     cost = 8,
     unlocked = true,
     discovered = false,

@@ -1,6 +1,6 @@
 SMODS.Atlas {
     key = 'commercial_driver',
-    path = "j_commercial_driver.png",
+    path = "j_666_commercial_driver.png",
     px = 71,
     py = 95
 }
@@ -13,7 +13,7 @@ SMODS.Joker {
         x = 0,
         y = 0
     },
-    rarity = "fuse_fusion",
+    rarity = "666_fusion",
     cost = 10,
     unlocked = true,
     discovered = false,

@@ -4,7 +4,7 @@
 	"display_name": "TripleSix",
 	"author": ["triplesix"],
 	"description": "Adds the ability to fuse jokers into special new jokers!",
-	"prefix": "fuse",
+	"prefix": "666",
 	"main_file": "TripleSix.lua",
 	"priority": -10000,
 	"badge_colour": "B26CBB",
