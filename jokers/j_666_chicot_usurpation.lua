@@ -24,6 +24,7 @@ SMODS.Joker {
         extra = {
             stolen_bosses = {},
             stolen_count = 0,
+            stolen_bosses_order = {},
             joker1 = "j_chicot",
             joker2 = "j_luchador",
             joker3 = "j_misprint",
@@ -36,8 +37,10 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         local list_str = "None"
         if card.ability and card.ability.extra and card.ability.extra.stolen_bosses then
-            local names = {}
-            -- Maintain original order of appearance for the list
+            -- Initialize order array if it doesn't exist
+            card.ability.extra.stolen_bosses_order = card.ability.extra.stolen_bosses_order or {}
+            
+            -- Backwards compatibility / Sync fallback
             local order = {
                 "bl_hook", "bl_ox", "bl_house", "bl_wall", "bl_wheel", "bl_arm", "bl_club", 
                 "bl_fish", "bl_psychic", "bl_goad", "bl_water", "bl_window", "bl_manacle", 
@@ -45,6 +48,27 @@ SMODS.Joker {
                 "bl_head", "bl_tooth", "bl_flint", "bl_mark", "bl_acorn", "bl_leaf", 
                 "bl_vessel", "bl_heart", "bl_bell"
             }
+            if #card.ability.extra.stolen_bosses_order == 0 then
+                for _, k in ipairs(order) do
+                    if card.ability.extra.stolen_bosses[k] then
+                        table.insert(card.ability.extra.stolen_bosses_order, k)
+                    end
+                end
+            else
+                -- Sync check: make sure all true keys in stolen_bosses are in stolen_bosses_order
+                local order_set = {}
+                for _, k in ipairs(card.ability.extra.stolen_bosses_order) do
+                    order_set[k] = true
+                end
+                for _, k in ipairs(order) do
+                    if card.ability.extra.stolen_bosses[k] and not order_set[k] then
+                        table.insert(card.ability.extra.stolen_bosses_order, k)
+                    end
+                end
+            end
+
+            -- Build the display list string for main description
+            local names = {}
             local display_names = {
                 bl_hook = "The Hook", bl_ox = "The Ox", bl_house = "The House", bl_wall = "The Wall",
                 bl_wheel = "The Wheel", bl_arm = "The Arm", bl_club = "The Club", bl_fish = "The Fish",
@@ -61,6 +85,24 @@ SMODS.Joker {
             end
             if #names > 0 then
                 list_str = table.concat(names, ", ")
+            end
+
+            -- Populate info_queue. Limit to 5 entries.
+            -- If total stolen bosses is <= 5, show all of them.
+            -- If total stolen bosses is > 5, show the 4 most recently stolen and the "+X more" box.
+            local total_stolen = #card.ability.extra.stolen_bosses_order
+            if total_stolen <= 5 then
+                for _, k in ipairs(card.ability.extra.stolen_bosses_order) do
+                    table.insert(info_queue, { key = "chicot_" .. k, set = "Other" })
+                end
+            else
+                for i = total_stolen - 3, total_stolen do
+                    local k = card.ability.extra.stolen_bosses_order[i]
+                    if k then
+                        table.insert(info_queue, { key = "chicot_" .. k, set = "Other" })
+                    end
+                end
+                table.insert(info_queue, { key = "chicot_more_buffs", set = "Other", vars = { total_stolen - 4 } })
             end
         end
         return {
@@ -450,9 +492,11 @@ SMODS.Joker {
             if G.GAME.blind and G.GAME.blind.boss and G.GAME.chips >= G.GAME.blind.chips then
                 local boss_key = G.GAME.blind.config.blind.key
                 card.ability.extra.stolen_bosses = card.ability.extra.stolen_bosses or {}
+                card.ability.extra.stolen_bosses_order = card.ability.extra.stolen_bosses_order or {}
                 if not card.ability.extra.stolen_bosses[boss_key] then
                     card.ability.extra.stolen_bosses[boss_key] = true
                     card.ability.extra.stolen_count = (card.ability.extra.stolen_count or 0) + 1
+                    table.insert(card.ability.extra.stolen_bosses_order, boss_key)
 
                     -- Apply permanent stat change: The Manacle (+1 Hand size)
                     if boss_key == "bl_manacle" then

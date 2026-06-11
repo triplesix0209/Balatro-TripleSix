@@ -243,5 +243,218 @@ return {
 				},
 			},
 		},
+		["Other"] = {
+			["chicot_bl_hook"] = {
+				["name"] = "Hook's Blessing",
+				["text"] = {
+					"Draw {C:attention}+1{} card after",
+					"playing a hand"
+				},
+			},
+			["chicot_bl_ox"] = {
+				["name"] = "Ox's Bounty",
+				["text"] = {
+					"Playing your most played",
+					"poker hand {C:attention}doubles{}",
+					"your money"
+				},
+			},
+			["chicot_bl_house"] = {
+				["name"] = "House's Welcome",
+				["text"] = {
+					"First hand played in each",
+					"round gives {X:mult,C:white}X2{} Mult"
+				},
+			},
+			["chicot_bl_wall"] = {
+				["name"] = "Wall's Crumble",
+				["text"] = {
+					"Reduces chip requirement",
+					"of all Blinds by {C:attention}25%{}"
+				},
+			},
+			["chicot_bl_wheel"] = {
+				["name"] = "Wheel's Fortune",
+				["text"] = {
+					"{C:attention}+1{} to all listed",
+					"{C:green}probabilities{}"
+				},
+			},
+			["chicot_bl_arm"] = {
+				["name"] = "Arm's Reach",
+				["text"] = {
+					"Upgrades played poker hand",
+					"by {C:attention}+1 Level{} before scoring"
+				},
+			},
+			["chicot_bl_club"] = {
+				["name"] = "Club's Might",
+				["text"] = {
+					"{C:attention}Retriggers{} all played",
+					"{C:clubs}Club{} cards"
+				},
+			},
+			["chicot_bl_fish"] = {
+				["name"] = "Fish's Feast",
+				["text"] = {
+					"Scoring cards drawn after",
+					"a hand has been played",
+					"give {X:mult,C:white}X2{} Mult"
+				},
+			},
+			["chicot_bl_psychic"] = {
+				["name"] = "Psychic's Telepathy",
+				["text"] = {
+					"Played hands containing",
+					"exactly {C:attention}5{} cards",
+					"give {X:mult,C:white}X2{} Mult"
+				},
+			},
+			["chicot_bl_goad"] = {
+				["name"] = "Goad's Edge",
+				["text"] = {
+					"{C:attention}Retriggers{} all played",
+					"{C:spades}Spade{} cards"
+				},
+			},
+			["chicot_bl_water"] = {
+				["name"] = "Water's Flow",
+				["text"] = {
+					"Gain {C:attention}+2{} discards",
+					"per round"
+				},
+			},
+			["chicot_bl_window"] = {
+				["name"] = "Window's Fortune",
+				["text"] = {
+					"{C:attention}Retriggers{} all played",
+					"{C:diamonds}Diamond{} cards"
+				},
+			},
+			["chicot_bl_manacle"] = {
+				["name"] = "Manacle's Release",
+				["text"] = {
+					"Gain {C:attention}+1{} hand size"
+				},
+			},
+			["chicot_bl_eye"] = {
+				["name"] = "Eye's Focus",
+				["text"] = {
+					"Playing a hand type already",
+					"played this round {C:attention}retriggers{}",
+					"all scored cards"
+				},
+			},
+			["chicot_bl_mouth"] = {
+				["name"] = "Mouth's Call",
+				["text"] = {
+					"{C:attention}Retriggers{} all scored cards",
+					"in the first hand played",
+					"each round"
+				},
+			},
+			["chicot_bl_plant"] = {
+				["name"] = "Plant's Harvest",
+				["text"] = {
+					"{C:attention}Retriggers{} all played",
+					"{C:attention}Face{} cards"
+				},
+			},
+			["chicot_bl_serpent"] = {
+				["name"] = "Serpent's Coil",
+				["text"] = {
+					"Always draw back to full",
+					"hand size after playing",
+					"or discarding"
+				},
+			},
+			["chicot_bl_pillar"] = {
+				["name"] = "Pillar's Foundation",
+				["text"] = {
+					"{C:attention}Retriggers{} all scored cards",
+					"previously played in",
+					"the current Ante"
+				},
+			},
+			["chicot_bl_needle"] = {
+				["name"] = "Needle's Thread",
+				["text"] = {
+					"Gain {C:attention}+2{} hands",
+					"per round"
+				},
+			},
+			["chicot_bl_head"] = {
+				["name"] = "Head's Heartbeat",
+				["text"] = {
+					"{C:attention}Retriggers{} all played",
+					"{C:hearts}Heart{} cards"
+				},
+			},
+			["chicot_bl_tooth"] = {
+				["name"] = "Tooth's Filling",
+				["text"] = {
+					"Earn {C:money}+$1{} for each",
+					"scored card"
+				},
+			},
+			["chicot_bl_flint"] = {
+				["name"] = "Flint's Spark",
+				["text"] = {
+					"Double base Chips and base",
+					"Mult of played poker hands"
+				},
+			},
+			["chicot_bl_mark"] = {
+				["name"] = "Mark's Vision",
+				["text"] = {
+					"Scored {C:attention}Face{} cards",
+					"give {X:mult,C:white}X2{} Mult"
+				},
+			},
+			["chicot_bl_acorn"] = {
+				["name"] = "Acorn's Shell",
+				["text"] = {
+					"{C:mult}+10{} Mult for each Joker",
+					"in your possession"
+				},
+			},
+			["chicot_bl_leaf"] = {
+				["name"] = "Leaf's Growth",
+				["text"] = {
+					"Selling any Joker spawns",
+					"a random Joker",
+					"{C:inactive}(Max 1/round)"
+				},
+			},
+			["chicot_bl_vessel"] = {
+				["name"] = "Vessel's Overflow",
+				["text"] = {
+					"Reduces chip requirement",
+					"of all Blinds by {C:attention}40%{}"
+				},
+			},
+			["chicot_bl_heart"] = {
+				["name"] = "Heart's Devotion",
+				["text"] = {
+					"After each hand, a random",
+					"Joker is granted {X:mult,C:white}X5{} Mult",
+					"for the round"
+				},
+			},
+			["chicot_bl_bell"] = {
+				["name"] = "Bell's Resonance",
+				["text"] = {
+					"Scored cards with forced",
+					"selection give {X:mult,C:white}X5{} Mult"
+				},
+			},
+			["chicot_more_buffs"] = {
+				["name"] = "Other Stolen Blinds",
+				["text"] = {
+					"And {C:attention}#1#{} other active",
+					"stolen passive buffs..."
+				},
+			},
+		},
 	},
 }
