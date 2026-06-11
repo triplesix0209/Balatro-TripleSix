@@ -218,7 +218,7 @@ return {
                     "Each {C:attention}King{} and {C:attention}Queen{} held in hand gives {X:mult,C:white}X/2{} Mult.",
                     "If about to be destroyed, prevent it once per round",
                     "and permanently add {X:mult,C:white}X1{} Mult to its {X:mult,C:white}X{} Mult.",
-                    "{C:inactive}(Currently {X:mult,C:white}X#1#{C:inactive} Mult, Shield: #5#/1){}"
+                    "{C:inactive}(Currently {X:mult,C:white}X#1#{C:inactive} Mult, Shield: {C:attention}#5#{}){}"
 				},
 			},
 		},
