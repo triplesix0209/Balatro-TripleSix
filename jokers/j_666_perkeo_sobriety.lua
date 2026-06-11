@@ -39,7 +39,7 @@ SMODS.Joker {
     calculate = function(self, card, context)
         -- 1. When a consumable card is used, add +2 discards and enable retriggers
         if context.using_consumeable and not context.blueprint then
-            if G.STATE == G.STATES.PLAY_ROUND then
+            if G.GAME.blind and G.GAME.blind.in_blind then
                 ease_discard(2)
                 G.GAME.consumeable_used_this_round = true
                 card_eval_status_text(card, 'extra', nil, nil, nil, {
