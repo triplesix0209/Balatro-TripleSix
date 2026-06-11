@@ -210,6 +210,15 @@ return {
                     "{C:inactive}(Currently {X:mult,C:white}X#1#{C:inactive} Mult)",
 				},
 			},
+			["j_666_triboulet_apology"] = {
+				["name"] = "Triboulet's Apology",
+				["text"] = {
+                    "{C:purple}(#3# + #4# + #5#){}",
+                    "Kings are also treated as Queens, and Queens are also treated as Kings.",
+                    "Played Kings and Queens each give {X:mult,C:white}X#1#{} Mult when scored.",
+                    "Each King and Queen held in hand gives {X:mult,C:white}X#2#{} Mult.",
+				},
+			},
 		},
 	},
 }

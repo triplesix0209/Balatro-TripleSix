@@ -106,6 +106,13 @@ FusionJokers.fusions = {
 		{ name = "j_ceremonial", carry_stat = nil, extra_stat = false },
 		{ name = "j_madness", carry_stat = "x_mult", extra_stat = false }
 	}, result_joker = "j_666_canio_madness", cost = 17 },
+
+	-- $20 (3 cards, +$1 Uncommon, +$2 Rare, +$5 Legendary)
+	{ jokers = {
+		{ name = "j_triboulet", carry_stat = nil, extra_stat = false },
+		{ name = "j_baron", carry_stat = nil, extra_stat = false },
+		{ name = "j_shoot_the_moon", carry_stat = nil, extra_stat = false }
+	}, result_joker = "j_666_triboulet_apology", cost = 20 },
 }
 
 FusionJokers.fusionconfig = SMODS.current_mod.config
@@ -268,6 +275,7 @@ SMODS.load_file('jokers/j_666_camping_trip.lua')()
 SMODS.load_file('jokers/j_666_murphy_law.lua')()
 SMODS.load_file('jokers/j_666_perkeo_sobriety.lua')()
 SMODS.load_file('jokers/j_666_canio_madness.lua')()
+SMODS.load_file('jokers/j_666_triboulet_apology.lua')()
 
 to_number = to_number or function(num)
 	return num
