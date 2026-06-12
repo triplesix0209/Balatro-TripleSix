@@ -227,7 +227,7 @@ return {
 					"Gains {C:chips}+#4#{} Chips per discarded card.",
                     "Gains {X:mult,C:white}X#5#{} Mult for every {C:attention}#6#{} Chips this card has.",
                     "Prevents Death if chips scored are at least",
-                    "{C:attention}25%{} of required chips.",
+                    "{C:attention}50%{} of required chips.",
                     "{C:inactive}(Currently {C:chips}+#7#{} Chips, {X:mult,C:white}X#8#{} Mult)"
 				},
 			},

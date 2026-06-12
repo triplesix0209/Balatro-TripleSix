@@ -49,7 +49,7 @@ SMODS.Joker {
     calculate = function(self, card, context)
         -- 1. Death prevention: Mr. Bones effect (runs on context.end_of_round and context.game_over)
         if context.end_of_round and context.game_over and not context.blueprint then
-            if G.GAME.chips / G.GAME.blind.chips >= 0.25 then
+            if G.GAME.chips / G.GAME.blind.chips >= 0.50 then
                 return {
                     message = localize('k_saved_ex'),
                     saved = true,
