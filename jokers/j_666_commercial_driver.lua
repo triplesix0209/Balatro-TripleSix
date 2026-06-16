@@ -61,7 +61,7 @@ SMODS.Joker {
 		if context.cardarea == G.jokers and context.joker_main then
 			return {
 				message = localize{type='variable',key='a_xmult',vars={card.ability.extra.total}},
-				Xmult_mod = card.ability.extra.total
+				x_mult = card.ability.extra.total
 			}
 		end
     end,

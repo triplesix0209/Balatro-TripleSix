@@ -91,11 +91,11 @@ SMODS.Joker {
             local ret = {}
             local has_effects = false
             if chips > 0 then
-                ret.chip_mod = chips
+                ret.chips = chips
                 has_effects = true
             end
             if xmult > 1 then
-                ret.x_mult_mod = xmult
+                ret.x_mult = xmult
                 has_effects = true
             end
             if has_effects then

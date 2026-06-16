@@ -61,7 +61,7 @@ SMODS.Joker {
         end
 
         -- 5. Creates 2 Negative copies of random consumable cards in your possession at the end of the shop
-        if context.ending_shop and not context.blueprint then
+        if context.ending_shop then
             local copies_created = 0
             for i = 1, 2 do
                 if G.consumeables and G.consumeables.cards and #G.consumeables.cards > 0 then

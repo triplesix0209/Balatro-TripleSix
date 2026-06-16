@@ -54,8 +54,8 @@ SMODS.Joker {
             if chips > 0 or mult > 0 then
                 return {
                     message = "+" .. chips .. " Chips, +" .. mult .. " Mult",
-                    chip_mod = chips,
-                    mult_mod = mult,
+                    chips = chips,
+                    mult = mult,
                     colour = G.C.GOLD
                 }
             end

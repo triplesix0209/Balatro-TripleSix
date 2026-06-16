@@ -46,7 +46,7 @@ SMODS.Joker {
 			local mult_val = 1 + card.ability.extra.Xmult * (G.GAME.hands[context.scoring_name].level + G.GAME.hands[context.scoring_name].played)
 			return {
 				message = localize{type='variable',key='a_xmult',vars={mult_val}},
-                Xmult_mod = mult_val
+                x_mult = mult_val
 			}
 		end
         if context.cardarea == G.jokers and context.before and context.scoring_name then

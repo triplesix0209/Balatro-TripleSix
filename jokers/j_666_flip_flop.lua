@@ -134,13 +134,13 @@ SMODS.Joker {
 			if card.ability.extra.side == "mult" then
 				return {
 					message = localize{type='variable',key='a_mult',vars={card.ability.extra.mult}},
-					mult_mod = card.ability.extra.mult,
+					mult = card.ability.extra.mult,
 					colour = G.C.MULT
 				}
 			else
 				return {
 					message = localize{type='variable',key='a_chips',vars={card.ability.extra.chips}},
-					chip_mod = card.ability.extra.chips,
+					chips = card.ability.extra.chips,
 					colour = G.C.CHIPS
 				}
 			end

@@ -62,7 +62,7 @@ SMODS.Joker {
 			end
 			return {
 				message = localize{type='variable',key='a_mult',vars={x*card.ability.extra.mult}},
-				mult_mod = x*card.ability.extra.mult
+				mult = x*card.ability.extra.mult
 			}
 		end
     end,

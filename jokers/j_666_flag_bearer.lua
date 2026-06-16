@@ -77,7 +77,7 @@ SMODS.Joker {
 			local mult = card.ability.extra.mult * G.GAME.current_round.discards_left
 			return {
 				message = localize{type='variable',key='a_mult',vars={mult}},
-				mult_mod = mult
+				mult = mult
 			}
 		end
     end,

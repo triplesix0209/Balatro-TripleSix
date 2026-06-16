@@ -63,7 +63,7 @@ SMODS.Joker {
             }))
             return {
                 message = "X1.5 Mult",
-                Xmult_mod = card.ability.extra.joker_xmult,
+                x_mult = card.ability.extra.joker_xmult,
                 colour = G.C.MULT,
                 card = card
             }
@@ -74,7 +74,7 @@ SMODS.Joker {
             local total_xmult = card.ability.extra.x_mult * card.ability.extra.joker_xmult
             if total_xmult > 1 then
                 return {
-                    x_mult_mod = total_xmult,
+                    x_mult = total_xmult,
                     card = card
                 }
             end
