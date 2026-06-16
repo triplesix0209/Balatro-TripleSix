@@ -24,7 +24,7 @@ SMODS.Joker {
         extra = {
             x_mult = 1.0,
             destroy_xmult_gain = 1.0,
-            joker_destroy_ratio = 0.25,
+            joker_destroy_ratio = 1.0,
             joker1 = "j_caino",
             joker2 = "j_ceremonial",
             joker3 = "j_madness"
