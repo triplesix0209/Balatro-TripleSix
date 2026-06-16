@@ -99,11 +99,6 @@ FusionJokers.fusions = {
 		{ name = "j_selzer", carry_stat = nil, extra_stat = false },
 		{ name = "j_drunkard", carry_stat = nil, extra_stat = false }
 	}, result_joker = "j_666_perkeo_sobriety", cost = 16 },
-	{ jokers = {
-		{ name = "j_chicot", carry_stat = nil, extra_stat = false },
-		{ name = "j_luchador", carry_stat = nil, extra_stat = false },
-		{ name = "j_misprint", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_666_chicot_usurpation", cost = 16 },
 
 	-- $17 (2 Uncommons + 1 Legendary)
 	{ jokers = {
@@ -118,6 +113,11 @@ FusionJokers.fusions = {
 	}, result_joker = "j_666_yorick_skull", cost = 17 },
 
 	-- $18 (1 Uncommon + 1 Rare + 1 Legendary)
+	{ jokers = {
+		{ name = "j_chicot", carry_stat = nil, extra_stat = false },
+		{ name = "j_luchador", carry_stat = nil, extra_stat = false },
+		{ name = "j_baseball", carry_stat = nil, extra_stat = false }
+	}, result_joker = "j_666_chicot_usurpation", cost = 18 },
 	{ jokers = {
 		{ name = "j_triboulet", carry_stat = nil, extra_stat = false },
 		{ name = "j_baron", carry_stat = nil, extra_stat = false },
@@ -285,11 +285,11 @@ SMODS.load_file('jokers/j_666_big_bang.lua')()
 SMODS.load_file('jokers/j_666_murphy_law.lua')()
 
 SMODS.load_file('jokers/j_666_perkeo_sobriety.lua')()
-SMODS.load_file('jokers/j_666_chicot_usurpation.lua')()
 
 SMODS.load_file('jokers/j_666_canio_madness.lua')()
 SMODS.load_file('jokers/j_666_yorick_skull.lua')()
 
+SMODS.load_file('jokers/j_666_chicot_usurpation.lua')()
 SMODS.load_file('jokers/j_666_triboulet_apology.lua')()
 
 to_number = to_number or function(num)
