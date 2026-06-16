@@ -204,8 +204,8 @@ return {
 				["name"] = "Chicot's Usurpation",
 				["text"] = {
                     "{C:purple}(#1# + #2# + #3#){}",
+					"Each {C:attention}Jokers{} each give {X:mult,C:white}X1.5{} Mult.",
                     "Disables effect of every {C:attention}Boss Blind{}.",
-                    "Each {C:attention}Jokers{} each give {X:mult,C:white}X1.5{} Mult",
                     "When {C:attention}Boss Blind{} is defeated, permanently add ",
 					"{X:mult,C:white}X3{} Mult to this card's {X:mult,C:white}X{} Mult.",
                     "{C:inactive}(Currently {X:mult,C:white}X#4#{C:inactive} Mult)"
