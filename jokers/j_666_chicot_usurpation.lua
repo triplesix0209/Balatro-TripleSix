@@ -265,7 +265,7 @@ SMODS.Joker {
             end
             -- Passive: The Needle (+1 Hand)
             if card.ability.extra.stolen_bosses["bl_needle"] then
-                ease_hands(1)
+                ease_hands_left(1)
             end
 
             -- Passive: The Pillar (Reset cocks played in this Ante when Ante changes)
