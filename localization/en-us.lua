@@ -239,8 +239,8 @@ return {
                     "Played {C:attention}Kings{} and {C:attention}Queens{} each give {X:mult,C:white}X{} Mult when scored.",
                     "Each {C:attention}King{} and {C:attention}Queen{} held in hand gives {X:mult,C:white}X/2{} Mult.",
                     "If about to be destroyed, prevent it once per round,",
-                    "and permanently add {X:mult,C:white}X2{} Mult to this card's {X:mult,C:white}X{} Mult.",
-                    "{C:inactive}(Currently {X:mult,C:white}X#4#{C:inactive} Mult, Shield: {C:attention}#5#{}){}"
+                    "and permanently add {X:mult,C:white}X#4#{} Mult to this card's {X:mult,C:white}X{} Mult.",
+                    "{C:inactive}(Currently {X:mult,C:white}X#5#{C:inactive} Mult, Shield: {C:attention}#6#{}){}"
 				},
 			},
 		},

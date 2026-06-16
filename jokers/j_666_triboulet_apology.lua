@@ -24,6 +24,7 @@ SMODS.Joker {
         extra = {
             x_mult = 3,
             lives = 1,
+            x_mult_gain = 5,
             joker1 = "j_triboulet",
             joker2 = "j_baron",
             joker3 = "j_shoot_the_moon"
@@ -35,6 +36,7 @@ SMODS.Joker {
                 localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'},
                 localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'},
                 localize{type = 'name_text', key = card.ability.extra.joker3, set = 'Joker'},
+                card.ability.extra.x_mult_gain,
                 card.ability.extra.x_mult,
                 card.ability.extra.lives
             }
@@ -83,10 +85,10 @@ function Card:start_dissolve(dissolve_colours, silent, dissolve_time_fac, no_jui
     if self.config.center.key == 'j_666_triboulet_apology' and self.area and (self.area == G.jokers or self.area == G.consumeables) and not self.selling and not self.debuff then
         if self.ability.extra.lives and self.ability.extra.lives > 0 then
             self.ability.extra.lives = self.ability.extra.lives - 1
-            self.ability.extra.x_mult = self.ability.extra.x_mult + 2
+            self.ability.extra.x_mult = self.ability.extra.x_mult + self.ability.extra.x_mult_gain
             self.getting_sliced = nil
             card_eval_status_text(self, 'extra', nil, nil, nil, {
-                message = "Pardoned! +2.0x Mult",
+                message = "Pardoned! +" .. tostring(self.ability.extra.x_mult_gain) .. "x Mult",
                 colour = G.C.GOLD
             })
             return
