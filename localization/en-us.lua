@@ -205,9 +205,8 @@ return {
 				["text"] = {
                     "{C:purple}(#1# + #2# + #3#){}",
                     "Disables effect of every {C:attention}Boss Blind{}.",
-                    "Each {C:attention}Jokers{} each give {X:mult,C:white}X1.5{} Mult.",
-                    "When {C:attention}Boss Blind{} is defeated, permanently add",
-					"{X:mult,C:white}X5{} Mult to this card's {X:mult,C:white}X{} Mult.",
+                    "Each {C:attention}Jokers{} each give X1.5 Mult",
+                    "When {C:attention}Boss Blind{} is defeated, permanently add {X:mult,C:white}X3{} Mult to this card's {X:mult,C:white}X{} Mult.",
                     "{C:inactive}(Currently {X:mult,C:white}X#4#{C:inactive} Mult)"
 				},
 			},
@@ -217,7 +216,7 @@ return {
                     "{C:purple}(#1# + #2# + #3#){}",
                     "When {C:attention}Blind{} is selected, destroy the {C:attention}Joker{} to the right.",
                     "When a {C:attention}face{} card is destroyed, permanently add {X:mult,C:white}X1{} Mult to this card's {X:mult,C:white}X{} Mult.",
-                    "When a {C:attention}Joker{} card is destroyed, permanently add {C:attention}0.5 its sell value{} to this card's {X:mult,C:white}X{} Mult.",
+                    "When a {C:attention}Joker{} card is destroyed, permanently add {C:attention}#5# its sell value{} to this card's {X:mult,C:white}X{} Mult.",
                     "{C:inactive}(Currently {X:mult,C:white}X#4#{C:inactive} Mult)",
 				},
 			},

@@ -26,7 +26,7 @@ SMODS.Joker {
             joker2 = "j_luchador",
             joker3 = "j_baseball",
             x_mult = 1.0,
-            x_mult_gain = 5.0,
+            x_mult_gain = 3.0,
             joker_xmult = 1.5,
         }
     },

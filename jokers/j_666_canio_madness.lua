@@ -24,6 +24,7 @@ SMODS.Joker {
         extra = {
             x_mult = 1.0,
             destroy_xmult_gain = 1.0,
+            joker_destroy_ratio = 0.25,
             joker1 = "j_caino",
             joker2 = "j_ceremonial",
             joker3 = "j_madness"
@@ -35,7 +36,8 @@ SMODS.Joker {
                 localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'},
                 localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'},
                 localize{type = 'name_text', key = card.ability.extra.joker3, set = 'Joker'},
-                card.ability.extra.x_mult
+                card.ability.extra.x_mult,
+                card.ability.extra.joker_destroy_ratio
             }
         }
     end,
@@ -79,7 +81,7 @@ SMODS.Joker {
         -- 3. When a Joker is destroyed
         if context.joker_type_destroyed and not context.blueprint then
             if context.card ~= card then
-                local gain = (context.card.sell_cost or 0) * 0.5
+                local gain = (context.card.sell_cost or 0) * card.ability.extra.joker_destroy_ratio
                 card.ability.extra.x_mult = card.ability.extra.x_mult + gain
                 return {
                     message = localize{type='variable', key='a_xmult', vars={card.ability.extra.x_mult}},
@@ -99,7 +101,7 @@ SMODS.Joker {
                 local sliced_card = G.jokers.cards[my_pos+1]
                 sliced_card.getting_sliced = true
                 G.GAME.joker_buffer = G.GAME.joker_buffer - 1
-                local gain = (sliced_card.sell_cost or 0) * 0.5
+                local gain = (sliced_card.sell_cost or 0) * card.ability.extra.joker_destroy_ratio
                 card.ability.extra.x_mult = card.ability.extra.x_mult + gain
                 G.E_MANAGER:add_event(Event({func = function()
                     G.GAME.joker_buffer = 0
