@@ -97,7 +97,7 @@ FusionJokers.fusions = {
 	{ jokers = {
 		{ name = "j_perkeo", carry_stat = nil, extra_stat = false },
 		{ name = "j_selzer", carry_stat = nil, extra_stat = false },
-		{ name = "j_drunkard", carry_stat = nil, extra_stat = false }
+		{ name = "j_merry_andy", carry_stat = nil, extra_stat = false }
 	}, result_joker = "j_666_perkeo_sobriety", cost = 16 },
 
 	-- $17 (2 Uncommons + 1 Legendary)

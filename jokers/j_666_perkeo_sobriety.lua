@@ -24,7 +24,7 @@ SMODS.Joker {
         extra = {
             joker1 = "j_perkeo",
             joker2 = "j_selzer",
-            joker3 = "j_drunkard"
+            joker3 = "j_merry_andy"
         }
     },
     loc_vars = function(self, info_queue, card)
