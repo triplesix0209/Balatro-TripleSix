@@ -13,6 +13,10 @@ SMODS.Joker {
         x = 0,
         y = 0
     },
+    soul_pos = {
+        x = 1,
+        y = 0
+    },
     rarity = "666_fusion",
     cost = 18,
     unlocked = true,
