@@ -1,7 +1,4 @@
-local colorblind = G.SETTINGS.colourblind_option
-
 return {
-    ["block_components"] = true,
-    ["cw_alt_art"] = colorblind,
+    ["block_materials"] = true,
     ["no_price_flicker"] = false
 }

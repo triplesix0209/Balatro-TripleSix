@@ -243,7 +243,7 @@ local atpref = SMODS.add_to_pool
 SMODS.add_to_pool = function (prototype_obj, args)
 	if SMODS.showman(prototype_obj.key) then return true end
 	args = args or {}
-	if FusionJokers.fusionconfig.block_components and FusionJokers.fusions.ingredience[prototype_obj.key] then
+	if FusionJokers.fusionconfig.block_materials and FusionJokers.fusions.ingredience[prototype_obj.key] then
 		local flags1,flags2
 		if type(prototype_obj.in_pool) == "function" then
 			_,flags1 = prototype_obj:in_pool(args)
