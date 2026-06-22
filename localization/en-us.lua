@@ -22,30 +22,6 @@ return {
                     "and {C:chips}+#4#{} Chips when scored.",
 				},
 			},
-			["j_666_flip_flop"] = {
-				["name"] = "Flip-Flop",
-				["text"] = {
-                    "{C:purple}(#1# + #2#){}",
-                    "{C:attention}+#3#{} hand size. {C:red}+#4#{} Mult",
-                    "{C:attention}Flips{} after each blind",
-				},
-			},
-			["j_666_flip_flop_mult"] = {
-				["name"] = "Flip-Flop",
-				["text"] = {
-                    "{C:purple}(#1# + #2#){}",
-                    "{C:attention}+#3#{} hand size. {C:red}+#4#{} Mult",
-                    "{C:attention}Flips{} after each blind",
-				},
-			},
-			["j_666_flip_flop_chips"] = {
-				["name"] = "Flip-Flop",
-				["text"] = {
-                    "{C:purple}(#1# + #2#){}",
-                    "{C:red}+#3#{} discard. {C:chips}+#4#{} Chips",
-                    "{C:attention}Flips{} after each blind",
-				},
-			},
 			["j_666_dementia_joker"] = {
 				["name"] = "Dementia Joker",
 				["text"] = {
@@ -172,6 +148,14 @@ return {
                     "{C:chips}+#4#{} Chips when scored",
                     "({C:chips}+#5#{} on the {C:attention}final hand{}).",
                     "Retrigger all played cards on {C:attention}final hand{}.",
+				},
+			},
+			["j_666_trio_jester"] = {
+				["name"] = "Trio Jester",
+				["text"] = {
+                    "{C:purple}(#1# + #2# + #3#){}",
+                    "{C:attention}+#4#{} hand size.",
+                    "{C:red}+#5#{} discards each round."
 				},
 			},
 			["j_666_big_bang"] = {

@@ -10,10 +10,7 @@ FusionJokers.fusions = {
 		{ name = "j_even_steven", carry_stat = nil, extra_stat = false },
 		{ name = "j_odd_todd", carry_stat = nil, extra_stat = false }
 	}, result_joker = "j_666_dynamic_duo", cost = 5 },
-	{ jokers = {
-		{ name = "j_juggler", carry_stat = nil, extra_stat = false },
-		{ name = "j_drunkard", carry_stat = nil, extra_stat = false }
-	}, result_joker = "j_666_flip_flop", cost = 5 },
+
 	{ jokers = {
 		{ name = "j_abstract", carry_stat = nil, extra_stat = false },
 		{ name = "j_riff_raff", carry_stat = nil, extra_stat = false }
@@ -78,6 +75,11 @@ FusionJokers.fusions = {
 		{ name = "j_dusk", carry_stat = nil, extra_stat = false },
 		{ name = "j_splash", carry_stat = nil, extra_stat = false }
 	}, result_joker = "j_666_camping_trip", cost = 8 },
+	{ jokers = {
+		{ name = "j_troubadour", carry_stat = nil, extra_stat = false },
+		{ name = "j_juggler", carry_stat = nil, extra_stat = false },
+		{ name = "j_drunkard", carry_stat = nil, extra_stat = false }
+	}, result_joker = "j_666_trio_jester", cost = 8 },
 
 	-- $9 (1 Common + 2 Uncommons)
 	{ jokers = {
@@ -261,7 +263,6 @@ SMODS.add_to_pool = function (prototype_obj, args)
 end
 
 SMODS.load_file('jokers/j_666_dynamic_duo.lua')()
-SMODS.load_file('jokers/j_666_flip_flop.lua')()
 SMODS.load_file('jokers/j_666_dementia_joker.lua')()
 SMODS.load_file('jokers/j_666_golden_egg.lua')()
 SMODS.load_file('jokers/j_666_flag_bearer.lua')()
@@ -279,6 +280,7 @@ SMODS.load_file('jokers/j_666_artemis_launch.lua')()
 
 SMODS.load_file('jokers/j_666_uncanny_face.lua')()
 SMODS.load_file('jokers/j_666_camping_trip.lua')()
+SMODS.load_file('jokers/j_666_trio_jester.lua')()
 
 SMODS.load_file('jokers/j_666_big_bang.lua')()
 
