@@ -21,12 +21,13 @@ SMODS.Joker {
     perishable_compat = true,
     blueprint_compat = true,
     config = {
-        hand_size = 3,
+        hand_size = 4,
         discards = 2,
         extra = {
             joker1 = "j_troubadour",
             joker2 = "j_juggler",
-            joker3 = "j_drunkard"
+            joker3 = "j_drunkard",
+            hands_add = 1
         }
     },
     loc_vars = function(self, info_queue, card)
@@ -36,9 +37,18 @@ SMODS.Joker {
                 localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'},
                 localize{type = 'name_text', key = card.ability.extra.joker3, set = 'Joker'},
                 card.ability.hand_size,
-                card.ability.discards
+                card.ability.discards,
+                card.ability.extra.hands_add
             }
         }
+    end,
+    add_to_deck = function(self, card, from_debuff)
+        G.GAME.round_resets.hands = G.GAME.round_resets.hands + card.ability.extra.hands_add
+        ease_hands(card.ability.extra.hands_add)
+    end,
+    remove_from_deck = function(self, card, from_debuff)
+        G.GAME.round_resets.hands = G.GAME.round_resets.hands - card.ability.extra.hands_add
+        ease_hands(-card.ability.extra.hands_add)
     end,
     calculate = function(self, card, context)
         -- Passive effect, no calculation triggers needed

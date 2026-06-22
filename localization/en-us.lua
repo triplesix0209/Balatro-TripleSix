@@ -155,7 +155,8 @@ return {
 				["text"] = {
                     "{C:purple}(#1# + #2# + #3#){}",
                     "{C:attention}+#4#{} hand size.",
-                    "{C:red}+#5#{} discards each round."
+                    "{C:red}+#5#{} discards each round.",
+                    "{C:blue}+#6#{} hand each round."
 				},
 			},
 			["j_666_big_bang"] = {
