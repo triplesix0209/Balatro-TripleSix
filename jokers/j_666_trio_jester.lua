@@ -44,11 +44,11 @@ SMODS.Joker {
     end,
     add_to_deck = function(self, card, from_debuff)
         G.GAME.round_resets.hands = G.GAME.round_resets.hands + card.ability.extra.hands_add
-        ease_hands(card.ability.extra.hands_add)
+        ease_hands_played(card.ability.extra.hands_add)
     end,
     remove_from_deck = function(self, card, from_debuff)
         G.GAME.round_resets.hands = G.GAME.round_resets.hands - card.ability.extra.hands_add
-        ease_hands(-card.ability.extra.hands_add)
+        ease_hands_played(-card.ability.extra.hands_add)
     end,
     calculate = function(self, card, context)
         -- Passive effect, no calculation triggers needed
