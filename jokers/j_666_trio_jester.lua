@@ -21,8 +21,8 @@ SMODS.Joker {
     perishable_compat = true,
     blueprint_compat = true,
     config = {
-        hand_size = 4,
-        discards = 2,
+        h_size = 4,
+        d_size = 2,
         extra = {
             joker1 = "j_troubadour",
             joker2 = "j_juggler",
@@ -36,8 +36,8 @@ SMODS.Joker {
                 localize{type = 'name_text', key = card.ability.extra.joker1, set = 'Joker'},
                 localize{type = 'name_text', key = card.ability.extra.joker2, set = 'Joker'},
                 localize{type = 'name_text', key = card.ability.extra.joker3, set = 'Joker'},
-                card.ability.hand_size,
-                card.ability.discards,
+                card.ability.h_size,
+                card.ability.d_size,
                 card.ability.extra.hands_add
             }
         }
