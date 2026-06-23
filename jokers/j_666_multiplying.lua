@@ -88,8 +88,6 @@ SMODS.Joker {
                     
                     local ret1 = SMODS.blueprint_effect(card, other_joker, context)
                     local ret2 = SMODS.blueprint_effect(card, other_joker, context)
-                    sendInfoMessage("Multiplying Joker copying " .. other_joker.config.center.key .. ": ret1 = " .. (ret1 and (ret1.repetitions or "has_val") or "nil") .. ", ret2 = " .. (ret2 and (ret2.repetitions or "has_val") or "nil"), "TripleSix")
-                    
                     if ret1 or ret2 then
                         local res = {}
                         if ret1 then
@@ -97,24 +95,35 @@ SMODS.Joker {
                         end
                         if ret2 then
                             for k, v in pairs(ret2) do
-                                if k == 'mult' then
-                                    res.mult = (res.mult or 0) + v
-                                elseif k == 'chips' then
-                                    res.chips = (res.chips or 0) + v
-                                elseif k == 'x_mult' then
-                                    res.x_mult = (res.x_mult or 1) * v
-                                elseif k == 'dollars' then
-                                    res.dollars = (res.dollars or 0) + v
-                                elseif k == 'repetitions' then
-                                    res.repetitions = (res.repetitions or 0) + v
+                                if res[k] ~= nil then
+                                    if k == 'x_mult' or k == 'x_mult_mod' or k == 'Xmult_mod' or k == 'xmult' or k == 'Xmult' or
+                                       k == 'x_chips' or k == 'xchips' or k == 'Xchip_mod' then
+                                        res[k] = res[k] * v
+                                    elseif k == 'mult' or k == 'mult_mod' or k == 'h_mult' or
+                                           k == 'chips' or k == 'chip_mod' or k == 'h_chips' or
+                                           k == 'dollars' or k == 'h_dollars' or k == 'p_dollars' or
+                                           k == 'repetitions' then
+                                        res[k] = res[k] + v
+                                    else
+                                        res[k] = v
+                                    end
                                 else
                                     res[k] = v
                                 end
                             end
                         end
                         
-                        if ret1 and ret2 and ret1.message and ret2.message then
-                            res.message = ret1.message .. " x2"
+                        if ret1 and ret2 then
+                            if res.mult_mod or res.mult or res.h_mult then
+                                res.message = "+" .. tostring(res.mult_mod or res.mult or res.h_mult) .. " " .. localize('k_mult')
+                            elseif res.chip_mod or res.chips or res.h_chips then
+                                res.message = "+" .. tostring(res.chip_mod or res.chips or res.h_chips) .. " " .. localize('k_chips')
+                            elseif (res.x_mult or 1) ~= 1 or (res.x_mult_mod or 1) ~= 1 or (res.Xmult_mod or 1) ~= 1 or (res.xmult or 1) ~= 1 or (res.Xmult or 1) ~= 1 then
+                                local xmult_val = (res.x_mult or 1) * (res.x_mult_mod or 1) * (res.Xmult_mod or 1) * (res.xmult or 1) * (res.Xmult or 1)
+                                res.message = "X" .. tostring(xmult_val) .. " " .. localize('k_mult')
+                            elseif ret1.message and ret2.message and (res.repetitions or 0) <= 0 then
+                                res.message = ret1.message .. " x2"
+                            end
                         end
                         
                         res.card = card
