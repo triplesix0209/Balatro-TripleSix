@@ -228,6 +228,16 @@ return {
                     "{C:inactive}(Currently {X:mult,C:white}X#5#{C:inactive} Mult, Shield: {C:attention}#6#{}){}"
 				},
 			},
+			["j_666_multiplying"] = {
+				["name"] = "Multiplying Joker",
+				["text"] = {
+                    "{C:purple}(#1# + #2# + #3#){}",
+                    "Copies ability of {C:attention}Joker{} to the right and triggers it {C:attention}2{} times.",
+                    "After {C:attention}#4#{} rounds, creates a {C:dark_edition}Negative{} copy",
+                    "of leftmost {C:attention}Joker{} (except {C:attention}Multiplying Joker{}).",
+                    "{C:inactive}(Currently #5#/#4# rounds)"
+				},
+			},
 		},
 	},
 }

@@ -125,6 +125,13 @@ FusionJokers.fusions = {
 		{ name = "j_baron", carry_stat = nil, extra_stat = false },
 		{ name = "j_shoot_the_moon", carry_stat = nil, extra_stat = false }
 	}, result_joker = "j_666_triboulet_apology", cost = 18 },
+
+	-- $20 (3 Rares)
+	{ jokers = {
+		{ name = "j_invisible", carry_stat = nil, extra_stat = false },
+		{ name = "j_blueprint", carry_stat = nil, extra_stat = false },
+		{ name = "j_brainstorm", carry_stat = nil, extra_stat = false }
+	}, result_joker = "j_666_multiplying", cost = 20 },
 }
 
 FusionJokers.fusionconfig = SMODS.current_mod.config
@@ -293,6 +300,7 @@ SMODS.load_file('jokers/j_666_yorick_skull.lua')()
 
 SMODS.load_file('jokers/j_666_chicot_usurpation.lua')()
 SMODS.load_file('jokers/j_666_triboulet_apology.lua')()
+SMODS.load_file('jokers/j_666_multiplying.lua')()
 
 to_number = to_number or function(num)
 	return num
