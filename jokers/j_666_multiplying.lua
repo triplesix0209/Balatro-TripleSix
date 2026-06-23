@@ -23,7 +23,7 @@ SMODS.Joker {
     config = {
         extra = {
             round_counter = 0,
-            rounds_required = 2,
+            rounds_required = 3,
             joker1 = "j_invisible",
             joker2 = "j_blueprint",
             joker3 = "j_brainstorm"
