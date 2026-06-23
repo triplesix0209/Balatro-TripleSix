@@ -41,22 +41,22 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        -- 1. Count rounds and clone leftmost joker
+        -- 1. Count rounds and clone rightmost joker
         if context.end_of_round and not context.blueprint and not context.individual and not context.repetition then
             card.ability.extra.round_counter = card.ability.extra.round_counter + 1
             if card.ability.extra.round_counter >= card.ability.extra.rounds_required then
                 card.ability.extra.round_counter = 0
-                -- Find leftmost joker that is not a Multiplying Joker
-                local leftmost_joker = nil
-                for i = 1, #G.jokers.cards do
+                -- Find rightmost joker that is not a Multiplying Joker
+                local rightmost_joker = nil
+                for i = #G.jokers.cards, 1, -1 do
                     local j = G.jokers.cards[i]
                     if j.config.center.key ~= 'j_666_multiplying' then
-                        leftmost_joker = j
+                        rightmost_joker = j
                         break
                     end
                 end
-                if leftmost_joker then
-                    local copy = copy_card(leftmost_joker, nil, nil, nil, true)
+                if rightmost_joker then
+                    local copy = copy_card(rightmost_joker, nil, nil, nil, true)
                     copy:set_edition({negative = true}, true)
                     copy:add_to_deck()
                     G.jokers:emplace(copy)
@@ -73,14 +73,14 @@ SMODS.Joker {
             end
         end
 
-        -- 2. Copy ability of joker to the right (Blueprint logic) - Trigger 2 times!
+        -- 2. Copy ability of joker to the left (Brainstorm logic) - Trigger 2 times!
         if not context.end_of_round then
             local my_pos = nil
             for i = 1, #G.jokers.cards do
                 if G.jokers.cards[i] == card then my_pos = i; break end
             end
-            if my_pos and G.jokers.cards[my_pos+1] then
-                local other_joker = G.jokers.cards[my_pos+1]
+            if my_pos and G.jokers.cards[my_pos-1] then
+                local other_joker = G.jokers.cards[my_pos-1]
                 if other_joker.config.center.blueprint_compat ~= false and 
                    other_joker.config.center.key ~= 'j_blueprint' and 
                    other_joker.config.center.key ~= 'j_brainstorm' and 

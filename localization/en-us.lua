@@ -233,9 +233,9 @@ return {
 				["text"] = {
                     "{C:purple}(#1# + #2# + #3#){}",
                     "After {C:attention}#4#{} rounds, creates a {C:dark_edition}Negative{} copy",
-                    "of leftmost {C:attention}Joker{} (except {C:attention}Multiplying Joker{}).",
+                    "of rightmost {C:attention}Joker{} (except {C:attention}Multiplying Joker{}).",
                     "{C:inactive}(Currently #5#/#4# rounds)",
-                    "Copies ability of {C:attention}Joker{} to the right and triggers it."
+                    "Copies ability of {C:attention}Joker{} to the left and triggers it."
 				},
 			},
 		},
