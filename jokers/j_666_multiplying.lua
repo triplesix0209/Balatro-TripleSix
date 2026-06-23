@@ -86,11 +86,9 @@ SMODS.Joker {
                    other_joker.config.center.key ~= 'j_brainstorm' and 
                    other_joker.config.center.key ~= 'j_666_multiplying' then
                     
-                    context.blueprint = true
-                    context.blueprint_card = card
-                    
-                    local ret1 = other_joker:calculate_joker(context)
-                    local ret2 = other_joker:calculate_joker(context)
+                    local ret1 = SMODS.blueprint_effect(card, other_joker, context)
+                    local ret2 = SMODS.blueprint_effect(card, other_joker, context)
+                    sendInfoMessage("Multiplying Joker copying " .. other_joker.config.center.key .. ": ret1 = " .. (ret1 and (ret1.repetitions or "has_val") or "nil") .. ", ret2 = " .. (ret2 and (ret2.repetitions or "has_val") or "nil"), "TripleSix")
                     
                     if ret1 or ret2 then
                         local res = {}
