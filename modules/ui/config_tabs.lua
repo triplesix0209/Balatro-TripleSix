@@ -57,11 +57,7 @@ Handy.UI.get_keybinds_page = function(page)
 			Handy.UI.CD.move_highlight_one_right.keybind(),
 			Handy.UI.CD.move_highlight_move_card.keybind(),
 			Handy.UI.CD.move_highlight_to_end.keybind(),
-			Handy.UI.PARTS.create_module_section("dangerous_actions"),
-			Handy.UI.CD.immediate_buy_and_sell.keybind(),
-			Handy.UI.CD.sell_all_same_modifier.keybind(),
-			Handy.UI.CD.sell_all_modifier.keybind(),
-			Handy.UI.CD.remove_modifier.keybind(),
+
 		}
 	elseif page == 5 then
 		result = {
@@ -478,7 +474,7 @@ Handy.UI.get_config_tab_keybinds_paginated = function()
 	}
 end
 
-Handy.UI.get_config_tab_dangerous = function()
+
 	local gamepad = Handy.controller.is_gamepad()
 	return {
 		{
@@ -495,42 +491,7 @@ Handy.UI.get_config_tab_dangerous = function()
 						colour = adjust_alpha(HEX("000000"), 0.1),
 					},
 					nodes = {
-						Handy.UI.CD.dangerous_actions.checkbox({ full_width = true }),
-					},
-				},
-			},
-		},
-		Handy.UI.PARTS.create_separator_r(),
-		{
-			n = G.UIT.R,
-			nodes = {
-				{
-					n = G.UIT.C,
-					config = { minw = 4 },
-					nodes = {
-						Handy.UI.PARTS.create_separator_r(),
-						Handy.UI.CD.dangerous_speed_multiplier_uncap.checkbox(),
-						Handy.UI.PARTS.create_separator_r(),
-						Handy.UI.CD.dangerous_animation_skip_unsafe.checkbox(),
-						Handy.UI.PARTS.create_separator_r(),
-						Handy.UI.CD.immediate_buy_and_sell_queue.checkbox(),
-					},
-				},
-				{
-					n = G.UIT.C,
-					config = { minw = 4 },
-					nodes = {
-						Handy.UI.CD.immediate_buy_and_sell.checkbox(),
-						Handy.UI.PARTS.create_separator_r(),
-						Handy.UI.CD.sell_all_same_modifier.checkbox(),
-						Handy.UI.PARTS.create_separator_r(),
-						Handy.UI.CD.sell_all_modifier.checkbox(),
-						Handy.UI.PARTS.create_separator_r(),
-						Handy.UI.CD.remove_modifier.checkbox(),
-					},
-				},
-			},
-		},
+			
 
 		Handy.UI.PARTS.create_separator_r(),
 		{
@@ -610,11 +571,7 @@ Handy.UI.PARTS.tabs_list = {
 			return Handy.UI.get_config_tab_keybinds_paginated()
 		end,
 	},
-	["Dangerous"] = {
-		definition = function()
-			return Handy.UI.get_config_tab_dangerous()
-		end,
-	},
+	
 	["Fusions"] = {
 		definition = function()
 			if get_config_tab_fusions then
@@ -640,7 +597,7 @@ Handy.UI.PARTS.tabs_order = {
 	-- "Keybinds",
 	-- "Keybinds 2",
 	"Keybinds Paginated",
-	"Dangerous",
+
 	"Fusions",
 	"Thanks",
 }
