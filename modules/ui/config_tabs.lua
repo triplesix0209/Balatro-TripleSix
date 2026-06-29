@@ -1,4 +1,4 @@
--- Paginated content
+-- Keybinds content (3 pages)
 
 Handy.UI.get_keybinds_page = function(page)
 	local result = {}
@@ -57,10 +57,6 @@ Handy.UI.get_keybinds_page = function(page)
 			Handy.UI.CD.move_highlight_one_right.keybind(),
 			Handy.UI.CD.move_highlight_move_card.keybind(),
 			Handy.UI.CD.move_highlight_to_end.keybind(),
-
-		}
-	elseif page == 5 then
-		result = {
 			Handy.UI.PARTS.create_module_section("misc"),
 			Handy.UI.CD.misc_open_mod_settings.keybind(),
 			Handy.UI.CD.misc_save_run.keybind(),
@@ -83,15 +79,13 @@ Handy.UI.get_keybinds_page = function(page)
 			nodes = {
 				{
 					n = G.UIT.C,
-					config = {
-						padding = 0.05,
-					},
+					config = { padding = 0.05 },
 					nodes = result,
 				},
 			},
 		}
 	end
-	return result, 5
+	return result, 4
 end
 
 
@@ -401,7 +395,6 @@ Handy.UI.get_config_tab_overall = function()
 	}
 end
 Handy.UI.get_config_tab_keybinds_paginated = function()
-	local gamepad = Handy.controller.is_gamepad()
 	local page_definition, max_page = Handy.UI.get_keybinds_page(Handy.UI.keybinds_page or 1)
 	local options = {}
 	for i = 1, max_page do
@@ -410,9 +403,7 @@ Handy.UI.get_config_tab_keybinds_paginated = function()
 	return {
 		{
 			n = G.UIT.R,
-			config = {
-				align = "cm",
-			},
+			config = { align = "cm" },
 			nodes = {
 				{
 					n = G.UIT.O,
@@ -420,10 +411,7 @@ Handy.UI.get_config_tab_keybinds_paginated = function()
 						id = "handy_keybinds_page_content",
 						object = UIBox({
 							definition = page_definition,
-							config = {
-								colour = G.C.CLEAR,
-								align = "cm",
-							},
+							config = { colour = G.C.CLEAR, align = "cm" },
 						}),
 						align = "cm",
 					},
@@ -459,23 +447,11 @@ Handy.UI.PARTS.tabs_list = {
 			return Handy.UI.get_config_tab_overall()
 		end,
 	},
-
-	["Keybinds"] = {
-		definition = function()
-			return Handy.UI.get_config_tab_regular_keybinds()
-		end,
-	},
-	["Keybinds 2"] = {
-		definition = function()
-			return Handy.UI.get_config_tab_keybinds_2()
-		end,
-	},
 	["Keybinds Paginated"] = {
 		definition = function()
 			return Handy.UI.get_config_tab_keybinds_paginated()
 		end,
 	},
-	
 	["Fusions"] = {
 		definition = function()
 			if get_config_tab_fusions then
@@ -497,12 +473,8 @@ Handy.UI.PARTS.tabs_list = {
 }
 Handy.UI.PARTS.tabs_order = {
 	"Overall",
-
-	-- "Keybinds",
-	-- "Keybinds 2",
-	"Keybinds Paginated",
-
 	"Fusions",
+	"Keybinds Paginated",
 	"Thanks",
 }
 
