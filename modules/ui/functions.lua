@@ -146,34 +146,6 @@ function G.FUNCS.handy_setup_config_popup(e)
 	e.handy_popup_processed = true
 end
 
--- Presets
-
-function G.FUNCS.handy_toggle_preset_enabled(b, index)
-	Handy.presets.save_index(index, { enabled = b })
-	G.FUNCS.handy_rerender_after_input()
-end
-function G.FUNCS.handy_save_preset_index_with_name(e)
-	local index = e.config.ref_table.index
-	local new_name = e.config.ref_table.name_object.name
-	Handy.presets.save_index(index, { name = new_name, apply = true })
-	G.FUNCS.handy_rerender_after_input()
-end
-function G.FUNCS.handy_load_preset_index(e)
-	local index = e.config.ref_table.index
-	Handy.presets.apply_index(index)
-	G.FUNCS.handy_rerender_after_input()
-end
-function G.FUNCS.handy_apply_preset_key(e)
-	local key = e.config.ref_table.key
-	Handy.presets.apply_example(key)
-	G.FUNCS.handy_rerender_after_input()
-end
-function G.FUNCS.handy_clear_preset_index(e)
-	local index = e.config.ref_table.index
-	Handy.presets.clear_index(index)
-	G.FUNCS.handy_rerender_after_input()
-end
-
 -- Paginations
 
 function G.FUNCS.handy_change_keybinds_page(arg)
@@ -196,13 +168,13 @@ function G.FUNCS.handy_change_keybinds_page(arg)
 		object_container.config.object:recalculate()
 	end
 end
-function G.FUNCS.handy_change_quick_page(arg)
+function G.FUNCS.handy_change_overall_page(arg)
 	if not G.OVERLAY_MENU then
 		return
 	end
-	Handy.UI.quick_page = arg.to_key
-	local page_definition = Handy.UI.get_quick_page(arg.to_key)
-	local object_container = G.OVERLAY_MENU:get_UIE_by_ID("handy_quick_page_content")
+	Handy.UI.overall_page = arg.to_key
+	local page_definition = Handy.UI.get_overall_page(arg.to_key)
+	local object_container = G.OVERLAY_MENU:get_UIE_by_ID("handy_overall_page_content")
 	if object_container then
 		object_container.config.object:remove()
 		object_container.config.object = UIBox({

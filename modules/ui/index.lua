@@ -33,7 +33,7 @@ Handy.UI = {
 	search_input_value = "",
 	config_tab_index = 1,
 	keybinds_page = 1,
-	quick_page = 1,
+	overall_page = 1,
 
 	update = function(dt, force)
 		local old_counter = Handy.UI.counter

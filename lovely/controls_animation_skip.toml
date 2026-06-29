@@ -92,7 +92,7 @@ overwrite = false
 target = 'functions/button_callbacks.lua'
 pattern = "G.FUNCS.draw_from_hand_to_deck()"
 position = "before"
-payload = "if not Nopeus and G.pack_cards then G.pack_cards:remove(); G.pack_cards = nil; end"
+payload = "if G.pack_cards then G.pack_cards:remove(); G.pack_cards = nil; end"
 match_indent = true
 overwrite = false
 

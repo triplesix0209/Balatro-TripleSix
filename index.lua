@@ -46,9 +46,7 @@ if not Handy then
 	require("handy/fake_events")
 	require("handy/controller")
 	require("handy/ui")
-	require("handy/presets")
 
-	require("handy/controls/presets_switch")
 	require("handy/controls/insta_cash_out")
 	require("handy/controls/insta_booster_skip")
 	require("handy/controls/deselect_hand")
@@ -59,8 +57,6 @@ if not Handy then
 	require("handy/controls/insta_actions")
 	require("handy/controls/move_highlight")
 	require("handy/controls/speed_multiplier")
-	require("handy/controls/nopeus_interaction")
-	require("handy/controls/not_just_yet_interaction")
 	require("handy/controls/animation_skip")
 	require("handy/controls/scoring_hold")
 
@@ -72,26 +68,12 @@ if not Handy then
 
 	local init_localization_ref = init_localization
 	function init_localization(...)
+		local res = init_localization_ref(...)
 		if not G.localization.__handy_injected then
-			local en_loc = require("handy/localization/en-us")
-			Handy.utils.table_merge(G.localization, en_loc)
 			Handy.UI.cache_config_dictionary_search()
-			if G.SETTINGS.language ~= "en-us" then
-				local success, current_loc = pcall(function()
-					return require("handy/localization/" .. G.SETTINGS.language)
-				end)
-				-- local missing_keys = Handy.utils.deep_missing_keys(en_loc, current_loc)
-				-- for _, missing_key in ipairs(missing_keys) do
-				-- 	print("Missing key: " .. missing_key)
-				-- end
-				if success and current_loc then
-					Handy.utils.table_merge(G.localization, current_loc)
-					Handy.UI.cache_config_dictionary_search(true)
-				end
-			end
 			G.localization.__handy_injected = true
 		end
-		return init_localization_ref(...)
+		return res
 	end
 
 	local card_area_emplace_ref = CardArea.emplace

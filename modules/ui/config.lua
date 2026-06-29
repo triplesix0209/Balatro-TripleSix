@@ -4,13 +4,13 @@ function Handy.UI.reset_config_variables()
 	Handy.UI.config_opened = nil
 	Handy.UI.config_tab_index = 1
 	Handy.UI.keybinds_page = 1
-	Handy.UI.quick_page = 1
+	Handy.UI.overall_page = 1
 	Handy.UI.search_input_value = ""
 end
 Handy.UI.reset_config_variables()
 
 function Handy.UI.get_options_button()
-	return UIBox_button({ label = { "Handy" }, button = "handy_open_options", minw = 5, colour = G.C.CHIPS })
+	return UIBox_button({ label = { "TripleSix" }, button = "handy_open_options", minw = 5, colour = G.C.CHIPS })
 end
 -- Code taken from Anhk by MathIsFun
 local create_uibox_options_ref = create_UIBox_options

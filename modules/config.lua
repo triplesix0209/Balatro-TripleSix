@@ -417,39 +417,6 @@ local default_config = {
 		},
 	},
 
-	presets = {
-		enabled = true,
-
-		load_1 = {
-			enabled = true,
-			key_1 = "None",
-			key_2 = "None",
-			key_1_gamepad = "None",
-			key_2_gamepad = "None",
-		},
-		load_2 = {
-			enabled = true,
-			key_1 = "None",
-			key_2 = "None",
-			key_1_gamepad = "None",
-			key_2_gamepad = "None",
-		},
-		load_3 = {
-			enabled = true,
-			key_1 = "None",
-			key_2 = "None",
-			key_1_gamepad = "None",
-			key_2_gamepad = "None",
-		},
-		load_next = {
-			enabled = true,
-			key_1 = "None",
-			key_2 = "None",
-			key_1_gamepad = "None",
-			key_2_gamepad = "None",
-		},
-	},
-
 	misc = {
 		enabled = true,
 

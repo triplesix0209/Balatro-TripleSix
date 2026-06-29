@@ -164,44 +164,8 @@ local non_safe_keys_table = {
 Handy.controller = {
 	console_opened_timer = 0,
 
-	debugplus_module = nil,
+	debugplus_module = { installed = false },
 	get_debugplus_module = function()
-		if Handy.controller.debugplus_module then
-			return Handy.controller.debugplus_module
-		end
-		local success, dpconfig, dputils = pcall(function()
-			return require("debugplus-config"), require("debugplus-util")
-		end)
-		if not success then
-			success, dpconfig, dputils = pcall(function()
-				return require("debugplus.config"), require("debugplus.util")
-			end)
-		end
-		local console_success, dpconsole = pcall(function()
-			return require("debugplus.console")
-		end)
-		if not success then
-			Handy.controller.debugplus_module = {
-				installed = false,
-				config = nil,
-				utils = nil,
-				console = console_success and dpconsole or nil,
-			}
-		else
-			Handy.controller.debugplus_module = {
-				installed = true,
-				config = dpconfig,
-				utils = dputils,
-				console = console_success and dpconsole or nil,
-			}
-		end
-		if console_success and dpconsole and dpconsole.isConsoleFocused then
-			function Handy.controller.update_is_console_opened()
-				if dpconsole.isConsoleFocused() then
-					Handy.controller.console_opened_timer = G.TIMERS.UPTIME + 0.333
-				end
-			end
-		end
 		return Handy.controller.debugplus_module
 	end,
 
@@ -699,33 +663,13 @@ Handy.controller = {
 		return not released
 	end,
 	is_debugplus_console_opened = function()
-		return Handy.controller.console_opened_timer > G.TIMERS.UPTIME
+		return false
 	end,
 	is_debugplus_triggered = function()
-		local dp = Handy.controller.get_debugplus_module()
-		if not (dp.installed and Handy.cc.prevent_if_debugplus.enabled) then
-			return false
-		end
-		local success, is_triggered = pcall(function()
-			return dp.config.getValue("ctrlKeybinds") and dp.utils.isCtrlDown()
-		end)
-		return success and is_triggered
+		return false
 	end,
 	update_is_console_opened = function() end,
 	prevent_if_debugplus = function(key, released)
-		if Handy.controller.is_debugplus_triggered() then
-			if Handy.cc.notifications_level > 2 and not Handy.controller.is(key, "Ctrl") then
-				Handy.UI.state_panel.display(function(state)
-					state.items.prevented_by_debugplus = {
-						text = "Keybinds prevented by DebugPlus " .. Handy.UI.PARTS.localize_keybind("Ctrl", true),
-						hold = false,
-						order = 0,
-					}
-					return true
-				end)
-			end
-			return true
-		end
 		return false
 	end,
 
@@ -757,9 +701,7 @@ Handy.controller = {
 
 		-----
 
-		if not released and Handy.presets_switch.use(key) then
-			return finish(true)
-		end
+
 
 		if Handy.misc_controls.use(key, released) then
 			return finish(true)
@@ -768,7 +710,6 @@ Handy.controller = {
 		if not released then
 			if
 				Handy.speed_multiplier.use(key)
-				or Handy.nopeus_interaction.use(key)
 				or Handy.animation_skip.use(key)
 			then
 				return finish(true)
@@ -834,9 +775,7 @@ Handy.controller = {
 			return finish(false)
 		end
 
-		if not released and Handy.presets_switch.use(key) then
-			return finish(true)
-		end
+
 
 		if Handy.misc_controls.use(key, released) then
 			return finish(true)
@@ -845,7 +784,6 @@ Handy.controller = {
 		if not released then
 			if
 				Handy.speed_multiplier.use(key)
-				or Handy.nopeus_interaction.use(key)
 				or Handy.animation_skip.use(key)
 			then
 				return finish(true)
@@ -906,15 +844,13 @@ Handy.controller = {
 
 		-----
 
-		if Handy.presets_switch.use(key) then
-			return finish(true)
-		end
+
 
 		if Handy.misc_controls.use(key, false) then
 			return finish(true)
 		end
 
-		if Handy.speed_multiplier.use(key) or Handy.nopeus_interaction.use(key) or Handy.animation_skip.use(key) then
+		if Handy.speed_multiplier.use(key) or Handy.animation_skip.use(key) then
 			return finish(true)
 		end
 
@@ -959,9 +895,7 @@ Handy.controller = {
 
 		-----
 
-		if not released and Handy.presets_switch.use(button) then
-			return finish(true)
-		end
+
 
 		if Handy.misc_controls.use(button, released) then
 			return finish(true)
@@ -969,9 +903,8 @@ Handy.controller = {
 
 		if not released then
 			if
-				Handy.speed_multiplier.use(key)
-				or Handy.nopeus_interaction.use(key)
-				or Handy.animation_skip.use(key)
+				Handy.speed_multiplier.use(button)
+				or Handy.animation_skip.use(button)
 			then
 				return finish(true)
 			end
@@ -1088,7 +1021,6 @@ Handy.controller = {
 
 	on_settings_save = function()
 		Handy.UI.show_options_button = not SMODS or not Handy.cc.hide_options_button.enabled
-		Handy.nopeus_interaction.change(0)
 		Handy.animation_skip.change(0)
 		Handy.speed_multiplier.change(0)
 	end,

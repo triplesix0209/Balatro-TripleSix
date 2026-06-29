@@ -25,7 +25,6 @@ local keyw = {
 	animation_skip = "game animations skip instant scoring max speed no again faster accelerate",
 	nopeus_interaction = "interaction nopeus fast forward fast-forward",
 	scoring_hold = "scoring hold game speed animations pause hold after scoring wait before end of round",
-	presets = "presets settings configs profiles load set apply",
 	unsafe_control = "dangerous unsafe",
 }
 
@@ -1269,39 +1268,6 @@ local dictionary = {
 		keybind_group = "scoring_hold",
 	},
 
-	presets_load_1 = {
-		loc_key = "presets_load_1",
-		keywords = { keyw.presets, "1" },
-		keybind = function(options)
-			options = options or {}
-			return Handy.UI.PARTS.create_module_keybind(Handy.cc.presets.load_1, "presets_load_1", nil, options)
-		end,
-	},
-	presets_load_2 = {
-		loc_key = "presets_load_2",
-		keywords = { keyw.presets, "2" },
-		keybind = function(options)
-			options = options or {}
-			return Handy.UI.PARTS.create_module_keybind(Handy.cc.presets.load_2, "presets_load_2", nil, options)
-		end,
-	},
-	presets_load_3 = {
-		loc_key = "presets_load_3",
-		keywords = { keyw.presets, "3" },
-		keybind = function(options)
-			options = options or {}
-			return Handy.UI.PARTS.create_module_keybind(Handy.cc.presets.load_3, "presets_load_3", nil, options)
-		end,
-	},
-	presets_load_next = {
-		loc_key = "presets_load_next",
-		keywords = { keyw.presets, "next" },
-		keybind = function(options)
-			options = options or {}
-			return Handy.UI.PARTS.create_module_keybind(Handy.cc.presets.load_next, "presets_load_next", nil, options)
-		end,
-	},
-
 	dangerous_actions = {
 		loc_key = "dangerous_actions",
 		keywords = { keyw.unsafe_control },
@@ -1627,7 +1593,6 @@ local dictionary_order = {
 	"show_deck_preview",
 	-- round
 	"insta_cash_out",
-	"not_just_yet_interaction",
 	-- shop
 	"insta_booster_skip",
 	"regular_keybinds_reroll_shop",
@@ -1642,7 +1607,6 @@ local dictionary_order = {
 	"insta_buy_or_sell",
 	"insta_buy_n_sell",
 	"insta_use",
-	"cryptid_code_use_last_interaction",
 
 	-- speed multiplier
 	"speed_multiplier",
@@ -1656,11 +1620,7 @@ local dictionary_order = {
 	"animation_skip_decrease",
 	"animation_skip_no_hold",
 
-	-- nopeus
-	"nopeus_interaction",
-	"nopeus_interaction_increase",
-	"nopeus_interaction_decrease",
-	"nopeus_interaction_no_hold",
+
 
 	-- scoring hold
 	"scoring_hold",
@@ -1669,12 +1629,6 @@ local dictionary_order = {
 	-- controller
 	"controller_swap_cursor_stick",
 	"controller_sensivity",
-
-	-- presets
-	"presets_load_1",
-	"presets_load_2",
-	"presets_load_3",
-	"presets_load_next",
 
 	-- move highlight
 	"move_highlight",
@@ -1686,7 +1640,6 @@ local dictionary_order = {
 	--dangerous
 	"dangerous_actions",
 	"dangerous_speed_multiplier_uncap",
-	"dangerous_nopeus_unsafe",
 	"dangerous_animation_skip_unsafe",
 	"immediate_buy_and_sell",
 	"immediate_buy_and_sell_queue",
@@ -1701,8 +1654,6 @@ local dictionary_order = {
 	"misc_start_fantoms_preview",
 	"misc_crash",
 
-	--other
-	"debugplus_prevent",
 }
 
 for k, v in pairs(dictionary) do

@@ -135,7 +135,7 @@ FusionJokers.fusions = {
 }
 
 FusionJokers.fusionconfig = SMODS.current_mod.config
-SMODS.load_file('configui.lua')()
+SMODS.load_file('config.lua')()
 
 local find_card_ref = SMODS.find_card
 SMODS.find_card = function(key, count_debuffed)

@@ -31,12 +31,6 @@ name = 'handy/controller'
 
 [[patches]]
 [patches.module]
-source = 'modules/presets.lua'
-before = 'main.lua'
-name = 'handy/presets'
-
-[[patches]]
-[patches.module]
 source = 'modules/ui/index.lua'
 before = 'main.lua'
 name = 'handy/ui'
@@ -78,12 +72,6 @@ before = 'main.lua'
 name = 'handy/ui/config'
 
 # Controls
-
-[[patches]]
-[patches.module]
-source = 'modules/controls/presets_switch.lua'
-before = 'main.lua'
-name = 'handy/controls/presets_switch'
 
 [[patches]]
 [patches.module]
@@ -144,18 +132,6 @@ name = 'handy/controls/move_highlight'
 source = 'modules/controls/speed_multiplier.lua'
 before = 'main.lua'
 name = 'handy/controls/speed_multiplier'
-
-[[patches]]
-[patches.module]
-source = 'modules/controls/nopeus_interaction.lua'
-before = 'main.lua'
-name = 'handy/controls/nopeus_interaction'
-
-[[patches]]
-[patches.module]
-source = 'modules/controls/not_just_yet_interaction.lua'
-before = 'main.lua'
-name = 'handy/controls/not_just_yet_interaction'
 
 [[patches]]
 [patches.module]
