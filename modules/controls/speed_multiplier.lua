@@ -16,10 +16,6 @@ Handy.speed_multiplier = {
 		return Handy.speed_multiplier.queue_retriggers_count
 	end,
 
-	is_uncapped = function()
-		return Handy.is_dangerous_actions_active()
-			and Handy.controller.is_module_enabled(Handy.cc.dangerous_actions.speed_multiplier_uncap)
-	end,
 
 	accelerate_queue = function(queue)
 		queue = queue or G.E_MANAGER
@@ -144,7 +140,7 @@ Handy.speed_multiplier = {
 		local multiplier = 2 ^ (dx or 0)
 		Handy.speed_multiplier.value = math.min(
 			math.max(0.001953125, Handy.speed_multiplier.value * multiplier),
-			Handy.speed_multiplier.is_uncapped() and 2 ^ 24 or 512
+			512
 		)
 		Handy.speed_multiplier.queue_retriggers_count = math.max(0, math.floor(Handy.speed_multiplier.value / 64) - 1)
 		Handy.speed_multiplier.localize_value()

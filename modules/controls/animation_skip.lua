@@ -61,9 +61,6 @@ Handy.animation_skip = {
 		then
 			return 1
 		end
-		if Handy.animation_skip.can_dangerous() then
-			return Handy.animation_skip.value
-		end
 		return math.min(4, Handy.animation_skip.value)
 	end,
 	localize_value = function()
@@ -83,12 +80,6 @@ Handy.animation_skip = {
 		Handy.animation_skip.change(0)
 	end,
 
-	can_dangerous = function()
-		return not not (
-			Handy.is_dangerous_actions_active()
-			and Handy.controller.is_module_enabled(Handy.cc.dangerous_actions.animation_skip_unsafe)
-		)
-	end,
 	can_execute = function(key)
 		return not not (
 			Handy.controller.is_module_enabled(Handy.cc.animation_skip)
@@ -118,16 +109,9 @@ Handy.animation_skip = {
 		end
 		Handy.UI.state_panel.display(function(state)
 			local value = Handy.animation_skip.get_value()
-			local is_dangerous = value == 5
 
-			if is_dangerous then
-				if Handy.cc.notifications_level < 2 then
-					return false
-				end
-			else
-				if Handy.cc.notifications_level < 3 then
-					return false
-				end
+			if Handy.cc.notifications_level < 3 then
+				return false
 			end
 
 			state.items.change_animation_skip = {
@@ -138,22 +122,14 @@ Handy.animation_skip = {
 				}),
 				hold = false,
 				order = 4,
-				dangerous = is_dangerous,
 			}
-			if not Handy.animation_skip.can_dangerous() and dx > 0 and value == (5 - 1) then
-				state.items.prevent_animation_skip_unsafe = {
-					text = localize("ph_handy_notif_animation_skip_unsafe_disabled"),
-					hold = false,
-					order = 4.05,
-				}
-			end
 			return true
 		end)
 	end,
 
 	change = function(dx)
 		Handy.animation_skip.value =
-			math.max(1, math.min(Handy.animation_skip.can_dangerous() and 5 or 4, Handy.animation_skip.value + dx))
+			math.max(1, math.min(4, Handy.animation_skip.value + dx))
 		Handy.animation_skip.localize_value()
 		Handy.animation_skip.show_notif(dx)
 	end,

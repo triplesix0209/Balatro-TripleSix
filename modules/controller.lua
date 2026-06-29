@@ -735,8 +735,6 @@ Handy.controller = {
 				Handy.deselect_hand.use(key)
 			end
 
-			Handy.dangerous_actions.toggle_queue(key, released)
-			Handy.dangerous_actions.use(key, released)
 		end
 
 		return finish(false)
@@ -809,8 +807,6 @@ Handy.controller = {
 				Handy.deselect_hand.use(key)
 			end
 
-			Handy.dangerous_actions.toggle_queue(key, released)
-			Handy.dangerous_actions.use(key, released)
 		end
 
 		return finish(false)
@@ -860,7 +856,6 @@ Handy.controller = {
 			Handy.regular_keybinds.use(key)
 			Handy.insta_highlight_entire_f_hand.use(key)
 			Handy.deselect_hand.use(key)
-			Handy.dangerous_actions.use(key, false)
 		else
 			Handy.regular_keybinds.use(key)
 		end
@@ -926,8 +921,6 @@ Handy.controller = {
 					or Handy.deselect_hand.use(button)
 			end
 
-			Handy.dangerous_actions.toggle_queue(button, released)
-			Handy.dangerous_actions.use(button, released)
 		else
 			if Handy.controller.is_triggered(released) then
 				Handy.regular_keybinds.use(button)
@@ -952,7 +945,7 @@ Handy.controller = {
 		if G.STAGE == G.STAGES.RUN and not G.SETTINGS.paused and not G.OVERLAY_MENU then
 			Handy.last_clicked_card = card
 			Handy.last_clicked_area = card.area
-			if Handy.insta_actions.use(card) or Handy.dangerous_actions.use_click(card) then
+			if Handy.insta_actions.use(card) then
 				return true
 			end
 		end
@@ -968,7 +961,7 @@ Handy.controller = {
 		if G.STAGE == G.STAGES.RUN and not G.SETTINGS.paused and not G.OVERLAY_MENU then
 			Handy.last_hovered_card = card
 			Handy.last_hovered_area = card.area
-			if Handy.insta_highlight.use(card) or Handy.dangerous_actions.use_hover(card) then
+			if Handy.insta_highlight.use(card) then
 				return true
 			end
 		end
@@ -983,9 +976,6 @@ Handy.controller = {
 			return false
 		end
 		if G.STAGE == G.STAGES.RUN and not G.SETTINGS.paused and not G.OVERLAY_MENU then
-			if Handy.dangerous_actions.use_tag_click(tag) then
-				return true
-			end
 		end
 		return false
 	end,

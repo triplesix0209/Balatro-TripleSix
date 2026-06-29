@@ -125,57 +125,6 @@ local default_config = {
 		key_2_gamepad = "None",
 	},
 
-	dangerous_actions = {
-		enabled = false,
-
-		-- Use it as basic modifier for all dangerous controls
-		-- Maybe I should change this but idk, backwards compatibility
-		immediate_buy_and_sell = {
-			enabled = false,
-			key_1 = "Middle Mouse",
-			key_2 = "None",
-			key_1_gamepad = "None",
-			key_2_gamepad = "None",
-
-			queue = {
-				enabled = false,
-			},
-		},
-
-		sell_all_same = {
-			enabled = false,
-			key_1 = "None",
-			key_2 = "None",
-			key_1_gamepad = "None",
-			key_2_gamepad = "None",
-		},
-
-		sell_all = {
-			enabled = false,
-			key_1 = "None",
-			key_2 = "None",
-			key_1_gamepad = "None",
-			key_2_gamepad = "None",
-		},
-
-		card_remove = {
-			enabled = false,
-			key_1 = "None",
-			key_2 = "None",
-			key_1_gamepad = "None",
-			key_2_gamepad = "None",
-		},
-
-		nopeus_unsafe = {
-			enabled = false,
-		},
-		animation_skip_unsafe = {
-			enabled = false,
-		},
-		speed_multiplier_uncap = {
-			enabled = false,
-		},
-	},
 
 	speed_multiplier = {
 		enabled = true,
@@ -548,9 +497,6 @@ end
 
 function Handy.is_mod_active()
 	return Handy.cc.handy.enabled
-end
-function Handy.is_dangerous_actions_active()
-	return Handy.cc.dangerous_actions.enabled and not Handy.is_in_multiplayer()
 end
 function Handy.get_module_override(module)
 	return nil

@@ -213,9 +213,6 @@ Handy.insta_actions = {
 		if not card or card.REMOVED or not card.is or not card:is(Card) then
 			return false
 		end
-		if card.ability and card.ability.handy_dangerous_actions_used then
-			return true
-		end
 
 		if actions.buy_n_sell then
 			if
@@ -261,9 +258,6 @@ Handy.insta_actions = {
 			and Handy.insta_actions.process_card(card, Handy.insta_actions.get_actions())
 	end,
 	use_alt = function(key)
-		if Handy.controller.is_module_key_down(Handy.cc.dangerous_actions.immediate_buy_and_sell) then
-			return false
-		end
 		return (Handy.controller.is_gamepad() or Handy.cc.insta_actions_trigger_mode == 2)
 			and Handy.insta_actions.process_card(
 				G.CONTROLLER.dragging.target or Handy.last_hovered_card,

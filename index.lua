@@ -60,8 +60,6 @@ if not Handy then
 	require("handy/controls/animation_skip")
 	require("handy/controls/scoring_hold")
 
-	require("handy/controls/dangerous_actions")
-
 	require("handy/controls/misc")
 
 	--
