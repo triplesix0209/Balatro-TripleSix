@@ -810,3 +810,8 @@ SMODS.current_mod.reset_game_globals = function (init)
 		end
 	end
 end
+
+-- Load HandyBalatro initialization
+SMODS.load_file('steamodded.lua')()
+-- Sync configuration tables (Handy config merge replaces current_mod.config)
+FusionJokers.fusionconfig = SMODS.current_mod.config
