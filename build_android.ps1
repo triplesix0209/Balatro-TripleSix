@@ -247,36 +247,42 @@ require("SMODS.preflight.core")
     Write-Host "Successfully injected preloads into main.lua."
 }
 
-# 10.6. Extract Balatro's icon from game.love and use as Android launcher icon
-Write-Host "Extracting Balatro app icon from game.love..."
+# 10.6. Use custom icon or extract Balatro's icon from game.love
 $balatroIconPath = Join-Path $BuildDir "balatro_app_icon.png"
-try {
-    $tmpZip = [System.IO.Compression.ZipFile]::OpenRead($ExtractedLovePath)
-    # Try multiple known Balatro icon paths
-    $iconPaths = @("resources/app_icon.png", "resources/textures/1x/balatro.png", "resources/textures/2x/balatro.png")
-    $iconEntry = $null
-    foreach ($iconPath in $iconPaths) {
-        $iconEntry = $tmpZip.Entries | Where-Object { $_.FullName -eq $iconPath } | Select-Object -First 1
-        if ($iconEntry) {
-            Write-Host "Found icon at: $iconPath"
-            break
+$customIcon = Join-Path $BuildDir "app_icon.png"
+if (Test-Path $customIcon) {
+    Write-Host "Using custom launcher icon from build/app_icon.png..."
+    Copy-Item -Path $customIcon -Destination $balatroIconPath -Force
+} else {
+    Write-Host "Extracting Balatro app icon from game.love..."
+    try {
+        $tmpZip = [System.IO.Compression.ZipFile]::OpenRead($ExtractedLovePath)
+        # Try multiple known Balatro icon paths
+        $iconPaths = @("resources/app_icon.png", "resources/textures/1x/balatro.png", "resources/textures/2x/balatro.png")
+        $iconEntry = $null
+        foreach ($iconPath in $iconPaths) {
+            $iconEntry = $tmpZip.Entries | Where-Object { $_.FullName -eq $iconPath } | Select-Object -First 1
+            if ($iconEntry) {
+                Write-Host "Found icon at: $iconPath"
+                break
+            }
         }
-    }
-    if ($iconEntry) {
-        $iconStream = $iconEntry.Open()
-        $iconFileStream = [System.IO.File]::Create($balatroIconPath)
-        $iconStream.CopyTo($iconFileStream)
-        $iconFileStream.Close()
-        $iconStream.Close()
-        Write-Host "Extracted Balatro icon successfully."
-    } else {
-        Write-Warning "Could not find Balatro icon in game.love, falling back to SMODS icon."
+        if ($iconEntry) {
+            $iconStream = $iconEntry.Open()
+            $iconFileStream = [System.IO.File]::Create($balatroIconPath)
+            $iconStream.CopyTo($iconFileStream)
+            $iconFileStream.Close()
+            $iconStream.Close()
+            Write-Host "Extracted Balatro icon successfully."
+        } else {
+            Write-Warning "Could not find Balatro icon in game.love, falling back to SMODS icon."
+            $balatroIconPath = Join-Path $SmodsSource "icon.png"
+        }
+        $tmpZip.Dispose()
+    } catch {
+        Write-Warning "Icon extraction failed: $_, falling back to SMODS icon."
         $balatroIconPath = Join-Path $SmodsSource "icon.png"
     }
-    $tmpZip.Dispose()
-} catch {
-    Write-Warning "Icon extraction failed: $_, falling back to SMODS icon."
-    $balatroIconPath = Join-Path $SmodsSource "icon.png"
 }
 
 # 11. Skipped zip packaging (will copy raw files directly in step 15)
