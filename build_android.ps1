@@ -3,8 +3,14 @@
 
 $ErrorActionPreference = "Stop"
 
-# Helper function to download files
+# Helper function to download files safely (re-downloads if file is 0 bytes)
 function Download-File($Url, $TargetPath) {
+    if (Test-Path $TargetPath) {
+        $file = Get-Item $TargetPath
+        if ($file.Length -eq 0) {
+            Remove-Item $TargetPath -Force
+        }
+    }
     if (-not (Test-Path $TargetPath)) {
         Write-Host "Downloading $Url..."
         Invoke-WebRequest -Uri $Url -OutFile $TargetPath
@@ -166,8 +172,8 @@ if (Test-Path $decompiledDir) {
     Remove-Item -Recurse -Force $decompiledDir
 }
 Write-Host "Decompiling base APK for customization..."
-$DecompileProc = Start-Process -FilePath "java" -ArgumentList "-jar `"$ApktoolJar`" d `"$BaseApkPath`" -o `"$decompiledDir`"" -Wait -NoNewWindow -PassThru
-if ($DecompileProc.ExitCode -ne 0) {
+java -jar "$ApktoolJar" d "$BaseApkPath" -o "$decompiledDir"
+if ($LASTEXITCODE -ne 0) {
     Write-Error "Apktool failed to decompile the APK."
     exit 1
 }
@@ -200,45 +206,33 @@ if (Test-Path $manifestPath) {
     [System.IO.File]::WriteAllText($manifestPath, $manifestText)
 }
 
-# 15. Embed game.love as main.love and clean up default files in assets
-Write-Host "Injecting game files as main.love..."
+# 15. Embed game.love as game.love and clean up default files in assets
+Write-Host "Injecting game files as game.love..."
 $assetsDir = Join-Path $decompiledDir "assets"
-$mainLovePath = Join-Path $assetsDir "main.love"
+$gameLovePath = Join-Path $assetsDir "game.love"
 
 # Remove default assets
 Get-ChildItem -Path $assetsDir | Where-Object { $_.Name -ne "dexopt" } | ForEach-Object {
     Remove-Item -Path $_.FullName -Recurse -Force
 }
 
-# Copy game.love to assets/main.love
-Copy-Item -Path $FinalGameLove -Destination $mainLovePath -Force
+# Copy game.love to assets/game.love
+Copy-Item -Path $FinalGameLove -Destination $gameLovePath -Force
 
 # 16. Compile customized APK using Apktool
 Write-Host "Compiling customized APK..."
 $UnsignedApk = Join-Path $BuildDir "balatro-unsigned.apk"
-$CompileProc = Start-Process -FilePath "java" -ArgumentList "-jar `"$ApktoolJar`" b `"$decompiledDir`" -o `"$UnsignedApk`"" -Wait -NoNewWindow -PassThru
-if ($CompileProc.ExitCode -ne 0) {
+java -jar "$ApktoolJar" b "$decompiledDir" -o "$UnsignedApk"
+if ($LASTEXITCODE -ne 0) {
     Write-Error "Apktool failed to compile the customized APK."
     exit 1
 }
 
 # 17. Sign the compiled APK using uber-apk-signer
 Write-Host "Aligning and signing APK..."
-$ProcessInfo = New-Object System.Diagnostics.ProcessStartInfo
-$ProcessInfo.FileName = "java"
-$ProcessInfo.Arguments = "-jar `"$ApkSignerJar`" --apks `"$UnsignedApk`" --out `"$BuildDir`""
-$ProcessInfo.RedirectStandardOutput = $true
-$ProcessInfo.RedirectStandardError = $true
-$ProcessInfo.UseShellExecute = $false
-$ProcessInfo.CreateNoWindow = $true
-
-$Process = [System.Diagnostics.Process]::Start($ProcessInfo)
-$Output = $Process.StandardOutput.ReadToEnd()
-$ErrorOutput = $Process.StandardError.ReadToEnd()
-$Process.WaitForExit()
-
-if ($Process.ExitCode -ne 0) {
-    Write-Error "Failed to sign APK: $ErrorOutput"
+java -jar "$ApkSignerJar" --apks "$UnsignedApk" --out "$BuildDir"
+if ($LASTEXITCODE -ne 0) {
+    Write-Error "Failed to sign APK."
     exit 1
 }
 
