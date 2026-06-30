@@ -165,15 +165,24 @@ Get-ChildItem -Path $ScriptDir | Where-Object { $_.Name -ne "build" -and $_.Name
 }
 
 # 10.5. Patch main.lua to bootstrap SMODS and preloads on Android
+# FIX: Use love.filesystem.load() instead of require() to avoid circular dependency loops.
+# Modules registered via Lovely TOML have custom names that don't map to their real file paths.
+# We must manually redirect them to the correct physical file path in the assets folder.
 Write-Host "Injecting SMODS/Lovely preloads bootstrap into main.lua..."
 $mainLuaPath = Join-Path $TempExtractDir "main.lua"
 if (Test-Path $mainLuaPath) {
     $bootstrapBlock = @"
 -- Android SMODS & Lovely Bootstrap
-package.preload["json"] = function() return require("SMODS.libs.json.json") end
-package.preload["nativefs"] = function() return require("SMODS.libs.nativefs.nativefs") end
-package.preload["SMODS.nativefs"] = function() return require("SMODS.libs.nativefs.nativefs") end
-package.preload["SMODS.https"] = function() return require("SMODS.libs.https.smods-https") end
+-- Route Lovely-registered module names to actual file paths via love.filesystem.load
+package.preload["json"] = function()
+    return love.filesystem.load("SMODS/libs/json/json.lua")()
+end
+package.preload["nativefs"] = function()
+    return love.filesystem.load("SMODS/libs/nativefs/nativefs.lua")()
+end
+package.preload["SMODS.nativefs"] = function()
+    return love.filesystem.load("SMODS/libs/nativefs/nativefs.lua")()
+end
 package.preload["lovely"] = function()
     return {
         mod_dir = "Mods",
@@ -181,15 +190,25 @@ package.preload["lovely"] = function()
         version = "0.9.0"
     }
 end
-package.preload["SMODS.preflight.sharedUtil"] = function() return require("SMODS.src.preflight.sharedUtil") end
-package.preload["SMODS.preflight.logging"] = function() return require("SMODS.src.preflight.logging") end
-package.preload["SMODS.preflight.loader"] = function() return require("SMODS.src.preflight.loader") end
-package.preload["SMODS.preflight.sharedUI"] = function() return require("SMODS.src.preflight.sharedUI") end
-package.preload["SMODS.preflight.core"] = function() return require("SMODS.src.preflight.core") end
-package.preload["SMODS.version"] = function() return require("SMODS.version") end
-package.preload["SMODS.release"] = function() return require("SMODS.release") end
+package.preload["SMODS.preflight.sharedUtil"] = function()
+    return love.filesystem.load("SMODS/src/preflight/sharedUtil.lua")()
+end
+package.preload["SMODS.preflight.logging"] = function()
+    return love.filesystem.load("SMODS/src/preflight/logging.lua")()
+end
+package.preload["SMODS.preflight.loader"] = function()
+    return love.filesystem.load("SMODS/src/preflight/loader.lua")()
+end
+package.preload["SMODS.preflight.sharedUI"] = function()
+    return love.filesystem.load("SMODS/src/preflight/sharedUI.lua")()
+end
+package.preload["SMODS.preflight.core"] = function()
+    return love.filesystem.load("SMODS/src/preflight/core.lua")()
+end
+-- SMODS.version and SMODS.release resolve naturally (SMODS/version.lua, SMODS/release.lua)
+-- No preload needed - require() maps dots to slashes automatically in LOVE
 
--- Run core bootstrap
+-- Run core bootstrap (initializes the global SMODS table)
 require("SMODS.preflight.core")
 
 
@@ -197,6 +216,38 @@ require("SMODS.preflight.core")
     $originalText = [System.IO.File]::ReadAllText($mainLuaPath)
     [System.IO.File]::WriteAllText($mainLuaPath, $bootstrapBlock + $originalText)
     Write-Host "Successfully injected preloads into main.lua."
+}
+
+# 10.6. Extract Balatro's icon from game.love and use as Android launcher icon
+Write-Host "Extracting Balatro app icon from game.love..."
+$balatroIconPath = Join-Path $BuildDir "balatro_app_icon.png"
+try {
+    $tmpZip = [System.IO.Compression.ZipFile]::OpenRead($ExtractedLovePath)
+    # Try multiple known Balatro icon paths
+    $iconPaths = @("resources/app_icon.png", "resources/textures/1x/balatro.png", "resources/textures/2x/balatro.png")
+    $iconEntry = $null
+    foreach ($iconPath in $iconPaths) {
+        $iconEntry = $tmpZip.Entries | Where-Object { $_.FullName -eq $iconPath } | Select-Object -First 1
+        if ($iconEntry) {
+            Write-Host "Found icon at: $iconPath"
+            break
+        }
+    }
+    if ($iconEntry) {
+        $iconStream = $iconEntry.Open()
+        $iconFileStream = [System.IO.File]::Create($balatroIconPath)
+        $iconStream.CopyTo($iconFileStream)
+        $iconFileStream.Close()
+        $iconStream.Close()
+        Write-Host "Extracted Balatro icon successfully."
+    } else {
+        Write-Warning "Could not find Balatro icon in game.love, falling back to SMODS icon."
+        $balatroIconPath = Join-Path $SmodsSource "icon.png"
+    }
+    $tmpZip.Dispose()
+} catch {
+    Write-Warning "Icon extraction failed: $_, falling back to SMODS icon."
+    $balatroIconPath = Join-Path $SmodsSource "icon.png"
 }
 
 # 11. Skipped zip packaging (will copy raw files directly in step 15)
@@ -213,15 +264,14 @@ if ($LASTEXITCODE -ne 0) {
     exit 1
 }
 
-# 13. Replace Icons in Decompiled Resources
-$iconSource = Join-Path $SmodsSource "icon.png"
-if (Test-Path $iconSource) {
-    Write-Host "Customizing application icons..."
-    $drawableDirs = Get-ChildItem -Path (Join-Path $decompiledDir "res") -Filter "drawable-*"
-    foreach ($dir in $drawableDirs) {
+# 13. Replace Icons in Decompiled Resources - use Balatro's own icon
+if (Test-Path $balatroIconPath) {
+    Write-Host "Replacing launcher icons with Balatro icon..."
+    $allDrawableDirs = Get-ChildItem -Path (Join-Path $decompiledDir "res") | Where-Object { $_.PSIsContainer -and $_.Name -like "drawable*" }
+    foreach ($dir in $allDrawableDirs) {
         $lovePng = Join-Path $dir.FullName "love.png"
         if (Test-Path $lovePng) {
-            Copy-Item -Path $iconSource -Destination $lovePng -Force
+            Copy-Item -Path $balatroIconPath -Destination $lovePng -Force
         }
     }
 }
@@ -232,11 +282,16 @@ $manifestPath = Join-Path $decompiledDir "AndroidManifest.xml"
 if (Test-Path $manifestPath) {
     $manifestText = [System.IO.File]::ReadAllText($manifestPath)
     
-    # Update application properties using regex to bypass any encoding issue with Ö character
+    # Update package, label, and authority using regex (handles UTF-8 encoding quirks)
     $manifestText = $manifestText -replace 'package="org\.love2d\.android"', 'package="com.triplesix.balatro"'
     $manifestText = $manifestText -replace 'org\.love2d\.android\.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION', 'com.triplesix.balatro.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION'
     $manifestText = $manifestText -replace 'org\.love2d\.android\.androidx-startup', 'com.triplesix.balatro.androidx-startup'
     $manifestText = $manifestText -replace 'android:label="L.VE for Android"', 'android:label="Balatro"'
+    
+    # Remove WRITE_EXTERNAL_STORAGE and READ_EXTERNAL_STORAGE permissions to reduce Android "App isn't recommended" warning.
+    # We don't need them since the game assets are fully embedded inside the APK.
+    $manifestText = $manifestText -replace '<uses-permission android:name="android\.permission\.WRITE_EXTERNAL_STORAGE"[^/]*/>', ''
+    $manifestText = $manifestText -replace '<uses-permission android:name="android\.permission\.READ_EXTERNAL_STORAGE"[^/]*/>', ''
     
     [System.IO.File]::WriteAllText($manifestPath, $manifestText)
 }
