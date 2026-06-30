@@ -158,13 +158,7 @@ Get-ChildItem -Path $ScriptDir | Where-Object { $_.Name -ne "build" -and $_.Name
     Copy-Item -Path $_.FullName -Destination $ModsDest -Recurse -Force
 }
 
-# 11. Compress back into game.love
-$FinalGameLove = Join-Path $BuildDir "game.love"
-if (Test-Path $FinalGameLove) {
-    Remove-Item -Force $FinalGameLove
-}
-Write-Host "Packaging game.love..."
-[System.IO.Compression.ZipFile]::CreateFromDirectory($TempExtractDir, $FinalGameLove)
+# 11. Skipped zip packaging (will copy raw files directly in step 15)
 
 # 12. Decompile base APK using Apktool to customize app name & icon
 $decompiledDir = Join-Path $BuildDir "decompiled"
@@ -206,18 +200,18 @@ if (Test-Path $manifestPath) {
     [System.IO.File]::WriteAllText($manifestPath, $manifestText)
 }
 
-# 15. Embed game.love as game.love and clean up default files in assets
-Write-Host "Injecting game files as game.love..."
+# 15. Embed game files directly and clean up default files in assets
+Write-Host "Injecting unpacked game files into assets..."
 $assetsDir = Join-Path $decompiledDir "assets"
-$gameLovePath = Join-Path $assetsDir "game.love"
 
 # Remove default assets
 Get-ChildItem -Path $assetsDir | Where-Object { $_.Name -ne "dexopt" } | ForEach-Object {
     Remove-Item -Path $_.FullName -Recurse -Force
 }
 
-# Copy game.love to assets/game.love
-Copy-Item -Path $FinalGameLove -Destination $gameLovePath -Force
+# Copy all game files unpacked
+Copy-Item -Path "$TempExtractDir\*" -Destination $assetsDir -Recurse -Force
+
 
 # 16. Compile customized APK using Apktool
 Write-Host "Compiling customized APK..."
@@ -259,7 +253,6 @@ Write-Host "Cleaning up temporary build assets..."
 Remove-Item -Recurse -Force $TempExtractDir
 Remove-Item -Recurse -Force $decompiledDir
 Remove-Item -Force $ExtractedLovePath
-Remove-Item -Force $FinalGameLove
 Remove-Item -Force $UnsignedApk
 
 Write-Host "Build complete! You can now transfer Balatro-TripleSix-Mobile.apk to your Android phone."
