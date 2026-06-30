@@ -37,7 +37,10 @@ function Clean-TempDirectories {
 
 # Recursively copy directories excluding dev folders
 function Copy-FilteredDirectory($src, $dest) {
-    $src = $src.TrimEnd('\')
+    if ($src -is [System.Management.Automation.PathInfo]) {
+        $src = $src.Path
+    }
+    $src = $src.ToString().TrimEnd('\')
     New-Item -ItemType Directory -Force -Path $dest | Out-Null
     Get-ChildInstanceRecursively $src | ForEach-Object {
         $relPath = $_.FullName.Substring($src.Length + 1)
@@ -96,9 +99,20 @@ try {
         Write-Host "uber-apk-signer.jar already cached."
     }
 
+    $ExpectedSize = 12900000
+    if (Test-Path $BaseApk) {
+        $ActualSize = (Get-Item $BaseApk).Length
+        if ($ActualSize -lt $ExpectedSize) {
+            Write-Host "Cached base.apk is incomplete ($ActualSize bytes). Deleting cache to redownload..."
+            Remove-Item $BaseApk
+        }
+    }
+
     if (!(Test-Path $BaseApk)) {
         Write-Host "Downloading Lovely base APK (LÖVE 11.5)..."
         # Download from WilsontheWolf's lovely-mobile-maker hosted assets
+        # Silence progress bar to prevent PowerShell slow-down
+        $ProgressPreference = 'SilentlyContinue'
         Invoke-WebRequest -Uri "https://lmm.shorty.systems/base.apk" -OutFile $BaseApk
     } else {
         Write-Host "base.apk already cached."
@@ -168,7 +182,7 @@ setup_prepackaged_mods()
     
     # Copy vanilla game files
     Write-Host "Copying Balatro game assets..."
-    Copy-Item -Path "$TmpGameDir\*" -Destination $ApkAssetsDir -Recurse -Force
+    Copy-FilteredDirectory $TmpGameDir $ApkAssetsDir
 
     # Copy smods and Balatro-TripleSix into PrepackagedMods
     $PrepackagedModsDir = Join-Path $ApkAssetsDir "PrepackagedMods"
