@@ -1,0 +1,6 @@
+.git
+.vscode
+Balatro.apk
+build_apk.bat
+.exclude_apk.txt
+APK_Builder
