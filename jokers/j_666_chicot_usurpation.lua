@@ -45,6 +45,7 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
+        local to_big = to_big or function(x) return x end
         -- 1. Disables effect of every Boss Blind
         if context.setting_blind and not context.blueprint then
             if G.GAME.blind and G.GAME.blind.boss and not G.GAME.blind.disabled then
@@ -76,7 +77,7 @@ SMODS.Joker {
         -- 3. Card's own X Mult application
         if context.joker_main then
             local total_xmult = card.ability.extra.x_mult * card.ability.extra.joker_xmult
-            if total_xmult > 1 then
+            if to_big(total_xmult) > to_big(1) then
                 return {
                     x_mult = total_xmult,
                     card = card
@@ -86,7 +87,7 @@ SMODS.Joker {
 
         -- 4. Scale X Mult upon Boss Blind defeat
         if context.end_of_round and not context.blueprint and not context.individual and not context.repetition then
-            if G.GAME.blind and G.GAME.blind.boss and G.GAME.chips >= G.GAME.blind.chips then
+            if G.GAME.blind and G.GAME.blind.boss and to_big(G.GAME.chips) >= to_big(G.GAME.blind.chips) then
                 card.ability.extra.x_mult = card.ability.extra.x_mult + card.ability.extra.x_mult_gain
                 card_eval_status_text(card, 'extra', nil, nil, nil, {
                     message = "X" .. tostring(card.ability.extra.x_mult) .. " Mult!",

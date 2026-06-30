@@ -100,3 +100,10 @@ function Card:start_dissolve(dissolve_colours, silent, dissolve_time_fac, no_jui
     end
     return card_start_dissolve_ref(self, dissolve_colours, silent, dissolve_time_fac, no_juice)
 end
+
+-- Override sell_card to flag that the card is being sold, preventing the shield from activating
+local card_sell_card_ref = Card.sell_card
+function Card:sell_card()
+    self.selling = true
+    return card_sell_card_ref(self)
+end

@@ -51,7 +51,8 @@ SMODS.Joker {
             local chips = card.ability.extra.chip_multiplier * dollars
             local mult = card.ability.extra.mult_multiplier * math.floor(dollars / card.ability.extra.mult_threshold)
             
-            if chips > 0 or mult > 0 then
+            local to_big = to_big or function(x) return x end
+            if to_big(chips) > to_big(0) or to_big(mult) > to_big(0) then
                 return {
                     message = "+" .. chips .. " Chips, +" .. mult .. " Mult",
                     chips = chips,

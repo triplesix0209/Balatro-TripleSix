@@ -51,9 +51,10 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
+        local to_big = to_big or function(x) return x end
         -- 1. Death prevention: Mr. Bones effect (runs on context.end_of_round and context.game_over)
         if context.end_of_round and context.game_over and not context.blueprint then
-            if G.GAME.chips / G.GAME.blind.chips >= 0.50 then
+            if to_big(G.GAME.chips) / to_big(G.GAME.blind.chips) >= to_big(0.50) then
                 return {
                     message = localize('k_saved_ex'),
                     saved = true,
@@ -71,7 +72,7 @@ SMODS.Joker {
             -- Check if we crossed a chips_period boundary to trigger the "X... Mult!" message
             local old_xmult = 1.0 + math.floor(old_chips / card.ability.extra.chips_period) * card.ability.extra.x_mult_mod
             local new_xmult = 1.0 + math.floor(card.ability.extra.chips / card.ability.extra.chips_period) * card.ability.extra.x_mult_mod
-            if new_xmult > old_xmult then
+            if to_big(new_xmult) > to_big(old_xmult) then
                 card_eval_status_text(card, 'extra', nil, nil, nil, {
                     message = "X" .. tostring(new_xmult) .. " Mult!",
                     colour = G.C.MULT
@@ -94,11 +95,12 @@ SMODS.Joker {
             local xmult = 1.0 + math.floor(chips / card.ability.extra.chips_period) * card.ability.extra.x_mult_mod
             local ret = {}
             local has_effects = false
-            if chips > 0 then
+            local to_big = to_big or function(x) return x end
+            if to_big(chips) > to_big(0) then
                 ret.chips = chips
                 has_effects = true
             end
-            if xmult > 1 then
+            if to_big(xmult) > to_big(1) then
                 ret.x_mult = xmult
                 has_effects = true
             end

@@ -46,6 +46,7 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
+        local to_big = to_big or function(x) return x end
         -- 1. When a playing card is destroyed (e.g. Hanged Man)
         if context.remove_playing_cards and not context.blueprint then
             local gain = 0
@@ -124,7 +125,7 @@ SMODS.Joker {
 
         -- 5. Apply XMult Mod
         if context.joker_main then
-            if card.ability.extra.x_mult > 1 then
+            if to_big(card.ability.extra.x_mult) > to_big(1) then
                 return {
                     message = localize{type='variable', key='a_xmult', vars={card.ability.extra.x_mult}},
                     x_mult = card.ability.extra.x_mult,
