@@ -26,11 +26,13 @@ if (-not (Test-Path $BuildDir)) {
 }
 
 $ApkSignerJar = Join-Path $BuildDir "uber-apk-signer.jar"
+$ApktoolJar = Join-Path $BuildDir "apktool.jar"
 $BaseApkPath = Join-Path $BuildDir "love-11.5-android-embed.apk"
 
 # 3. Download Dependencies
 Write-Host "Checking build dependencies..."
 Download-File "https://github.com/patrickfav/uber-apk-signer/releases/download/v1.3.0/uber-apk-signer-1.3.0.jar" $ApkSignerJar
+Download-File "https://github.com/iBotPeaches/Apktool/releases/download/v2.10.0/apktool_2.10.0.jar" $ApktoolJar
 Download-File "https://github.com/love2d/love-android/releases/download/11.5/love-11.5-android-embed.apk" $BaseApkPath
 
 # 4. Search for Balatro.exe
@@ -158,20 +160,69 @@ if (Test-Path $FinalGameLove) {
 Write-Host "Packaging game.love..."
 [System.IO.Compression.ZipFile]::CreateFromDirectory($TempExtractDir, $FinalGameLove)
 
-# 12. Create unsigned APK and inject game.love
-$UnsignedApk = Join-Path $BuildDir "balatro-unsigned.apk"
-Copy-Item -Path $BaseApkPath -Destination $UnsignedApk -Force
-
-Write-Host "Injecting game.love into Android package assets..."
-$apkZip = [System.IO.Compression.ZipFile]::Open($UnsignedApk, [System.IO.Compression.ZipArchiveMode]::Update)
-$entry = $apkZip.GetEntry("assets/game.love")
-if ($entry) {
-    $entry.Delete()
+# 12. Decompile base APK using Apktool to customize app name & icon
+$decompiledDir = Join-Path $BuildDir "decompiled"
+if (Test-Path $decompiledDir) {
+    Remove-Item -Recurse -Force $decompiledDir
 }
-[System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($apkZip, $FinalGameLove, "assets/game.love")
-$apkZip.Dispose()
+Write-Host "Decompiling base APK for customization..."
+$DecompileProc = Start-Process -FilePath "java" -ArgumentList "-jar `"$ApktoolJar`" d `"$BaseApkPath`" -o `"$decompiledDir`"" -Wait -NoNewWindow -PassThru
+if ($DecompileProc.ExitCode -ne 0) {
+    Write-Error "Apktool failed to decompile the APK."
+    exit 1
+}
 
-# 13. Sign the APK using uber-apk-signer
+# 13. Replace Icons in Decompiled Resources
+$iconSource = Join-Path $SmodsSource "icon.png"
+if (Test-Path $iconSource) {
+    Write-Host "Customizing application icons..."
+    $drawableDirs = Get-ChildItem -Path (Join-Path $decompiledDir "res") -Filter "drawable-*"
+    foreach ($dir in $drawableDirs) {
+        $lovePng = Join-Path $dir.FullName "love.png"
+        if (Test-Path $lovePng) {
+            Copy-Item -Path $iconSource -Destination $lovePng -Force
+        }
+    }
+}
+
+# 14. Patch AndroidManifest.xml for custom app name, package ID, permissions and authorities
+Write-Host "Patching Android Manifest..."
+$manifestPath = Join-Path $decompiledDir "AndroidManifest.xml"
+if (Test-Path $manifestPath) {
+    $manifestText = [System.IO.File]::ReadAllText($manifestPath)
+    
+    # Update application properties
+    $manifestText = $manifestText.Replace('package="org.love2d.android"', 'package="com.triplesix.balatro"')
+    $manifestText = $manifestText.Replace('org.love2d.android.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION', 'com.triplesix.balatro.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION')
+    $manifestText = $manifestText.Replace('org.love2d.android.androidx-startup', 'com.triplesix.balatro.androidx-startup')
+    $manifestText = $manifestText.Replace('android:label="LÖVE for Android"', 'android:label="Balatro TripleSix"')
+    
+    [System.IO.File]::WriteAllText($manifestPath, $manifestText)
+}
+
+# 15. Embed game.love as main.love and clean up default files in assets
+Write-Host "Injecting game files as main.love..."
+$assetsDir = Join-Path $decompiledDir "assets"
+$mainLovePath = Join-Path $assetsDir "main.love"
+
+# Remove default assets
+Get-ChildItem -Path $assetsDir | Where-Object { $_.Name -ne "dexopt" } | ForEach-Object {
+    Remove-Item -Path $_.FullName -Recurse -Force
+}
+
+# Copy game.love to assets/main.love
+Copy-Item -Path $FinalGameLove -Destination $mainLovePath -Force
+
+# 16. Compile customized APK using Apktool
+Write-Host "Compiling customized APK..."
+$UnsignedApk = Join-Path $BuildDir "balatro-unsigned.apk"
+$CompileProc = Start-Process -FilePath "java" -ArgumentList "-jar `"$ApktoolJar`" b `"$decompiledDir`" -o `"$UnsignedApk`"" -Wait -NoNewWindow -PassThru
+if ($CompileProc.ExitCode -ne 0) {
+    Write-Error "Apktool failed to compile the customized APK."
+    exit 1
+}
+
+# 17. Sign the compiled APK using uber-apk-signer
 Write-Host "Aligning and signing APK..."
 $ProcessInfo = New-Object System.Diagnostics.ProcessStartInfo
 $ProcessInfo.FileName = "java"
@@ -191,7 +242,7 @@ if ($Process.ExitCode -ne 0) {
     exit 1
 }
 
-# 14. Relocate signed APK
+# 18. Relocate signed APK
 $SignedApkSource = Get-ChildItem -Path $BuildDir -Filter "*debugSigned.apk" | Select-Object -First 1 -ExpandProperty FullName
 if (-not $SignedApkSource) {
     $SignedApkSource = Get-ChildItem -Path $BuildDir -Filter "*aligned-*.apk" | Select-Object -First 1 -ExpandProperty FullName
@@ -209,9 +260,10 @@ if (Test-Path $FinalApkDest) {
 Move-Item -Path $SignedApkSource -Destination $FinalApkDest
 Write-Host "Successfully generated APK: Balatro-TripleSix-Mobile.apk"
 
-# 15. Cleanup
+# 19. Cleanup
 Write-Host "Cleaning up temporary build assets..."
 Remove-Item -Recurse -Force $TempExtractDir
+Remove-Item -Recurse -Force $decompiledDir
 Remove-Item -Force $ExtractedLovePath
 Remove-Item -Force $FinalGameLove
 Remove-Item -Force $UnsignedApk
