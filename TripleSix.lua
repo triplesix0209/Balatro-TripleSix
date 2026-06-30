@@ -815,3 +815,193 @@ end
 SMODS.load_file('steamodded.lua')()
 -- Sync configuration tables (Handy config merge replaces current_mod.config)
 FusionJokers.fusionconfig = SMODS.current_mod.config
+
+-- ==========================================
+-- Fusions Collection Tab & Button Override
+-- ==========================================
+
+G.your_collection_jokers_pool = {}
+G.your_collection_fusions_pool = {}
+
+function update_collection_pools()
+	G.your_collection_jokers_pool = {}
+	G.your_collection_fusions_pool = {}
+	for _, v in ipairs(G.P_CENTER_POOLS.Joker) do
+		if string.sub(v.key, 1, 6) == "j_666_" then
+			table.insert(G.your_collection_fusions_pool, v)
+		else
+			table.insert(G.your_collection_jokers_pool, v)
+		end
+	end
+end
+
+local set_discover_tallies_ref = set_discover_tallies
+function set_discover_tallies()
+	set_discover_tallies_ref()
+	
+	local fusions_discovered = 0
+	local fusions_total = 0
+	for _, v in pairs(G.P_CENTERS) do
+		if not v.omit and not v.no_collection and v.set == 'Joker' then
+			if string.sub(v.key, 1, 6) == "j_666_" then
+				fusions_total = fusions_total + 1
+				if v.discovered then 
+					fusions_discovered = fusions_discovered + 1
+				end
+			end
+		end
+	end
+	
+	G.DISCOVER_TALLIES.fusions = {tally = fusions_discovered, of = fusions_total}
+	G.DISCOVER_TALLIES.jokers.tally = G.DISCOVER_TALLIES.jokers.tally - fusions_discovered
+	G.DISCOVER_TALLIES.jokers.of = G.DISCOVER_TALLIES.jokers.of - fusions_total
+end
+
+-- Override create_UIBox_your_collection_jokers to use the custom pool
+local create_UIBox_your_collection_jokers_ref = create_UIBox_your_collection_jokers
+function create_UIBox_your_collection_jokers()
+	update_collection_pools()
+	local deck_tables = {}
+	G.your_collection = {}
+	for j = 1, 3 do
+		G.your_collection[j] = CardArea(
+			G.ROOM.T.x + 0.2*G.ROOM.T.w/2,G.ROOM.T.h,
+			5*G.CARD_W,
+			0.95*G.CARD_H, 
+			{card_limit = 5, type = 'title', highlight_limit = 0, collection = true})
+		table.insert(deck_tables, 
+			{n=G.UIT.R, config={align = "cm", padding = 0.07, no_fill = true}, nodes={
+				{n=G.UIT.O, config={object = G.your_collection[j]}}
+			}}
+		)
+	end
+
+	local joker_options = {}
+	local total_jokers = #G.your_collection_jokers_pool
+	for i = 1, math.ceil(total_jokers/(5*#G.your_collection)) do
+		table.insert(joker_options, localize('k_page')..' '..tostring(i)..'/'..tostring(math.ceil(total_jokers/(5*#G.your_collection))))
+	end
+
+	for i = 1, 5 do
+		for j = 1, #G.your_collection do
+			local center = G.your_collection_jokers_pool[i+(j-1)*5]
+			if center then
+				local card = Card(G.your_collection[j].T.x + G.your_collection[j].T.w/2, G.your_collection[j].T.y, G.CARD_W, G.CARD_H, nil, center)
+				card.sticker = get_joker_win_sticker(center)
+				G.your_collection[j]:emplace(card)
+			end
+		end
+	end
+
+	INIT_COLLECTION_CARD_ALERTS()
+	
+	local t = create_UIBox_generic_options({ back_func = 'your_collection', contents = {
+		{n=G.UIT.R, config={align = "cm", r = 0.1, colour = G.C.BLACK, emboss = 0.05}, nodes=deck_tables}, 
+		{n=G.UIT.R, config={align = "cm"}, nodes={
+			create_option_cycle({options = joker_options, w = 4.5, cycle_shoulders = true, opt_callback = 'your_collection_joker_page', current_option = 1, colour = G.C.RED, no_pips = true, focus_args = {snap_to = true, nav = 'wide'}})
+		}}
+	}})
+	return t
+end
+
+-- Override G.FUNCS.your_collection_joker_page to use the custom pool
+G.FUNCS.your_collection_joker_page = function(args)
+	if not args or not args.cycle_config then return end
+	update_collection_pools()
+	for j = 1, #G.your_collection do
+		for i = #G.your_collection[j].cards,1, -1 do
+			local c = G.your_collection[j]:remove_card(G.your_collection[j].cards[i])
+			c:remove()
+			c = nil
+		end
+	end
+	for i = 1, 5 do
+		for j = 1, #G.your_collection do
+			local center = G.your_collection_jokers_pool[i+(j-1)*5 + (5*#G.your_collection*(args.cycle_config.current_option - 1))]
+			if center then
+				local card = Card(G.your_collection[j].T.x + G.your_collection[j].T.w/2, G.your_collection[j].T.y, G.CARD_W, G.CARD_H, G.P_CARDS.empty, center)
+				card.sticker = get_joker_win_sticker(center)
+				G.your_collection[j]:emplace(card)
+			end
+		end
+	end
+	INIT_COLLECTION_CARD_ALERTS()
+end
+
+-- Define G.FUNCS.your_collection_fusions button callback
+G.FUNCS.your_collection_fusions = function(e)
+	G.FUNCS.overlay_menu{
+		definition = create_UIBox_your_collection_fusions(),
+		to_key = 'your_collection_fusions'
+	}
+end
+
+-- Define create_UIBox_your_collection_fusions
+function create_UIBox_your_collection_fusions()
+	update_collection_pools()
+	local deck_tables = {}
+	G.your_collection = {}
+	for j = 1, 3 do
+		G.your_collection[j] = CardArea(
+			G.ROOM.T.x + 0.2*G.ROOM.T.w/2,G.ROOM.T.h,
+			5*G.CARD_W,
+			0.95*G.CARD_H, 
+			{card_limit = 5, type = 'title', highlight_limit = 0, collection = true})
+		table.insert(deck_tables, 
+			{n=G.UIT.R, config={align = "cm", padding = 0.07, no_fill = true}, nodes={
+				{n=G.UIT.O, config={object = G.your_collection[j]}}
+			}}
+		)
+	end
+
+	local fusion_options = {}
+	local total_fusions = #G.your_collection_fusions_pool
+	for i = 1, math.ceil(total_fusions/(5*#G.your_collection)) do
+		table.insert(fusion_options, localize('k_page')..' '..tostring(i)..'/'..tostring(math.ceil(total_fusions/(5*#G.your_collection))))
+	end
+
+	for i = 1, 5 do
+		for j = 1, #G.your_collection do
+			local center = G.your_collection_fusions_pool[i+(j-1)*5]
+			if center then
+				local card = Card(G.your_collection[j].T.x + G.your_collection[j].T.w/2, G.your_collection[j].T.y, G.CARD_W, G.CARD_H, nil, center)
+				card.sticker = get_joker_win_sticker(center)
+				G.your_collection[j]:emplace(card)
+			end
+		end
+	end
+
+	INIT_COLLECTION_CARD_ALERTS()
+	
+	local t = create_UIBox_generic_options({ back_func = 'your_collection', contents = {
+		{n=G.UIT.R, config={align = "cm", r = 0.1, colour = G.C.BLACK, emboss = 0.05}, nodes=deck_tables}, 
+		{n=G.UIT.R, config={align = "cm"}, nodes={
+			create_option_cycle({options = fusion_options, w = 4.5, cycle_shoulders = true, opt_callback = 'your_collection_fusions_page', current_option = 1, colour = G.C.RED, no_pips = true, focus_args = {snap_to = true, nav = 'wide'}})
+		}}
+	}})
+	return t
+end
+
+-- Define G.FUNCS.your_collection_fusions_page
+G.FUNCS.your_collection_fusions_page = function(args)
+	if not args or not args.cycle_config then return end
+	update_collection_pools()
+	for j = 1, #G.your_collection do
+		for i = #G.your_collection[j].cards,1, -1 do
+			local c = G.your_collection[j]:remove_card(G.your_collection[j].cards[i])
+			c:remove()
+			c = nil
+		end
+	end
+	for i = 1, 5 do
+		for j = 1, #G.your_collection do
+			local center = G.your_collection_fusions_pool[i+(j-1)*5 + (5*#G.your_collection*(args.cycle_config.current_option - 1))]
+			if center then
+				local card = Card(G.your_collection[j].T.x + G.your_collection[j].T.w/2, G.your_collection[j].T.y, G.CARD_W, G.CARD_H, G.P_CARDS.empty, center)
+				card.sticker = get_joker_win_sticker(center)
+				G.your_collection[j]:emplace(card)
+			end
+		end
+	end
+	INIT_COLLECTION_CARD_ALERTS()
+end

@@ -230,6 +230,7 @@ return {
     misc = {
         dictionary = {
             b_fuse = "FUSE",
+            b_fusions = "Fusion Jokers",
             k_666_fusion = "Fusion",
             k_copied_ex = "Cloned!",
             k_flipped_ex = "Flipped!",
