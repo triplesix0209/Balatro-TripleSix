@@ -135,15 +135,21 @@ Write-Host "Configuring Steamodded VFS redirects..."
 $coreLuaPath = Join-Path $SmodsDest "src\preflight\core.lua"
 if (Test-Path $coreLuaPath) {
     $coreLuaText = [System.IO.File]::ReadAllText($coreLuaPath)
+    
     $targetLine = 'SMODS.MODS_DIR = lovely_mod_dir:gsub("\\", "/")'
-    $replaceLine = "SMODS.MODS_DIR = `"Mods`"`r`nNFS.smodsAddRedirect(`"Mods`", `"Mods`")"
+    $replaceLine = "SMODS.MODS_DIR = `"Mods`"`r`nNFS.smodsAddRedirect(`"Mods`", `"Mods`")`r`nNFS.smodsAddRedirect(`"SMODS`", `"SMODS`")"
+    
+    $targetPathLine = "local lovely_path = false -- This line is patched, don't edit it"
+    $replacePathLine = 'local lovely_path = "SMODS/"'
+    
     if ($coreLuaText.Contains($targetLine)) {
         $coreLuaText = $coreLuaText.Replace($targetLine, $replaceLine)
-        [System.IO.File]::WriteAllText($coreLuaPath, $coreLuaText)
-        Write-Host "Patched core.lua to map virtual Mods folder."
-    } else {
-        Write-Warning "Could not find MODS_DIR assignment line in Steamodded core.lua."
     }
+    if ($coreLuaText.Contains($targetPathLine)) {
+        $coreLuaText = $coreLuaText.Replace($targetPathLine, $replacePathLine)
+    }
+    [System.IO.File]::WriteAllText($coreLuaPath, $coreLuaText)
+    Write-Host "Patched core.lua to map virtual Mods/SMODS folders and path."
 }
 
 # 10. Embed user's TripleSix mod
@@ -154,8 +160,43 @@ if (Test-Path $ModsDest) {
 New-Item -ItemType Directory -Path $ModsDest | Out-Null
 
 Write-Host "Embedding TripleSix mod..."
-Get-ChildItem -Path $ScriptDir | Where-Object { $_.Name -ne "build" -and $_.Name -ne ".git" -and $_.Name -ne ".vscode" } | ForEach-Object {
+Get-ChildItem -Path $ScriptDir | Where-Object { $_.Name -ne "build" -and $_.Name -ne ".git" -and $_.Name -ne ".vscode" -and $_.Extension -ne ".apk" } | ForEach-Object {
     Copy-Item -Path $_.FullName -Destination $ModsDest -Recurse -Force
+}
+
+# 10.5. Patch main.lua to bootstrap SMODS and preloads on Android
+Write-Host "Injecting SMODS/Lovely preloads bootstrap into main.lua..."
+$mainLuaPath = Join-Path $TempExtractDir "main.lua"
+if (Test-Path $mainLuaPath) {
+    $bootstrapBlock = @"
+-- Android SMODS & Lovely Bootstrap
+package.preload["json"] = function() return require("SMODS.libs.json.json") end
+package.preload["nativefs"] = function() return require("SMODS.libs.nativefs.nativefs") end
+package.preload["SMODS.nativefs"] = function() return require("SMODS.libs.nativefs.nativefs") end
+package.preload["SMODS.https"] = function() return require("SMODS.libs.https.smods-https") end
+package.preload["lovely"] = function()
+    return {
+        mod_dir = "Mods",
+        reload_patches = function() return true end,
+        version = "0.9.0"
+    }
+end
+package.preload["SMODS.preflight.sharedUtil"] = function() return require("SMODS.src.preflight.sharedUtil") end
+package.preload["SMODS.preflight.logging"] = function() return require("SMODS.src.preflight.logging") end
+package.preload["SMODS.preflight.loader"] = function() return require("SMODS.src.preflight.loader") end
+package.preload["SMODS.preflight.sharedUI"] = function() return require("SMODS.src.preflight.sharedUI") end
+package.preload["SMODS.preflight.core"] = function() return require("SMODS.src.preflight.core") end
+package.preload["SMODS.version"] = function() return require("SMODS.version") end
+package.preload["SMODS.release"] = function() return require("SMODS.release") end
+
+-- Run core bootstrap
+require("SMODS.preflight.core")
+
+
+"@
+    $originalText = [System.IO.File]::ReadAllText($mainLuaPath)
+    [System.IO.File]::WriteAllText($mainLuaPath, $bootstrapBlock + $originalText)
+    Write-Host "Successfully injected preloads into main.lua."
 }
 
 # 11. Skipped zip packaging (will copy raw files directly in step 15)
@@ -191,11 +232,11 @@ $manifestPath = Join-Path $decompiledDir "AndroidManifest.xml"
 if (Test-Path $manifestPath) {
     $manifestText = [System.IO.File]::ReadAllText($manifestPath)
     
-    # Update application properties
-    $manifestText = $manifestText.Replace('package="org.love2d.android"', 'package="com.triplesix.balatro"')
-    $manifestText = $manifestText.Replace('org.love2d.android.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION', 'com.triplesix.balatro.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION')
-    $manifestText = $manifestText.Replace('org.love2d.android.androidx-startup', 'com.triplesix.balatro.androidx-startup')
-    $manifestText = $manifestText.Replace('android:label="LÖVE for Android"', 'android:label="Balatro TripleSix"')
+    # Update application properties using regex to bypass any encoding issue with Ö character
+    $manifestText = $manifestText -replace 'package="org\.love2d\.android"', 'package="com.triplesix.balatro"'
+    $manifestText = $manifestText -replace 'org\.love2d\.android\.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION', 'com.triplesix.balatro.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION'
+    $manifestText = $manifestText -replace 'org\.love2d\.android\.androidx-startup', 'com.triplesix.balatro.androidx-startup'
+    $manifestText = $manifestText -replace 'android:label="L.VE for Android"', 'android:label="Balatro"'
     
     [System.IO.File]::WriteAllText($manifestPath, $manifestText)
 }
@@ -241,12 +282,12 @@ if (-not $SignedApkSource) {
     exit 1
 }
 
-$FinalApkDest = Join-Path $ScriptDir "Balatro-TripleSix-Mobile.apk"
+$FinalApkDest = Join-Path $ScriptDir "Balatro.apk"
 if (Test-Path $FinalApkDest) {
     Remove-Item -Force $FinalApkDest
 }
 Move-Item -Path $SignedApkSource -Destination $FinalApkDest
-Write-Host "Successfully generated APK: Balatro-TripleSix-Mobile.apk"
+Write-Host "Successfully generated APK: Balatro.apk"
 
 # 19. Cleanup
 Write-Host "Cleaning up temporary build assets..."
@@ -255,4 +296,4 @@ Remove-Item -Recurse -Force $decompiledDir
 Remove-Item -Force $ExtractedLovePath
 Remove-Item -Force $UnsignedApk
 
-Write-Host "Build complete! You can now transfer Balatro-TripleSix-Mobile.apk to your Android phone."
+Write-Host "Build complete! You can now transfer Balatro.apk to your Android phone."
