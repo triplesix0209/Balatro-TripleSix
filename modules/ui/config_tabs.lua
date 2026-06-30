@@ -480,6 +480,15 @@ Handy.UI.PARTS.tabs_list = {
 			end
 		end,
 	},
+	["Talisman"] = {
+		definition = function()
+			if Talisman and Talisman.config_tab then
+				return Talisman.config_tab()
+			else
+				return {}
+			end
+		end,
+	},
 	["Thanks"] = {
 		definition = function()
 			if get_config_tab_thanks then
@@ -492,8 +501,9 @@ Handy.UI.PARTS.tabs_list = {
 }
 Handy.UI.PARTS.tabs_order = {
 	"Overall",
-	"Fusions",
 	"Keybinds Paginated",
+	"Fusions",
+	"Talisman",
 	"Thanks",
 }
 

@@ -95,6 +95,13 @@ function get_config_tab_thanks()
             }},
             {n = G.UIT.R, config = {align = "cm", padding = 0.05}, nodes = {
                 {n = G.UIT.T, config = {text = "by SleepyG11", scale = 0.35, colour = G.C.UI.TEXT_LIGHT}}
+            }},
+            {n = G.UIT.R, config = {align = "cm", padding = 0.15}},
+            {n = G.UIT.R, config = {align = "cm", padding = 0.1}, nodes = {
+                {n = G.UIT.T, config = {text = "Talisman (Big Numbers)", scale = 0.45, colour = G.C.WHITE}},
+            }},
+            {n = G.UIT.R, config = {align = "cm", padding = 0.05}, nodes = {
+                {n = G.UIT.T, config = {text = "by SpectralPack (MathIsFun_, Mathguy24, jenwalter666, cg, lord.ruby)", scale = 0.32, colour = G.C.UI.TEXT_LIGHT}}
             }}
         }}
     }
