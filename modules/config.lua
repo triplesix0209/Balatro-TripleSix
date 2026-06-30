@@ -26,6 +26,9 @@ local default_config = {
 	prevent_if_debugplus = {
 		enabled = false,
 	},
+	debug_always_enabled = {
+		enabled = false,
+	},
 
 	insta_highlight = {
 		enabled = true,
@@ -101,6 +104,86 @@ local default_config = {
 				key_2_gamepad = "None",
 			},
 		},
+	},
+
+	-- Debug actions
+	debug_add_money = {
+		key_1 = "None",
+		key_2 = "None",
+		key_1_gamepad = "None",
+		key_2_gamepad = "None",
+	},
+	debug_add_round = {
+		key_1 = "None",
+		key_2 = "None",
+		key_1_gamepad = "None",
+		key_2_gamepad = "None",
+	},
+	debug_add_ante = {
+		key_1 = "None",
+		key_2 = "None",
+		key_1_gamepad = "None",
+		key_2_gamepad = "None",
+	},
+	debug_add_hand = {
+		key_1 = "None",
+		key_2 = "None",
+		key_1_gamepad = "None",
+		key_2_gamepad = "None",
+	},
+	debug_add_discard = {
+		key_1 = "None",
+		key_2 = "None",
+		key_1_gamepad = "None",
+		key_2_gamepad = "None",
+	},
+	debug_add_chips = {
+		key_1 = "None",
+		key_2 = "None",
+		key_1_gamepad = "None",
+		key_2_gamepad = "None",
+	},
+	debug_add_mult = {
+		key_1 = "None",
+		key_2 = "None",
+		key_1_gamepad = "None",
+		key_2_gamepad = "None",
+	},
+	debug_win_game = {
+		key_1 = "None",
+		key_2 = "None",
+		key_1_gamepad = "None",
+		key_2_gamepad = "None",
+	},
+	debug_lose_game = {
+		key_1 = "None",
+		key_2 = "None",
+		key_1_gamepad = "None",
+		key_2_gamepad = "None",
+	},
+	debug_unlock = {
+		key_1 = "None",
+		key_2 = "None",
+		key_1_gamepad = "None",
+		key_2_gamepad = "None",
+	},
+	debug_discover = {
+		key_1 = "None",
+		key_2 = "None",
+		key_1_gamepad = "None",
+		key_2_gamepad = "None",
+	},
+	debug_spawn = {
+		key_1 = "None",
+		key_2 = "None",
+		key_1_gamepad = "None",
+		key_2_gamepad = "None",
+	},
+	debug_cycle_edition = {
+		key_1 = "None",
+		key_2 = "None",
+		key_1_gamepad = "None",
+		key_2_gamepad = "None",
 	},
 
 	insta_cash_out = {

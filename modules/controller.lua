@@ -707,6 +707,28 @@ Handy.controller = {
 			return finish(true)
 		end
 
+		if Handy.controller.is_triggered(released) then
+			for _, action in ipairs({
+				Handy.debug_add_money,
+				Handy.debug_add_round,
+				Handy.debug_add_ante,
+				Handy.debug_add_hand,
+				Handy.debug_add_discard,
+				Handy.debug_add_chips,
+				Handy.debug_add_mult,
+				Handy.debug_win_game,
+				Handy.debug_lose_game,
+				Handy.debug_unlock,
+				Handy.debug_discover,
+				Handy.debug_spawn,
+				Handy.debug_cycle_edition,
+			}) do
+				if action.use(key) then
+					return finish(true)
+				end
+			end
+		end
+
 		if not released then
 			if
 				Handy.speed_multiplier.use(key)

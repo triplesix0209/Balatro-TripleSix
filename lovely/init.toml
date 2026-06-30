@@ -152,6 +152,12 @@ source = 'modules/controls/misc.lua'
 before = 'main.lua'
 name = 'handy/controls/misc'
 
+[[patches]]
+[patches.module]
+source = 'modules/controls/debug_actions.lua'
+before = 'main.lua'
+name = 'handy/controls/debug_actions'
+
 # Init
 
 [[patches]]

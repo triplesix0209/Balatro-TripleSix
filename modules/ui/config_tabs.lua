@@ -64,6 +64,23 @@ Handy.UI.get_keybinds_page = function(page)
 			Handy.UI.CD.misc_start_fantoms_preview.keybind(),
 			Handy.UI.CD.misc_crash.keybind(),
 		}
+	elseif page == 5 then
+		result = {
+			Handy.UI.PARTS.create_module_section("debug"),
+			Handy.UI.CD.debug_add_money.keybind(),
+			Handy.UI.CD.debug_add_round.keybind(),
+			Handy.UI.CD.debug_add_ante.keybind(),
+			Handy.UI.CD.debug_add_hand.keybind(),
+			Handy.UI.CD.debug_add_discard.keybind(),
+			Handy.UI.CD.debug_add_chips.keybind(),
+			Handy.UI.CD.debug_add_mult.keybind(),
+			Handy.UI.CD.debug_win_game.keybind(),
+			Handy.UI.CD.debug_lose_game.keybind(),
+			Handy.UI.CD.debug_unlock.keybind(),
+			Handy.UI.CD.debug_discover.keybind(),
+			Handy.UI.CD.debug_spawn.keybind(),
+			Handy.UI.CD.debug_cycle_edition.keybind(),
+		}
 	end
 	if result then
 		result = {
@@ -85,7 +102,7 @@ Handy.UI.get_keybinds_page = function(page)
 			},
 		}
 	end
-	return result, 4
+	return result, 5
 end
 
 
@@ -188,6 +205,8 @@ Handy.UI.get_overall_page = function(page)
 							Handy.UI.CD.show_deck_preview.checkbox(),
 							Handy.UI.PARTS.create_separator_r(),
 							Handy.UI.CD.hide_options_button.checkbox(),
+							Handy.UI.PARTS.create_separator_r(),
+							Handy.UI.CD.debug_always_enabled.checkbox(),
 						},
 					},
 				},

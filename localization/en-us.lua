@@ -101,6 +101,15 @@ return {
                     "Deselect hand"
                 }
             },
+            debug_always_enabled = {
+                text = {
+                    "Allow using Debug keybinds",
+                    "even when not in Debug Mode"
+                },
+                unlock = {
+                    "Debug always enabled"
+                }
+            },
             handy = {
                 text = {
                     "Uncheck to disable {C:attention}ALL{} mod features",
@@ -911,7 +920,20 @@ return {
             speed_multiplier_divide = "Speed multiplier: Divide",
             speed_multiplier_multiply = "Speed multiplier: Multiply",
             toggle_sort = "Toggle sort",
-            view_deck = "View deck"
+            view_deck = "View deck",
+            debug_add_money = "+$10",
+            debug_add_round = "+1 Round",
+            debug_add_ante = "+1 Ante",
+            debug_add_hand = "+1 Hand",
+            debug_add_discard = "+1 Discard",
+            debug_add_chips = "+10 Chips",
+            debug_add_mult = "+10 Mult",
+            debug_win_game = "Win Run",
+            debug_lose_game = "Lose Run",
+            debug_unlock = "Unlock",
+            debug_discover = "Discover",
+            debug_spawn = "Spawn",
+            debug_cycle_edition = "Cycle Edition"
         },
         handy_keybind_sections = {
             animations = "Animations",
@@ -927,7 +949,8 @@ return {
             quick_actions = "Quick actions",
             round = "Round",
             shop = "Shop",
-            shop_and_blinds = "Shop and Blinds"
+            shop_and_blinds = "Shop and Blinds",
+            debug = "Debug Actions"
         },
         handy_keybinds = {
             Alt = nil,

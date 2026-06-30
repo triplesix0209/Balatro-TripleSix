@@ -26,6 +26,7 @@ local keyw = {
 	nopeus_interaction = "interaction nopeus fast forward fast-forward",
 	scoring_hold = "scoring hold game speed animations pause hold after scoring wait before end of round",
 	unsafe_control = "dangerous unsafe",
+	debug = "debug cheat tool panel",
 }
 
 local dictionary = {
@@ -1325,6 +1326,125 @@ local dictionary = {
 		end,
 	},
 
+	-- Debug actions (requires Balatro debug mode / debug panel visible)
+	debug_add_money = {
+		loc_key = "debug_add_money",
+		keywords = { keyw.debug },
+		keybind = function(options)
+			options = options or {}
+			return Handy.UI.PARTS.create_module_keybind(Handy.cc.debug_add_money, "debug_add_money", nil, options)
+		end,
+	},
+	debug_add_round = {
+		loc_key = "debug_add_round",
+		keywords = { keyw.debug },
+		keybind = function(options)
+			options = options or {}
+			return Handy.UI.PARTS.create_module_keybind(Handy.cc.debug_add_round, "debug_add_round", nil, options)
+		end,
+	},
+	debug_add_ante = {
+		loc_key = "debug_add_ante",
+		keywords = { keyw.debug },
+		keybind = function(options)
+			options = options or {}
+			return Handy.UI.PARTS.create_module_keybind(Handy.cc.debug_add_ante, "debug_add_ante", nil, options)
+		end,
+	},
+	debug_add_hand = {
+		loc_key = "debug_add_hand",
+		keywords = { keyw.debug },
+		keybind = function(options)
+			options = options or {}
+			return Handy.UI.PARTS.create_module_keybind(Handy.cc.debug_add_hand, "debug_add_hand", nil, options)
+		end,
+	},
+	debug_add_discard = {
+		loc_key = "debug_add_discard",
+		keywords = { keyw.debug },
+		keybind = function(options)
+			options = options or {}
+			return Handy.UI.PARTS.create_module_keybind(Handy.cc.debug_add_discard, "debug_add_discard", nil, options)
+		end,
+	},
+	debug_add_chips = {
+		loc_key = "debug_add_chips",
+		keywords = { keyw.debug },
+		keybind = function(options)
+			options = options or {}
+			return Handy.UI.PARTS.create_module_keybind(Handy.cc.debug_add_chips, "debug_add_chips", nil, options)
+		end,
+	},
+	debug_add_mult = {
+		loc_key = "debug_add_mult",
+		keywords = { keyw.debug },
+		keybind = function(options)
+			options = options or {}
+			return Handy.UI.PARTS.create_module_keybind(Handy.cc.debug_add_mult, "debug_add_mult", nil, options)
+		end,
+	},
+	debug_win_game = {
+		loc_key = "debug_win_game",
+		keywords = { keyw.debug },
+		keybind = function(options)
+			options = options or {}
+			return Handy.UI.PARTS.create_module_keybind(Handy.cc.debug_win_game, "debug_win_game", nil, options)
+		end,
+	},
+	debug_lose_game = {
+		loc_key = "debug_lose_game",
+		keywords = { keyw.debug },
+		keybind = function(options)
+			options = options or {}
+			return Handy.UI.PARTS.create_module_keybind(Handy.cc.debug_lose_game, "debug_lose_game", nil, options)
+		end,
+	},
+	debug_unlock = {
+		loc_key = "debug_unlock",
+		keywords = { keyw.debug },
+		keybind = function(options)
+			options = options or {}
+			return Handy.UI.PARTS.create_module_keybind(Handy.cc.debug_unlock, "debug_unlock", nil, options)
+		end,
+	},
+	debug_discover = {
+		loc_key = "debug_discover",
+		keywords = { keyw.debug },
+		keybind = function(options)
+			options = options or {}
+			return Handy.UI.PARTS.create_module_keybind(Handy.cc.debug_discover, "debug_discover", nil, options)
+		end,
+	},
+	debug_spawn = {
+		loc_key = "debug_spawn",
+		keywords = { keyw.debug },
+		keybind = function(options)
+			options = options or {}
+			return Handy.UI.PARTS.create_module_keybind(Handy.cc.debug_spawn, "debug_spawn", nil, options)
+		end,
+	},
+	debug_cycle_edition = {
+		loc_key = "debug_cycle_edition",
+		keywords = { keyw.debug },
+		keybind = function(options)
+			options = options or {}
+			return Handy.UI.PARTS.create_module_keybind(Handy.cc.debug_cycle_edition, "debug_cycle_edition", nil, options)
+		end,
+	},
+
+	debug_always_enabled = {
+		loc_key = "debug_always_enabled",
+		keywords = { keyw.debug, "always enabled config" },
+		checkbox = function(options)
+			return Handy.UI.PARTS.create_new_module_checkbox(
+				Handy.cc.debug_always_enabled,
+				"debug_always_enabled",
+				nil,
+				options
+			)
+		end,
+	},
+
 	debugplus_prevent = {
 		loc_key = "debugplus_prevent",
 		keywords = { "debugplus debug plus", "prevent keybinds" },
@@ -1459,6 +1579,22 @@ local dictionary_order = {
 	"misc_quick_restart",
 	"misc_start_fantoms_preview",
 	"misc_crash",
+
+	-- debug actions
+	"debug_add_money",
+	"debug_add_round",
+	"debug_add_ante",
+	"debug_add_hand",
+	"debug_add_discard",
+	"debug_add_chips",
+	"debug_add_mult",
+	"debug_win_game",
+	"debug_lose_game",
+	"debug_unlock",
+	"debug_discover",
+	"debug_spawn",
+	"debug_cycle_edition",
+	"debug_always_enabled",
 
 }
 

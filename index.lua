@@ -61,6 +61,7 @@ if not Handy then
 	require("handy/controls/scoring_hold")
 
 	require("handy/controls/misc")
+	require("handy/controls/debug_actions")
 
 	--
 
