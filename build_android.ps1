@@ -136,11 +136,22 @@ $coreLuaPath = Join-Path $SmodsDest "src\preflight\core.lua"
 if (Test-Path $coreLuaPath) {
     $coreLuaText = [System.IO.File]::ReadAllText($coreLuaPath)
     
+    # Fix 1: Set MODS_DIR and add VFS redirects
     $targetLine = 'SMODS.MODS_DIR = lovely_mod_dir:gsub("\\", "/")'
-    $replaceLine = "SMODS.MODS_DIR = `"Mods`"`r`nNFS.smodsAddRedirect(`"Mods`", `"Mods`")`r`nNFS.smodsAddRedirect(`"SMODS`", `"SMODS`")"
+    $replaceLine = "SMODS.MODS_DIR = `"Mods`""
     
+    # Fix 2: Set lovely_path to SMODS/ so SMODS.path resolves correctly
     $targetPathLine = "local lovely_path = false -- This line is patched, don't edit it"
     $replacePathLine = 'local lovely_path = "SMODS/"'
+    
+    # Fix 3: Remove NFS.setWorkingDirectory calls - these break on Android
+    # as they try to navigate to PC absolute paths that don't exist
+    $targetWD1 = "NFS.setWorkingDirectory(lovely_mod_dir)"
+    $replaceWD1 = "-- NFS.setWorkingDirectory disabled on Android"
+    $targetWD2 = "lovely_mod_dir = NFS.getWorkingDirectory()"
+    $replaceWD2 = "-- lovely_mod_dir = NFS.getWorkingDirectory() disabled on Android"
+    $targetWD3 = "NFS.setWorkingDirectory(love.filesystem.getSaveDirectory())"
+    $replaceWD3 = "-- NFS.setWorkingDirectory(saveDir) disabled on Android"
     
     if ($coreLuaText.Contains($targetLine)) {
         $coreLuaText = $coreLuaText.Replace($targetLine, $replaceLine)
@@ -148,8 +159,18 @@ if (Test-Path $coreLuaPath) {
     if ($coreLuaText.Contains($targetPathLine)) {
         $coreLuaText = $coreLuaText.Replace($targetPathLine, $replacePathLine)
     }
+    if ($coreLuaText.Contains($targetWD1)) {
+        $coreLuaText = $coreLuaText.Replace($targetWD1, $replaceWD1)
+    }
+    if ($coreLuaText.Contains($targetWD2)) {
+        $coreLuaText = $coreLuaText.Replace($targetWD2, $replaceWD2)
+    }
+    if ($coreLuaText.Contains($targetWD3)) {
+        $coreLuaText = $coreLuaText.Replace($targetWD3, $replaceWD3)
+    }
+    
     [System.IO.File]::WriteAllText($coreLuaPath, $coreLuaText)
-    Write-Host "Patched core.lua to map virtual Mods/SMODS folders and path."
+    Write-Host "Patched core.lua for Android compatibility."
 }
 
 # 10. Embed user's TripleSix mod
@@ -184,10 +205,18 @@ package.preload["SMODS.nativefs"] = function()
     return love.filesystem.load("SMODS/libs/nativefs/nativefs.lua")()
 end
 package.preload["lovely"] = function()
+    -- Full lovely mock for Android (no native lovely loader available)
+    local _vars = {}
     return {
         mod_dir = "Mods",
+        version = "0.9.0",
         reload_patches = function() return true end,
-        version = "0.9.0"
+        set_var = function(key, val) _vars[key] = val end,
+        remove_var = function(key)
+            local val = _vars[key]
+            _vars[key] = nil
+            return val
+        end,
     }
 end
 package.preload["SMODS.preflight.sharedUtil"] = function()
@@ -346,9 +375,12 @@ Write-Host "Successfully generated APK: Balatro.apk"
 
 # 19. Cleanup
 Write-Host "Cleaning up temporary build assets..."
-Remove-Item -Recurse -Force $TempExtractDir
-Remove-Item -Recurse -Force $decompiledDir
-Remove-Item -Force $ExtractedLovePath
-Remove-Item -Force $UnsignedApk
+Start-Sleep -Milliseconds 500
+Remove-Item -Recurse -Force $TempExtractDir -ErrorAction SilentlyContinue
+Remove-Item -Recurse -Force $decompiledDir -ErrorAction SilentlyContinue
+Remove-Item -Force $ExtractedLovePath -ErrorAction SilentlyContinue
+Remove-Item -Force $UnsignedApk -ErrorAction SilentlyContinue
+Remove-Item -Force (Join-Path $BuildDir "balatro_app_icon.png") -ErrorAction SilentlyContinue
 
-Write-Host "Build complete! You can now transfer Balatro.apk to your Android phone."
+Write-Host "Build complete! APK ready at: $FinalApkDest"
+
