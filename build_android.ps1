@@ -1,4 +1,4 @@
-# Balatro Mobile Modded APK Builder for Galaxy A53
+# Balatro Mobile Modded APK Builder for Android phone
 # Requires Java 17+ on PATH and a legal installation of Balatro on Steam.
 
 $ErrorActionPreference = "Stop"
@@ -216,4 +216,4 @@ Remove-Item -Force $ExtractedLovePath
 Remove-Item -Force $FinalGameLove
 Remove-Item -Force $UnsignedApk
 
-Write-Host "Build complete! You can now transfer Balatro-TripleSix-Mobile.apk to your Galaxy A53."
+Write-Host "Build complete! You can now transfer Balatro-TripleSix-Mobile.apk to your Android phone."
